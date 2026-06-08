@@ -1,0 +1,26 @@
+# Credenciales y wallet de Oracle - NUNCA subir esto a GitHub
+wallet/
+Wallet_*/
+*.sso
+*.p12
+*.pem
+cwallet.sso
+ewallet.p12
+tnsnames.ora
+sqlnet.ora
+config/db.php
+conexion.php
+
+# Sistema
+Thumbs.db
+.DS_Store
+desktop.ini
+
+# Editores
+.vscode/
+.idea/
+*.swp
+
+# Logs y temporales
+*.log
+tmp/
