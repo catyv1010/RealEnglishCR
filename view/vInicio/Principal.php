@@ -1,141 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-
-	<head>
-		<!-- Meta -->
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-		<meta name="description" content="Real English CR - Academia de Ingles">
-		<meta name="keywords" content="agency, business, corporate, creative, html5, modern, multipurpose, One Page, parallax, startup">		
-		<!-- SITE TITLE -->
-		<title>Real English CR - Academia de Ingles</title>			
-		<!-- Latest Bootstrap min CSS -->
-		<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">		
-		<!-- Google Font -->
-		<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
-		<link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-		<!-- Font Awesome CSS -->
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-		<link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
-		<link rel="stylesheet" href="assets/fonts/themify-icons.css">
-		<!--- owl carousel Css-->
-		<link rel="stylesheet" href="assets/owlcarousel/css/owl.carousel.css">
-		<link rel="stylesheet" href="assets/owlcarousel/css/owl.theme.css">	
-		<!--jquery-simple-mobilemenu Css-->
-        <link rel="stylesheet" href="assets/css/jquery-simple-mobilemenu.css">			
-		<!-- MAGNIFIC CSS -->
-		<link rel="stylesheet" href="assets/css/magnific-popup.css">		
-		<!-- animate CSS -->
-		<link rel="stylesheet" href="assets/css/animate.css">	
-		<!-- Style CSS -->					
-		<link rel="stylesheet" href="assets/css/style.css">					
-		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-		<!--[if lt IE 9]>
-		  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-		<![endif]-->
-	</head>
-	
-    <body data-spy="scroll" data-offset="80">
-
-		<!-- START PRELOADER -->
-		<div class="preloaders">
-			<span class="loader"></span>
-		</div>
-		<!-- END PRELOADER -->		
-
-		<!-- START NAVBAR -->  
-		<div id="navigation" class="navbar-light bg-faded site-navigation">
-			<div class="container-fluid">
-				<div class="row">
-					<div class="col-20 align-self-center">
-						<div class="site-logo">
-							<a href="index.html"><img src="assets/img/logo.svg" alt=""></a>          				
-						</div>
-					</div><!--- END Col -->
-					
-					<div class="col-60 d-flex">
-						<nav id="main-menu">
-							<ul>
-								<li class="menu-item-has-children"><a href="#">Inicio</a>
-									<ul>										
-										<li><a href="index.html">Inicio</a></li>
-										<li><a href="index2.html">Inicio (v2)</a></li>
-									</ul>
-								</li>
-								<li><a href="about.html">Acerca de</a></li>				  				  
-								<li class="menu-item-has-children"><a href="course.html">Cursos</a>
-									<ul>										
-										<li><a href="course.html">Cursos</a></li>
-										<li><a href="course_details.html">Detalle Curso</a></li>
-									</ul>
-								</li>								
-								<li class="menu-item-has-children"><a href="#">Paginas</a>
-									<ul>										
-										<li><a href="instructor.html">Profesores</a></li>
-										<li><a href="ins_details.html">Perfil Profesor</a></li>
-										<li><a href="pricing.html">Precios</a></li>
-										<li><a href="faq.html">Preguntas</a></li>			
-										<li><a href="404.html">404</a></li>				
-									</ul>
-								</li>							
-								<li class="menu-item-has-children"><a href="blog.html">Blog</a>
-									<ul>										
-										<li><a href="blog.html">Blog</a></li>
-										<li><a href="blog_single.html">Detalle Blog</a></li>
-									</ul>
-								</li>							  
-								<li><a href="contact.html">Contacto</a></li>
-							</ul>
-						</nav>
-					</div><!--- END Col -->
-					
-					<div class="col-20 d-none d-xl-block text-end align-self-center">
-						<a href="login.html" class="header-btn">Iniciar Sesion</a>
-						<a href="register.html" class="btn_one">Registrarse</a>
-					</div><!--- END Col -->
-					
-					<ul class="mobile_menu">						
-						<li><a href="#">Inicio</a>
-							<ul class="sub-menu">										
-								<li><a href="index.html">Inicio</a></li>
-								<li><a href="index2.html">Inicio (v2)</a></li>						
-							</ul>
-						</li>	
-						<li><a href="about.html">Acerca de</a></li>						
-						<li><a href="#">Cursos</a>
-							<ul class="sub-menu">										
-								<li><a href="course.html">Cursos</a></li>
-								<li><a href="course_details.html">Detalle Curso</a></li>									
-							</ul>
-						</li>
-						<li><a href="#">Paginas</a>
-							<ul class="sub-menu">									
-								<li><a href="instructor.html">Profesores</a></li>
-								<li><a href="ins_details.html">Perfil Profesor</a></li>
-								<li><a href="pricing.html">Precios</a></li>
-								<li><a href="faq.html">Preguntas</a></li>			
-								<li><a href="404.html">404</a></li>							
-							</ul>
-						</li>			
-						<li><a href="blog.html">Blog</a>
-							<ul class="sub-menu">										
-								<li><a href="blog.html">Blog</a></li>
-								<li><a href="blog_single.html">Detalle Blog</a></li>
-							</ul>
-						</li>						
-						<li><a href="contact.html">Contacto</a></li>
-					</ul>			
-				</div><!--- END ROW -->
-			</div><!--- END CONTAINER -->
-		</div> 	  
-		<!-- END NAVBAR -->		
+<?php $titulo_pagina = "Real English CR - Inicio"; include_once '../LayoutExterno.php'; ImportCSS($titulo_pagina); PintarHeader(); ?>
 
 		<!-- START HOME -->
-		<section class="home_bg hb_height" style="background-image: url(assets/img/bg/home-bg.jpg);  background-size:cover; background-position: center center;">
+		<section class="home_bg hb_height" style="background-image: url(../../assets/img/bg/home-bg.jpg);  background-size:cover; background-position: center center;">
 			<div class="container">
 				<div class="row">
 				  <div class="col-lg-6 col-sm-12 col-xs-12">
@@ -152,7 +18,7 @@
 				  </div><!--- END COL -->
 				  <div class="col-lg-6 col-sm-12 col-xs-12">
 					<div class="hero-text-img">
-						<img src="assets/img/home-img2.png" class="img-fluid" alt="" />
+						<img src="../../assets/img/home-img2.png" class="img-fluid" alt="" />
 						<div class="home_ps">
 							<span class="ti-user"></span>
 							<h2>500+</h2>
@@ -203,7 +69,7 @@
 		<!-- END COUNTER -->
 
 	<!-- START CATEGORY -->
-	<section class="top_cat__area section-padding" style="background-image: url(assets/img/bg/shape-1.png);  background-size:cover; background-position: center center;">
+	<section class="top_cat__area section-padding" style="background-image: url(../../assets/img/bg/shape-1.png);  background-size:cover; background-position: center center;">
 		<div class="container">									
 			<div class="section-title text-center">
 				<h2>Comienza tu viaje con nosotros</h2>
@@ -249,7 +115,7 @@
 			<div class="row">								
 				<div class="col-lg-6 col-sm-12 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s" data-wow-offset="0">
 					<div class="ab_img">
-						<img src="assets/img/about1.png" class="img-fluid" alt="image">
+						<img src="../../assets/img/about1.png" class="img-fluid" alt="image">
 					</div>
 				</div><!--- END COL -->						
 				<div class="col-lg-6 col-sm-12 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s" data-wow-offset="0">
@@ -262,7 +128,7 @@
 							<li><span class="ti-check"></span> Temas populares para todos los niveles MCER</li>
 							<li><span class="ti-check"></span> Encuentra el profesor ideal para ti</li>
 						</ul>
-						<a class="btn_one" href="course.html">Ver todos los cursos <i class="ti-arrow-top-right"></i></a>
+						<a class="btn_one" href="Cursos.php">Ver todos los cursos <i class="ti-arrow-top-right"></i></a>
 					</div>
 				</div><!--- END COL -->							  
 			</div><!--- END ROW -->
@@ -271,7 +137,7 @@
 	<!-- END ABOUT US -->	
 	
 	<!-- START CATEGORY -->
-	<section class="top_cat__area section-padding" style="background-image: url(assets/img/bg/section-2.jpg);  background-size:cover; background-position: center center;">
+	<section class="top_cat__area section-padding" style="background-image: url(../../assets/img/bg/section-2.jpg);  background-size:cover; background-position: center center;">
 		<div class="container">									
 			<div class="section-title text-center">
 				<h2>Explora nuestras categorias populares</h2>
@@ -281,18 +147,18 @@
 				<div class="col-lg-12 col-sm-12 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s" data-wow-offset="0">
 					<div class="cat_list">
 						<ul>
-							<li><a href="#"><img src="assets/img/e1.png" alt="categoria" /> Preparacion TOEFL</a></li>
-							<li><a href="#"><img src="assets/img/e2.png" alt="categoria" /> Ingles Conversacional</a></li>
-							<li><a href="#"><img src="assets/img/e3.png" alt="categoria" /> Ingles Avanzado C1-C2</a></li>
-							<li><a href="#"><img src="assets/img/e4.png" alt="categoria" /> Ingles para Negocios</a></li>
-							<li><a href="#"><img src="assets/img/e5.png" alt="categoria" /> Preparacion IELTS</a></li>
-							<li><a href="#"><img src="assets/img/e6.png" alt="categoria" /> Ingles para Niños</a></li>
-							<li><a href="#"><img src="assets/img/e7.png" alt="categoria" /> Gramatica y Escritura</a></li>
-							<li><a href="#"><img src="assets/img/e8.png" alt="categoria" /> Pronunciacion</a></li>
-							<li><a href="#"><img src="assets/img/e9.png" alt="categoria" /> Ingles Academico</a></li>
-							<li><a href="#"><img src="assets/img/e2.png" alt="categoria" /> Ingles Basico A1-A2</a></li>
-							<li><a href="#"><img src="assets/img/e3.png" alt="categoria" /> Ingles Intermedio B1-B2</a></li>
-							<li><a href="#"><img src="assets/img/e7.png" alt="categoria" /> Ingles para Viajar</a></li>
+							<li><a href="#"><img src="../../assets/img/e1.png" alt="categoria" /> Preparacion TOEFL</a></li>
+							<li><a href="#"><img src="../../assets/img/e2.png" alt="categoria" /> Ingles Conversacional</a></li>
+							<li><a href="#"><img src="../../assets/img/e3.png" alt="categoria" /> Ingles Avanzado C1-C2</a></li>
+							<li><a href="#"><img src="../../assets/img/e4.png" alt="categoria" /> Ingles para Negocios</a></li>
+							<li><a href="#"><img src="../../assets/img/e5.png" alt="categoria" /> Preparacion IELTS</a></li>
+							<li><a href="#"><img src="../../assets/img/e6.png" alt="categoria" /> Ingles para Niños</a></li>
+							<li><a href="#"><img src="../../assets/img/e7.png" alt="categoria" /> Gramatica y Escritura</a></li>
+							<li><a href="#"><img src="../../assets/img/e8.png" alt="categoria" /> Pronunciacion</a></li>
+							<li><a href="#"><img src="../../assets/img/e9.png" alt="categoria" /> Ingles Academico</a></li>
+							<li><a href="#"><img src="../../assets/img/e2.png" alt="categoria" /> Ingles Basico A1-A2</a></li>
+							<li><a href="#"><img src="../../assets/img/e3.png" alt="categoria" /> Ingles Intermedio B1-B2</a></li>
+							<li><a href="#"><img src="../../assets/img/e7.png" alt="categoria" /> Ingles para Viajar</a></li>
 						</ul>
 					</div>
 				</div><!--- END COL -->							  
@@ -312,7 +178,7 @@
 					</div><!--- END COL -->
 					<div class="col-lg-4 col-sm-6 col-xs-12">
 						<div class="cour_btn">
-							<a href="course.html" class="btn_one">Ver todos los cursos <i class="ti-arrow-top-right"></i></a>
+							<a href="Cursos.php" class="btn_one">Ver todos los cursos <i class="ti-arrow-top-right"></i></a>
 						</div>
 					</div><!--- END COL -->
 				</div><!--- END ROW -->				
@@ -320,11 +186,11 @@
 					<div class="col-lg-4 col-sm-6 col-xs-12">
 						<div class="single_course">
 							<div class="single_c_img">
-								<img src="assets/img/course/1.png" class="img-fluid" alt="course-image" />
+								<img src="../../assets/img/course/1.png" class="img-fluid" alt="course-image" />
 								<span>A1 Principiante</span>
 							</div>
 							<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
-							<h4><a href="course.html">Ingles desde Cero A1</a></h4>
+							<h4><a href="Cursos.php">Ingles desde Cero A1</a></h4>
 							<p><span class="ti-book"> </span> 12 lecciones</p>
 							<p><span class="ti-alarm-clock"> </span>72 horas</p>
 							<div class="price">Precio: &#8353; 110,000</div>
@@ -333,11 +199,11 @@
 					<div class="col-lg-4 col-sm-6 col-xs-12">
 						<div class="single_course">
 							<div class="single_c_img">
-								<img src="assets/img/course/2.png" class="img-fluid" alt="course-image" />
+								<img src="../../assets/img/course/2.png" class="img-fluid" alt="course-image" />
 								<span>A2 Basico</span>
 							</div>
 							<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
-							<h4><a href="course.html">Ingles Intermedio B1 General</a></h4>
+							<h4><a href="Cursos.php">Ingles Intermedio B1 General</a></h4>
 							<p><span class="ti-book"> </span> 36 lecciones</p>
 							<p><span class="ti-alarm-clock"> </span>84 horas</p>
 							<div class="price">Precio: &#8353; 85,000</div>
@@ -346,11 +212,11 @@
 					<div class="col-lg-4 col-sm-6 col-xs-12">
 						<div class="single_course">
 							<div class="single_c_img">
-								<img src="assets/img/course/3.png" class="img-fluid" alt="course-image" />
+								<img src="../../assets/img/course/3.png" class="img-fluid" alt="course-image" />
 								<span>Conversacional</span>
 							</div>
 							<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
-							<h4><a href="course.html">Conversacion - Practica Diaria</a></h4>
+							<h4><a href="Cursos.php">Conversacion - Practica Diaria</a></h4>
 							<p><span class="ti-book"> </span> 24 lecciones</p>
 							<p><span class="ti-alarm-clock"> </span>72 horas</p>
 							<div class="price">Precio: Gratis</div>
@@ -359,11 +225,11 @@
 					<div class="col-lg-4 col-sm-6 col-xs-12">
 						<div class="single_course">
 							<div class="single_c_img">
-								<img src="assets/img/course/4.png" class="img-fluid" alt="course-image" />
+								<img src="../../assets/img/course/4.png" class="img-fluid" alt="course-image" />
 								<span>B1 Intermedio</span>
 							</div>
 							<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
-							<h4><a href="course.html">Ingles Basico A1-A2</a></h4>
+							<h4><a href="Cursos.php">Ingles Basico A1-A2</a></h4>
 							<p><span class="ti-book"> </span> 18 lecciones</p>
 							<p><span class="ti-alarm-clock"> </span>72 horas</p>
 							<div class="price">Precio: &#8353; 90,000</div>
@@ -372,11 +238,11 @@
 					<div class="col-lg-4 col-sm-6 col-xs-12">
 						<div class="single_course">
 							<div class="single_c_img">
-								<img src="assets/img/course/5.png" class="img-fluid" alt="course-image" />
+								<img src="../../assets/img/course/5.png" class="img-fluid" alt="course-image" />
 								<span>C1 Avanzado</span>
 							</div>
 							<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
-							<h4><a href="course.html">Ingles Conversacional - Practica Real</a></h4>
+							<h4><a href="Cursos.php">Ingles Conversacional - Practica Real</a></h4>
 							<p><span class="ti-book"> </span> 20 lecciones</p>
 							<p><span class="ti-alarm-clock"> </span>72 horas</p>
 							<div class="price">Precio: &#8353; 95,000</div>
@@ -385,11 +251,11 @@
 					<div class="col-lg-4 col-sm-6 col-xs-12">
 						<div class="single_course">
 							<div class="single_c_img">
-								<img src="assets/img/course/6.png" class="img-fluid" alt="course-image" />
+								<img src="../../assets/img/course/6.png" class="img-fluid" alt="course-image" />
 								<span>Negocios</span>
 							</div>
 							<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
-							<h4><a href="course.html">Ingles para Negocios B2</a></h4>
+							<h4><a href="Cursos.php">Ingles para Negocios B2</a></h4>
 							<p><span class="ti-book"> </span> 16 lecciones</p>
 							<p><span class="ti-alarm-clock"> </span>72 horas</p>
 							<div class="price">Precio: &#8353; 70,000</div>
@@ -411,15 +277,15 @@
 					</div><!-- END COL  -->
 					<div class="col-lg-8 col-sm-8 col-xs-12 text-center">
 						<div class="partner">
-							<a href="#"><img src="assets/img/clients/1.png" alt="image"></a>
-							<a href="#"><img src="assets/img/clients/2.png" alt="image"></a>
-							<a href="#"><img src="assets/img/clients/3.png" alt="image"></a>
-							<a href="#"><img src="assets/img/clients/4.png" alt="image"></a>
-							<a href="#"><img src="assets/img/clients/5.png" alt="image"></a>
-							<a href="#"><img src="assets/img/clients/2.png" alt="image"></a>
-							<a href="#"><img src="assets/img/clients/1.png" alt="image"></a>
-							<a href="#"><img src="assets/img/clients/3.png" alt="image"></a>
-							<a href="#"><img src="assets/img/clients/4.png" alt="image"></a>
+							<a href="#"><img src="../../assets/img/clients/1.png" alt="image"></a>
+							<a href="#"><img src="../../assets/img/clients/2.png" alt="image"></a>
+							<a href="#"><img src="../../assets/img/clients/3.png" alt="image"></a>
+							<a href="#"><img src="../../assets/img/clients/4.png" alt="image"></a>
+							<a href="#"><img src="../../assets/img/clients/5.png" alt="image"></a>
+							<a href="#"><img src="../../assets/img/clients/2.png" alt="image"></a>
+							<a href="#"><img src="../../assets/img/clients/1.png" alt="image"></a>
+							<a href="#"><img src="../../assets/img/clients/3.png" alt="image"></a>
+							<a href="#"><img src="../../assets/img/clients/4.png" alt="image"></a>
 						</div>
 					</div><!-- END COL  -->
 				</div><!--END  ROW  -->
@@ -432,7 +298,7 @@
 			<div class="container">																
 				<div class="row">
 					<div class="col-lg-12 vp_top wow fadeInUDown" data-wow-duration="1s" data-wow-delay="0.2s" data-wow-offset="0">
-						<div class="video-area" style="background-image: url(assets/img/bg/video.jpg);  background-size:cover; background-position: center center;">
+						<div class="video-area" style="background-image: url(../../assets/img/bg/video.jpg);  background-size:cover; background-position: center center;">
 							<a href="https://www.youtube.com/watch?v=RXv_uIN6e-Y" class="magnific_popup video-button"><i class="fa fa-play"></i></a>
 						</div>
 					</div><!--- END COL -->	
@@ -452,7 +318,7 @@
 					<div class="col-lg-3 col-sm-6 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s" data-wow-offset="0">
 						<div class="our-team">
 							<div class="team-content">
-								<a href="#"><img src="assets/img/team/team1.jpg" alt=""></a>
+								<a href="#"><img src="../../assets/img/team/team1.jpg" alt=""></a>
 								<ul class="social-links">
 									<li><a href="#"><i class="fa-solid fa-x"></i></a></li>
 									<li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
@@ -472,7 +338,7 @@
 					<div class="col-lg-3 col-sm-6 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s" data-wow-offset="0">
 						<div class="our-team">
 							<div class="team-content">
-								<a href="#"><img src="assets/img/team/team2.jpg" alt=""></a>
+								<a href="#"><img src="../../assets/img/team/team2.jpg" alt=""></a>
 								<ul class="social-links">
 									<li><a href="#"><i class="fa-solid fa-x"></i></a></li>
 									<li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
@@ -492,7 +358,7 @@
 					<div class="col-lg-3 col-sm-6 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s" data-wow-offset="0">
 						<div class="our-team">
 							<div class="team-content">
-								<a href="#"><img src="assets/img/team/team3.jpg" alt=""></a>
+								<a href="#"><img src="../../assets/img/team/team3.jpg" alt=""></a>
 								<ul class="social-links">
 									<li><a href="#"><i class="fa-solid fa-x"></i></a></li>
 									<li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
@@ -512,7 +378,7 @@
 					<div class="col-lg-3 col-sm-6 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s" data-wow-offset="0">
 						<div class="our-team">
 							<div class="team-content">
-								<a href="#"><img src="assets/img/team/team4.jpg" alt=""></a>
+								<a href="#"><img src="../../assets/img/team/team4.jpg" alt=""></a>
 								<ul class="social-links">
 									<li><a href="#"><i class="fa-solid fa-x"></i></a></li>
 									<li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
@@ -548,12 +414,12 @@
 							<li><span class="ti-check"></span> Temas populares para todos los niveles MCER</li>
 							<li><span class="ti-check"></span> Encuentra el profesor ideal para ti</li>
 						</ul>
-						<a class="btn_one" href="course.html">Ver todos los cursos <i class="ti-arrow-top-right"></i></a>
+						<a class="btn_one" href="Cursos.php">Ver todos los cursos <i class="ti-arrow-top-right"></i></a>
 					</div>
 				</div><!--- END COL -->	
 				<div class="col-lg-6 col-sm-12 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s" data-wow-offset="0">
 					<div class="ab_img">
-						<img src="assets/img/about3.png" class="img-fluid" alt="image">
+						<img src="../../assets/img/about3.png" class="img-fluid" alt="image">
 						<div class="home_ps2">
 							<span class="ti-book"></span>
 							<h2>15+</h2>
@@ -575,13 +441,13 @@
 				<div class="row">
 					<div class="col-lg-6 col-sm-12 col-xs-12">
 						<div class="ab_img">
-							<img src="assets/img/review.png" class="img-fluid" alt="image">
+							<img src="../../assets/img/review.png" class="img-fluid" alt="image">
 						</div>					
 					</div><!-- END COL -->						
 					<div class="col-lg-6 col-sm-12 col-xs-12">
 						<div id="testimonial-slider" class="owl-carousel">
 							<div class="testimonial">
-								<img src="assets/img/quote.png" alt="" />
+								<img src="../../assets/img/quote.png" alt="" />
 								<div class="testimonial_content">													
 									<i class="ti-star"></i>
 									<i class="ti-star"></i>
@@ -591,13 +457,13 @@
 									<p>Tome el curso de conversacion y en pocos meses ya podia hablar con confianza. Los profesores son muy pacientes y las clases son dinamicas. Lo recomiendo de verdad.</p>
 								</div>
 								<div class="testi_pic_title">
-									<img src="assets/img/testimonial/1.png" alt="">
+									<img src="../../assets/img/testimonial/1.png" alt="">
 									<h4>Sarah Williams</h4>
 									<p>Coordinador IELTS</p>
 								</div>
 							</div><!-- END TESTIMONIAL -->
 							<div class="testimonial">
-							<img src="assets/img/quote.png" alt="" />
+							<img src="../../assets/img/quote.png" alt="" />
 								<div class="testimonial_content">													
 									<i class="ti-star"></i>
 									<i class="ti-star"></i>
@@ -607,13 +473,13 @@
 									<p>Tome el curso de conversacion y en pocos meses ya podia hablar con confianza. Los profesores son muy pacientes y las clases son dinamicas. Lo recomiendo de verdad.</p>
 								</div>
 								<div class="testi_pic_title">
-									<img src="assets/img/testimonial/2.png" alt="">
+									<img src="../../assets/img/testimonial/2.png" alt="">
 									<h4>Roy Calderon</h4>
 									<p>Estudiante de Negocios</p>
 								</div>
 							</div><!-- END TESTIMONIAL -->
 							<div class="testimonial">
-								<img src="assets/img/quote.png" alt="" />
+								<img src="../../assets/img/quote.png" alt="" />
 								<div class="testimonial_content">													
 									<i class="ti-star"></i>
 									<i class="ti-star"></i>
@@ -623,13 +489,13 @@
 									<p>Tome el curso de conversacion y en pocos meses ya podia hablar con confianza. Los profesores son muy pacientes y las clases son dinamicas. Lo recomiendo de verdad.</p>
 								</div>
 								<div class="testi_pic_title">
-									<img src="assets/img/testimonial/3.png" alt="">
+									<img src="../../assets/img/testimonial/3.png" alt="">
 									<h4>Sofia Castro</h4>
 									<p>Estudiante TOEFL</p>
 								</div>
 							</div><!-- END TESTIMONIAL -->
 							<div class="testimonial">
-								<img src="assets/img/quote.png" alt="" />
+								<img src="../../assets/img/quote.png" alt="" />
 								<div class="testimonial_content">													
 									<i class="ti-star"></i>
 									<i class="ti-star"></i>
@@ -639,13 +505,13 @@
 									<p>Tome el curso de conversacion y en pocos meses ya podia hablar con confianza. Los profesores son muy pacientes y las clases son dinamicas. Lo recomiendo de verdad.</p>
 								</div>
 								<div class="testi_pic_title">
-									<img src="assets/img/testimonial/4.png" alt="">
+									<img src="../../assets/img/testimonial/4.png" alt="">
 									<h4>Sarah Williams</h4>
 									<p>Coordinador IELTS</p>
 								</div>
 							</div><!-- END TESTIMONIAL -->
 							<div class="testimonial">
-								<img src="assets/img/quote.png" alt="" />
+								<img src="../../assets/img/quote.png" alt="" />
 								<div class="testimonial_content">													
 									<i class="ti-star"></i>
 									<i class="ti-star"></i>
@@ -655,7 +521,7 @@
 									<p>Tome el curso de conversacion y en pocos meses ya podia hablar con confianza. Los profesores son muy pacientes y las clases son dinamicas. Lo recomiendo de verdad.</p>
 								</div>
 								<div class="testi_pic_title">
-									<img src="assets/img/testimonial/5.png" alt="">
+									<img src="../../assets/img/testimonial/5.png" alt="">
 									<h4>Sarah Williams</h4>
 									<p>Coordinador IELTS</p>
 								</div>
@@ -677,31 +543,31 @@
 				<div class="row">		
 					<div class="col-lg-4 col-sm-4 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s" data-wow-offset="0">
 						<div class="single_blog">
-							<img src="assets/img/blog/1.jpg" class="img-fluid" alt="image" />
+							<img src="../../assets/img/blog/1.jpg" class="img-fluid" alt="image" />
 							<div class="content_box">
-								<span>10 de mayo de 2024 | <a href="blog.html">A1 Principiante</a></span>
-								<h2><a href="blog.html">5 consejos para mejorar tu pronunciacion en ingles</a></h2>
-								<a class="btn_one" href="blog.html">Leer mas <i class="ti-arrow-top-right"></i></a>
+								<span>10 de mayo de 2024 | <a href="Blog.php">A1 Principiante</a></span>
+								<h2><a href="Blog.php">5 consejos para mejorar tu pronunciacion en ingles</a></h2>
+								<a class="btn_one" href="Blog.php">Leer mas <i class="ti-arrow-top-right"></i></a>
 							</div>
 						</div>
 					</div><!-- END COL-->				
 					<div class="col-lg-4 col-sm-4 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s" data-wow-offset="0">
 						<div class="single_blog">
-							<img src="assets/img/blog/2.jpg" class="img-fluid" alt="image" />
+							<img src="../../assets/img/blog/2.jpg" class="img-fluid" alt="image" />
 							<div class="content_box">
-								<span>16 de mayo de 2024 | <a href="blog.html">A1 Principiante</a></span>
-								<h2><a href="blog.html">Como prepararte para el examen TOEFL</a></h2>
-								<a class="btn_one" href="blog.html">Leer mas <i class="ti-arrow-top-right"></i></a>							
+								<span>16 de mayo de 2024 | <a href="Blog.php">A1 Principiante</a></span>
+								<h2><a href="Blog.php">Como prepararte para el examen TOEFL</a></h2>
+								<a class="btn_one" href="Blog.php">Leer mas <i class="ti-arrow-top-right"></i></a>							
 							</div>
 						</div>
 					</div><!-- END COL-->
 					<div class="col-lg-4 col-sm-4 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.3s" data-wow-offset="0">
 						<div class="single_blog">
-							<img src="assets/img/blog/3.jpg" class="img-fluid" alt="image" />
+							<img src="../../assets/img/blog/3.jpg" class="img-fluid" alt="image" />
 							<div class="content_box">
-								<span>18 de mayo de 2024 | <a href="blog.html">Consejos</a></span>
-								<h2><a href="blog.html">Educamos a los lideres del manana, hoy </a></h2>
-								<a class="btn_one" href="blog.html">Leer mas <i class="ti-arrow-top-right"></i></a>
+								<span>18 de mayo de 2024 | <a href="Blog.php">Consejos</a></span>
+								<h2><a href="Blog.php">Educamos a los lideres del manana, hoy </a></h2>
+								<a class="btn_one" href="Blog.php">Leer mas <i class="ti-arrow-top-right"></i></a>
 							</div>
 						</div>
 					</div><!-- END COL-->						
@@ -710,111 +576,4 @@
 		</section>	
 		<!-- END BLOG -->	
 		
-		<!-- START FOOTER -->
-		<div class="footer section-padding">
-			<div class="container">				
-				<div class="row">						
-					<div class="col-lg-3 col-sm-6 col-xs-12">
-						<div class="single_footer">
-							<a href="index.html"><img src="assets/img/logo.svg" alt=""></a>         
-							<p>Academia de ingles con presencia en cinco sedes en Costa Rica. Certificacion MCER A1 a C2.</p>
-							<div class="social_profile">
-								<ul>
-									<li><a class="f_facebook" href="#"><i class="fa-solid fa-x"></i></a></li>
-									<li><a class="f_twitter" href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
-									<li><a class="f_instagram"href="#"><i class="fa-brands fa-instagram"></i></a></li>
-									<li><a class="f_linkedin" href="#"><i class="fa-brands fa-linkedin-in"></i></a></li>
-								</ul>
-							</div>
-						</div>			
-					</div><!--- END COL -->						
-					<div class="col-lg-2 col-sm-6 col-xs-12">
-						<div class="single_footer">
-							<h4>Acerca de Real English CR</h4>
-							<ul>
-								<li><a href="#">Sobre Nosotros</a></li>
-								<li><a href="#">Registro de Profesores</a></li>
-								<li><a href="#">Trabaja con Nosotros</a></li>
-								<li><a href="#">Nuestros Profesores</a></li>
-								<li><a href="#">Preguntas Frecuentes</a></li>
-								<li><a href="#">Contactanos</a></li>
-							</ul>
-						</div>
-					</div><!--- END COL -->	
-					<div class="col-lg-2 col-sm-6 col-xs-12">
-						<div class="single_footer">
-							<h4>Cursos Populares</h4>
-							<ul>
-								<li><a href="#">Ingles Basico A1-A2</a></li>
-								<li><a href="#">Ingles Intermedio B1-B2</a></li>
-								<li><a href="#">Ingles Avanzado C1-C2</a></li>
-								<li><a href="#">Ingles para Negocios</a></li>
-								<li><a href="#">Preparacion IELTS</a></li>						
-								<li><a href="#">Preparacion TOEFL</a></li>						
-							</ul>
-						</div>
-					</div><!--- END COL -->
-					<div class="col-lg-3 col-sm-6 col-xs-12">
-						<div class="single_footer">
-							<h4>Contacto</h4>
-							<div class="sf_contact">
-								<span class="ti-map"></span>
-								<p>Avenida Central, San Jose, Costa Rica</p>
-							</div>
-							<div class="sf_contact">
-								<span class="ti-mobile"></span>
-								<p>+506 2222-1010</p>
-							</div>
-							<div class="sf_contact">
-								<span class="ti-mobile"></span>
-								<p><a href="tel:+88457845695">Whatsapp</a></p>
-							</div>
-							<div class="sf_contact">
-								<span class="ti-email"></span>
-								<p>info@realenglishcr.com</p>
-							</div>
-						</div>
-					</div><!--- END COL -->						
-					<div class="col-lg-2 col-sm-6 col-xs-12">
-						<div class="single_footer">
-							<h4>Descarga Nuestra App</h4>
-							<p>Pronto disponible para iOS y Android.</p>
-							<a href="index.html"><img src="assets/img/google-play.jpg" class="foot_img" alt=""></a>  
-							<a href="index.html"><img src="assets/img/app-store.jpg" class="foot_img" alt=""></a>  
-						</div>
-					</div><!--- END COL -->	
-				</div><!--- END ROW -->					
-			</div><!--- END CONTAINER -->
-		</div>
-		<!-- END FOOTER -->	
-
-		<!-- START FOOTER COPYRIGHT -->	
-		<div class="foot_copy">
-			<div class="footer_copyright">
-				<p>&copy; 2026. Real English CR &middot; Proyecto academico SC-504 - Grupo F - Universidad Fidelitas</p>
-			</div>	
-		</div>
-		<!-- END FOOTER COPYRIGHT -->	
-	
-	<!-- Latest jQuery -->
-		<script src="assets/js/jquery-1.12.4.min.js"></script>
-	<!-- Latest compiled and minified Bootstrap -->
-		<script src="assets/bootstrap/js/bootstrap.min.js"></script>
-	<!-- modernizer JS -->		
-		<script src="assets/js/modernizr-2.8.3.min.js"></script>	
-	<!-- jquery-simple-mobilemenu.min -->
-		<script src="assets/js/jquery-simple-mobilemenu.js"></script>		
-	<!-- owl-carousel min js  -->
-		<script src="assets/owlcarousel/js/owl.carousel.min.js"></script>					
-	<!-- magnific-popup js -->               
-		<script src="assets/js/jquery.magnific-popup.min.js"></script>						
-	<!-- countTo js -->
-		<script src="assets/js/jquery.inview.min.js"></script>								
-	<!-- scrolltopcontrol js -->
-		<script src="assets/js/scrolltopcontrol.js"></script>			
-	<!-- WOW - Reveal Animations When You Scroll -->
-		<script src="assets/js/wow.min.js"></script>				
-	<!-- scripts js -->
-		<script src="assets/js/scripts.js"></script>
-    </body>
-</html>                     
+<?php PintarFooter(); ImportJS(); ?>

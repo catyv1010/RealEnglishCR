@@ -1,10 +1,6 @@
-<!DOCTYPE HTML>
-<html lang="en-US">
-<head>
-	<meta charset="UTF-8">
-	<title>Tu mensaje fue enviado correctamente.</title>
-			<!-- Latest Bootstrap min CSS -->
-		<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">	
+<?php $titulo_pagina = "Real English CR - Gracias"; include_once '../LayoutExterno.php'; ImportCSS($titulo_pagina); PintarHeader(); ?>
+
+	<!-- estilo propio de la pagina de gracias, viene de la plantilla original -->
 	<style>
 		.welcome-area {
 			position: relative;
@@ -43,25 +39,18 @@
 			text-decoration: none;
 		}
 	</style>
-</head>
 
-<body>
-	<section class="welcome-area"  style="background-image: url(assets/img/bg/1.jpg);  background-size:cover; background-position: center center;">
+	<section class="welcome-area"  style="background-image: url(../../assets/img/bg/1.jpg);  background-size:cover; background-position: center center;">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8 offset-lg-2 col-sm-12 col-xs-12 text-center">
 					<div class="hero-text">
 						<h1>Tu mensaje fue enviado correctamente.</h1>
-						<a class="back-home" href="index.html">Volver al inicio</a>
+						<a class="back-home" href="Principal.php">Volver al inicio</a>
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
-		
-		<!-- Latest jQuery -->
-		<script src="assets/js/jquery-1.12.4.min.js"></script>
-		<!-- Latest compiled and minified Bootstrap -->
-			<script src="assets/bootstrap/js/bootstrap.min.js"></script>
-</body>
-</h
+
+<?php PintarFooter(); ImportJS(); ?>
