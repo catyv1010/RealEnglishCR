@@ -26,11 +26,11 @@
 							<img src="../../assets/img/blog/3.jpg" class="img-fluid" alt="Blog image" />
 						</div>
 						<div class="arti_content ">
-							<p>Cuando empece a estudiar ingles me costaba mucho entender lo que escuchaba. Lo que mas me ayudo fue practicar todos los dias un rato corto, ver series con subtitulos en ingles y no tener miedo a equivocarme al hablar. Poco a poco fui ganando confianza y hoy puedo mantener una conversacion sin problema. La clave es la constancia, no estudiar muchas horas un solo dia.</p>
+							<p>Cuando empece a estudiar inglés me costaba mucho entender lo que escuchaba. Lo que más me ayudo fue practicar todos los días un rato corto, ver series con subtitulos en inglés y no tener miedo a equivocarme al hablar. Poco a poco fui ganando confianza y hoy puedo mantener una conversación sin problema. La clave es la constancia, no estudiar muchas horas un solo dia.</p>
 						</div>
 						<div class="arti_sp">
-							<h2>La importancia de practicar el ingles todos los dias</h2>
-							<img src="../../assets/img/blog/1.png" class="img-fluid" alt="Blog image" />
+							<h2>La importancia de practicar el inglés todos los días</h2>
+							<img src="../../assets/img/blog/2.jpg" class="img-fluid" alt="Blog image" />
 							<p>Otro consejo util es repasar el vocabulario nuevo en contexto y no como una lista suelta. Anota frases completas, repitelas en voz alta y usalas en tus propias oraciones. Asi se te quedan mucho mejor y las vas a poder usar cuando hables.</p>
 						</div>
 						<div class="share_sp">
@@ -47,8 +47,8 @@
 						<h3 class="blog_head_title">Acerca del autor</h3>
 						<div class="single_author">
 							<img src="../../assets/img/blog/author.jpg" alt="" />
-							<h4>Marina Mojo</h4>
-							 <p>Aprende ingles de la manera mas efectiva. Con practica constante y buenas tecnicas de estudio vas a notar el avance en pocas semanas. Lo importante es perderle el miedo a hablar y equivocarse.</p> 
+							<h4>Marcela Jiménez</h4>
+							 <p>Aprende inglés de la manera más efectiva. Con práctica constante y buenas técnicas de estudio vas a notar el avance en pocas semanas. Lo importante es perderle el miedo a hablar y equivocarse.</p> 
 						</div>
 					</div><!--- END AUTHOR PART -->
 					<div class="comments_part">
@@ -56,17 +56,17 @@
 						<div class="single_comment">
 							<img src="../../assets/img/blog/c1.jpg" alt="" />
 							<h4>Ayoub Fennouni</h4>
-							<p>Aprende ingles de la manera mas efectiva. Con practica constante y buenas tecnicas de estudio vas a notar el avance en pocas semanas. Lo importante es perderle el miedo a hablar y equivocarse.</p>
+							<p>Aprende inglés de la manera más efectiva. Con práctica constante y buenas técnicas de estudio vas a notar el avance en pocas semanas. Lo importante es perderle el miedo a hablar y equivocarse.</p>
 						</div><!--- END SINGLE COMMENT -->
 						<div class="single_comment sc_left">
 							<img src="../../assets/img/blog/c3.jpg" alt="" />
 							<h4>Kader Bhai</h4>
-							<p>Aprende ingles de la manera mas efectiva. Con practica constante y buenas tecnicas de estudio vas a notar el avance en pocas semanas. Lo importante es perderle el miedo a hablar y equivocarse.</p>
+							<p>Aprende inglés de la manera más efectiva. Con práctica constante y buenas técnicas de estudio vas a notar el avance en pocas semanas. Lo importante es perderle el miedo a hablar y equivocarse.</p>
 						</div><!--- END SINGLE COMMENT -->
 						<div class="single_comment single_comment_mbnone">
 							<img src="../../assets/img/blog/c2.jpg" alt="" />
 							<h4>Mark Linomi</h4>
-							<p>Aprende ingles de la manera mas efectiva. Con practica constante y buenas tecnicas de estudio vas a notar el avance en pocas semanas. Lo importante es perderle el miedo a hablar y equivocarse.</p>
+							<p>Aprende inglés de la manera más efectiva. Con práctica constante y buenas técnicas de estudio vas a notar el avance en pocas semanas. Lo importante es perderle el miedo a hablar y equivocarse.</p>
 						</div><!--- END SINGLE COMMENT -->
 					</div><!--- END COMMENTS PART -->	
 					<div class="comment_form">
@@ -105,7 +105,7 @@
 					<div class="sidebar-post">
 						<div class="newsletter-form">
 							<h4>Suscribite para recibir novedades</h4>
-							<p>Aprende ingles de la manera mas efectiva con nuestros cursos</p>
+							<p>Aprende inglés de la manera más efectiva con nuestros cursos</p>
 							<form action="#" class="subscribe">
 								<input type="text" class="subscribe__input" placeholder="Correo electronico">
 								<button type="button" class="sub_btn">Suscribirse</button>
@@ -113,22 +113,22 @@
 						</div>						
 					</div><!-- END SINGLE POST -->
 					<div class="sidebar-post">
-						<div class="sidebar_title"><h4>Articulos populares</h4></div>
+						<div class="sidebar_title"><h4>Artículos populares</h4></div>
 						<div class="single_popular">
 							<a href="DetalleBlog.php"><img src="../../assets/img/blog/blog-1.png" alt="" /></a>
-							<h5><a href="DetalleBlog.php">Beneficios de aprender ingles en Costa Rica</a></h5>
+							<h5><a href="DetalleBlog.php">Beneficios de aprender inglés en Costa Rica</a></h5>
 						</div><!-- END SINGLE POPULAR POST -->
 						<div class="single_popular">
 							<a href="DetalleBlog.php"><img src="../../assets/img/blog/blog-2.png" alt="" /></a>
-							<h5><a href="DetalleBlog.php">Por que el ingles te abre mas puertas laborales</a></h5>
+							<h5><a href="DetalleBlog.php">Por que el inglés te abre más puertas laborales</a></h5>
 						</div><!-- END SINGLE POPULAR POST -->
 						<div class="single_popular">
 							<a href="DetalleBlog.php"><img src="../../assets/img/blog/blog-3.png" alt="" /></a>
-							<h5><a href="DetalleBlog.php">Errores comunes al aprender ingles y como evitarlos</a></h5>
+							<h5><a href="DetalleBlog.php">Errores comunes al aprender inglés y como evitarlos</a></h5>
 						</div><!-- END SINGLE POPULAR POST -->
 						<div class="single_popular">
 							<a href="DetalleBlog.php"><img src="../../assets/img/blog/blog-4.png" alt="" /></a>
-							<h5><a href="DetalleBlog.php">Como organizar tu tiempo para estudiar ingles</a></h5>
+							<h5><a href="DetalleBlog.php">Como organizar tu tiempo para estudiar inglés</a></h5>
 						</div><!-- END SINGLE POPULAR POST -->
 						<div class="single_popular">
 							<a href="DetalleBlog.php"><img src="../../assets/img/blog/blog-5.png" alt="" /></a>
@@ -157,12 +157,12 @@
 						<div class="sidebar_title"><h4>CATEGORIAS</h4></div>
 						<div class="single_category">
 							<ul>
-								<li><a href="#">Educacion <sup>11</sup></a></li>
-								<li><a href="#">Pronunciacion <sup>44</sup></a></li>
+								<li><a href="#">Educación <sup>11</sup></a></li>
+								<li><a href="#">Pronunciación <sup>44</sup></a></li>
 								<li><a href="#">Vocabulario <sup>33</sup></a></li>
 								<li><a href="#">Negocios <sup>14</sup></a></li>
-								<li><a href="#">Gramatica <sup>21</sup></a></li>
-								<li><a href="#">Examenes <sup>01</sup></a></li>
+								<li><a href="#">Gramática <sup>21</sup></a></li>
+								<li><a href="#">Exámenes <sup>01</sup></a></li>
 							</ul>
 						</div><!-- END SOCIAL MEDIA POST -->
 					</div><!-- END SIDEBAR POST -->
@@ -171,10 +171,10 @@
 							<div class="sidebar_title"><h4>Etiquetas populares</h4></div>
 							<a href="#">A1 Principiante</a>
 							<a href="#">Cursos</a>
-							<a href="#">Pronunciacion</a>
+							<a href="#">Pronunciación</a>
 							<a href="#">Vocabulario</a>
-							<a href="#">Gramatica</a>
-							<a href="#">Conversacion</a>
+							<a href="#">Gramática</a>
+							<a href="#">Conversación</a>
 							<a href="#">Preparacion TOEFL</a>
 							<a href="#">Todos los proyectos</a>
 							

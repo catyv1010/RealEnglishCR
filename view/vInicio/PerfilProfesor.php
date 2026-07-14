@@ -28,7 +28,7 @@
 						<div class="single_agent_content">
 							<h4>Laura Jimenez</h4>
 							<h5>Coordinadora Academica</h5>
-							<p>Profesora de ingles con mas de diez anos de experiencia. Le gusta ensenar con ejemplos de la vida diaria y acompanar a cada estudiante segun su nivel. Especialista en preparacion de examenes IELTS y TOEFL.</p>
+							<p>Profesora de inglés con más de diez años de experiencia. Le gusta ensenar con ejemplos de la vida diaria y acompanar a cada estudiante segun su nivel. Especialista en preparacion de exámenes IELTS y TOEFL.</p>
 							<ul>
 								<li><i class="fa fa-envelope-o"></i>laura.jimenez@realenglishcr.com</li>
 								<li><i class="fa fa-phone"></i>+506 2222-1010</li>

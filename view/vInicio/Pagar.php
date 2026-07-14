@@ -23,9 +23,9 @@
 				<div class="row wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s">
 					<div class="col-lg-8 col-md-12">
 						<div class="checkout-form" style="background:#fff;padding:30px;border-radius:10px;box-shadow:0 0 30px rgba(0,0,0,0.05);">
-							<h3 style="margin-bottom:25px;">Informacion de Pago</h3>
+							<h3 style="margin-bottom:25px;">Información de Pago</h3>
 							<form action="procesar_pago.php" method="POST">
-								<h5 style="margin-top:20px;margin-bottom:15px;">Metodo de Pago</h5>
+								<h5 style="margin-top:20px;margin-bottom:15px;">Método de Pago</h5>
 								<div class="row" style="margin-bottom:25px;">
 									<div class="col-md-3 col-6 mb-2">
 										<label style="display:block;border:2px solid #eee;padding:15px;border-radius:8px;cursor:pointer;text-align:center;" class="metodo-pago">
@@ -60,7 +60,7 @@
 								<h5 style="margin-bottom:15px;">Datos del Estudiante</h5>
 								<div class="row">
 									<div class="form-group col-md-6 mb-3">
-										<label>Cedula <span style="color:red;">*</span></label>
+										<label>Cédula <span style="color:red;">*</span></label>
 										<input type="text" name="cedula" class="form-control" placeholder="1-1234-5678" required>
 									</div>
 									<div class="form-group col-md-6 mb-3">
@@ -70,11 +70,11 @@
 								</div>
 								<div class="row">
 									<div class="form-group col-md-6 mb-3">
-										<label>Correo electronico <span style="color:red;">*</span></label>
+										<label>Correo electrónico <span style="color:red;">*</span></label>
 										<input type="email" name="correo" class="form-control" required>
 									</div>
 									<div class="form-group col-md-6 mb-3">
-										<label>Telefono <span style="color:red;">*</span></label>
+										<label>Teléfono <span style="color:red;">*</span></label>
 										<input type="tel" name="telefono" class="form-control" placeholder="8888-1234" required>
 									</div>
 								</div>
@@ -94,7 +94,7 @@
 										</select>
 									</div>
 									<div class="form-group col-md-6 mb-3">
-										<label>Direccion</label>
+										<label>Dirección</label>
 										<input type="text" name="direccion" class="form-control" placeholder="Direccion exacta">
 									</div>
 								</div>
@@ -102,7 +102,7 @@
 								<div class="form-group mb-3">
 									<input type="checkbox" name="aceptar" required>
 									<label style="margin-left:5px;font-weight:normal;">
-										Confirmo que la informacion es correcta y autorizo el cobro
+										Confirmo que la información es correcta y autorizo el cobro
 									</label>
 								</div>
 								<button type="submit" class="btn_one w-100" style="width:100%;">Confirmar y Pagar</button>
@@ -114,7 +114,7 @@
 						<div class="order-summary" style="background:#fff;padding:30px;border-radius:10px;box-shadow:0 0 30px rgba(0,0,0,0.05);">
 							<h4 style="margin-bottom:20px;">Detalle de tu Orden</h4>
 							<div style="border-bottom:1px solid #eee;padding-bottom:15px;margin-bottom:15px;">
-								<strong>Ingles Intermedio General</strong><br>
+								<strong>Inglés Intermedio General</strong><br>
 								<small style="color:#777;">Nivel B1 - Sede San Jose</small><br>
 								<small style="color:#777;">L-Mi-V 18:00-20:00</small><br>
 								<span style="font-size:18px;color:#5B6FFC;font-weight:bold;">&#8353; 95,000</span>

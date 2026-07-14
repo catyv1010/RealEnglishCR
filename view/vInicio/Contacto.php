@@ -23,14 +23,14 @@
 					<div class="col-lg-4 col-sm-4 col-xs-12 no-padding wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s" data-wow-offset="0">
 						<div class="single_address sa_one">
 							<i class="ti-map"></i>
-							<h4>Nuestra Ubicacion</h4>
+							<h4>Nuestra Ubicación</h4>
 							<p>Avenida Central, Calle 5, Edificio Plaza <br />San Jose, Costa Rica</p>
 						</div>
 					</div><!-- END COL -->
 					<div class="col-lg-4 col-sm-4 col-xs-12 no-padding wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s" data-wow-offset="0">
 						<div class="single_address sa_two">
 							<i class="ti-mobile"></i>
-							<h4>Telefono</h4>
+							<h4>Teléfono</h4>
 							<p>+506 2222-1010</p>
 							<p>+506 8888-2020</p>
 						</div>
@@ -61,7 +61,7 @@
 										<input type="text" name="name" class="form-control" required="required">
 									</div>
 									<div class="form-group col-md-6">
-										<label for="">Tu correo electronico</label>
+										<label for="">Tu correo electrónico</label>
 										<input type="email" name="email" class="form-control" required="required">
 									</div>
 									<div class="form-group col-md-12">
@@ -80,7 +80,7 @@
 						</div>
 					</div><!-- END COL  -->
 					<div class="col-lg-5 col-sm-12 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s" data-wow-offset="0">		<div class="map">
-							<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3023.957183635167!2d-74.00402768559431!3d40.71895904512855!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c2598a1316e7a7%3A0x47bb20eb6074b3f0!2sNew%20Work%20City%20-%20(CLOSED)!5e0!3m2!1sbn!2sbd!4v1600305497356!5m2!1sbn!2sbd" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+							<iframe src="https://www.google.com/maps?q=San%20Jos%C3%A9,%20Costa%20Rica&output=embed" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
 						</div>					
 					</div><!-- END COL  -->				
 				</div><!-- END ROW -->				

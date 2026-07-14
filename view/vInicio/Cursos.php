@@ -28,7 +28,7 @@ PintarHeader();
 			<div class="container">
 				<div class="col-lg-10 offset-lg-1 text-center">
 					<div class="section-top-title wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.3s" data-wow-offset="0">
-						<h1>Catalogo de Cursos</h1>
+						<h1>Catálogo de Cursos</h1>
 						<ul>
 							<li><a href="Principal.php">Inicio</a></li>
 							<li> / Cursos</li>

@@ -25,12 +25,12 @@
 						<div class="register-form" style="background:#fff;padding:50px 40px;border-radius:10px;box-shadow:0 0 30px rgba(0,0,0,0.05);">
 							<div class="text-center mb-4">
 								<h3 style="margin-bottom:10px;">Crea tu cuenta de estudiante</h3>
-								<p style="color:#777;">Comienza tu camino hacia el dominio del ingles con nosotros</p>
+								<p style="color:#777;">Comienza tu camino hacia el dominio del inglés con nosotros</p>
 							</div>
 							<form action="../../control/InicioController.php" method="POST">
 								<div class="row">
 									<div class="form-group col-md-6 mb-3">
-										<label for="cedula">Cedula <span style="color:red;">*</span></label>
+										<label for="cedula">Cédula <span style="color:red;">*</span></label>
 										<input type="text" name="cedula" id="cedula" class="form-control" placeholder="1-1234-5678" pattern="[18]-[0-9]{4}-[0-9]{4}" required>
 										<small style="color:#999;">Formato: 1-XXXX-XXXX (nacionales) o 8-XXXX-XXXX (residentes)</small>
 									</div>
@@ -55,20 +55,20 @@
 								</div>
 								<div class="row">
 									<div class="form-group col-md-6 mb-3">
-										<label for="correo">Correo electronico <span style="color:red;">*</span></label>
+										<label for="correo">Correo electrónico <span style="color:red;">*</span></label>
 										<input type="email" name="correo" id="correo" class="form-control" required>
 									</div>
 									<div class="form-group col-md-6 mb-3">
-										<label for="telefono">Telefono <span style="color:red;">*</span></label>
+										<label for="telefono">Teléfono <span style="color:red;">*</span></label>
 										<input type="tel" name="telefono" id="telefono" class="form-control" placeholder="8888-1234" pattern="[6-8][0-9]{3}-[0-9]{4}" required>
 									</div>
 								</div>
 								<div class="form-group mb-3">
-									<label for="nivel_inicial">Nivel inicial estimado de ingles</label>
+									<label for="nivel_inicial">Nivel inicial estimado de inglés</label>
 									<select name="nivel_inicial" id="nivel_inicial" class="form-control">
 										<option value="">-- No estoy seguro / Solicitar prueba diagnostica --</option>
 										<option value="1">A1 - Principiante</option>
-										<option value="2">A2 - Basico</option>
+										<option value="2">A2 - Básico</option>
 										<option value="3">B1 - Intermedio</option>
 										<option value="4">B2 - Intermedio Alto</option>
 										<option value="5">C1 - Avanzado</option>
@@ -83,7 +83,7 @@
 								</div>
 								<button type="submit" name="btnRegistrar" class="btn_one w-100" style="width:100%;">Crear mi cuenta</button>
 								<p class="text-center mt-3" style="margin-top:20px;">
-									Ya tienes cuenta? <a href="IniciarSesion.php"><strong>Inicia sesion</strong></a>
+									Ya tienes cuenta? <a href="IniciarSesion.php"><strong>Inicia sesión</strong></a>
 								</p>
 							</form>
 						</div>

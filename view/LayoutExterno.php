@@ -74,7 +74,6 @@ function PintarHeader()
 								<li class="menu-item-has-children"><a href="#">Inicio</a>
 									<ul>										
 										<li><a href="Principal.php">Inicio</a></li>
-										<li><a href="PrincipalV2.php">Inicio (v2)</a></li>
 									</ul>
 								</li>
 								<li><a href="AcercaDe.php">Acerca de</a></li>				  				  
@@ -84,13 +83,12 @@ function PintarHeader()
 										<li><a href="DetalleCurso.php">Detalle Curso</a></li>
 									</ul>
 								</li>								
-								<li class="menu-item-has-children"><a href="#">Paginas</a>
+								<li class="menu-item-has-children"><a href="#">Páginas</a>
 									<ul>										
 										<li><a href="Profesores.php">Profesores</a></li>
 										<li><a href="PerfilProfesor.php">Perfil Profesor</a></li>
 										<li><a href="Precios.php">Precios</a></li>
 										<li><a href="Preguntas.php">Preguntas</a></li>			
-										<li><a href="Error404.php">404</a></li>				
 									</ul>
 								</li>							
 								<li class="menu-item-has-children"><a href="Blog.php">Blog</a>
@@ -105,7 +103,7 @@ function PintarHeader()
 					</div><!--- END Col -->
 					
 					<div class="col-20 d-none d-xl-block text-end align-self-center">
-						<a href="IniciarSesion.php" class="header-btn">Iniciar Sesion</a>
+						<a href="IniciarSesion.php" class="header-btn">Iniciar Sesión</a>
 						<a href="RegistrarUsuarios.php" class="btn_one">Registrarse</a>
 					</div><!--- END Col -->
 					
@@ -113,7 +111,6 @@ function PintarHeader()
 						<li><a href="#">Inicio</a>
 							<ul class="sub-menu">										
 								<li><a href="Principal.php">Inicio</a></li>
-								<li><a href="PrincipalV2.php">Inicio (v2)</a></li>						
 							</ul>
 						</li>	
 						<li><a href="AcercaDe.php">Acerca de</a></li>						
@@ -123,13 +120,12 @@ function PintarHeader()
 								<li><a href="DetalleCurso.php">Detalle Curso</a></li>									
 							</ul>
 						</li>
-						<li><a href="#">Paginas</a>
+						<li><a href="#">Páginas</a>
 							<ul class="sub-menu">									
 								<li><a href="Profesores.php">Profesores</a></li>
 								<li><a href="PerfilProfesor.php">Perfil Profesor</a></li>
 								<li><a href="Precios.php">Precios</a></li>
 								<li><a href="Preguntas.php">Preguntas</a></li>			
-								<li><a href="Error404.php">404</a></li>							
 							</ul>
 						</li>			
 						<li><a href="Blog.php">Blog</a>
@@ -147,7 +143,7 @@ function PintarHeader()
 HTML;
 }
 
-// pie de pagina
+// pie de página
 function PintarFooter()
 {
     echo <<<HTML
@@ -158,7 +154,7 @@ function PintarFooter()
 					<div class="col-lg-3 col-sm-6 col-xs-12">
 						<div class="single_footer">
 							<a href="Principal.php"><img src="../../assets/img/logo.svg" alt=""></a>         
-							<p>Academia de ingles con presencia en cinco sedes en Costa Rica. Certificacion MCER A1 a C2.</p>
+							<p>Academia de inglés con presencia en cinco sedes en Costa Rica. Certificación MCER A1 a C2.</p>
 							<div class="social_profile">
 								<ul>
 									<li><a class="f_facebook" href="#"><i class="fa-solid fa-x"></i></a></li>
@@ -186,10 +182,10 @@ function PintarFooter()
 						<div class="single_footer">
 							<h4>Cursos Populares</h4>
 							<ul>
-								<li><a href="#">Ingles Basico A1-A2</a></li>
-								<li><a href="#">Ingles Intermedio B1-B2</a></li>
-								<li><a href="#">Ingles Avanzado C1-C2</a></li>
-								<li><a href="#">Ingles para Negocios</a></li>
+								<li><a href="#">Inglés Básico A1-A2</a></li>
+								<li><a href="#">Inglés Intermedio B1-B2</a></li>
+								<li><a href="#">Inglés Avanzado C1-C2</a></li>
+								<li><a href="#">Inglés para Negocios</a></li>
 								<li><a href="#">Preparacion IELTS</a></li>						
 								<li><a href="#">Preparacion TOEFL</a></li>						
 							</ul>
@@ -232,7 +228,7 @@ function PintarFooter()
 		<!-- START FOOTER COPYRIGHT -->	
 		<div class="foot_copy">
 			<div class="footer_copyright">
-				<p>&copy; 2026. Real English CR &middot; Proyecto academico SC-504 - Grupo F - Universidad Fidelitas</p>
+				<p>&copy; 2026. Real English CR &middot; Proyecto académico SC-504 - Grupo F - Universidad Fidelitas</p>
 			</div>	
 		</div>
 		<!-- END FOOTER COPYRIGHT -->	

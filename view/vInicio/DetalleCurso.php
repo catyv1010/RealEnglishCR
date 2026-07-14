@@ -26,16 +26,16 @@
 							<div class="single_event_text_single">
 								 <h4>Como prepararte para el examen TOEFL</h4>
 								<span><i class="fa fa-calendar"></i>10 Oct 2024</span>
-								<span><i class="fa fa-clock-o"></i>7 dias</span>
+								<span><i class="fa fa-clock-o"></i>7 días</span>
 								<span><i class="fa fa-table"></i><strong>30 cupos disponibles</strong></span>
 								 <p>Este curso te prepara paso a paso para el examen TOEFL. Vas a practicar las cuatro destrezas (escuchar, leer, escribir y hablar) con ejercicios reales y simulacros del examen. Las clases son en grupos pequenos para que tengas atencion personalizada.</p>
-								 <p>Al terminar vas a manejar las estrategias para resolver cada seccion del examen y vas a tener claro como administrar el tiempo. Tambien recibis material de estudio y acceso a practicas en linea.</p>
+								 <p>Al terminar vas a manejar las estrategias para resolver cada seccion del examen y vas a tener claro como administrar el tiempo. También recibis material de estudio y acceso a prácticas en linea.</p>
 							</div>
 						</div><!--- END SINGLE EVENT -->
                             <div class="course-details-content section-bg">
                                 <ul class="nav nav-tabs" role="tablist">
                                     <li class="nav-item">
-                                        <a href="#overview" class="nav-link active" data-bs-toggle="tab">Descripcion</a>
+                                        <a href="#overview" class="nav-link active" data-bs-toggle="tab">Descripción</a>
                                     </li>
                                     <li>
                                         <a href="#curriculum" class="nav-link" data-bs-toggle="tab">Temario </a>
@@ -44,15 +44,15 @@
                                         <a href="#instructor" class="nav-link" data-bs-toggle="tab">Profesor</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="#reviews" class="nav-link" data-bs-toggle="tab">Resenas</a>
+                                        <a href="#reviews" class="nav-link" data-bs-toggle="tab">Reseñas</a>
                                     </li>
                                 </ul>
                                 <div class="tab-content" id="myTabContent">
                                     <div class="tab-pane show fade active" id="overview">
                                         <div class="overview">
-                                            <p>Real English CR ofrece una experiencia de aprendizaje clara y practica. En este curso vas a estudiar el contenido por niveles, con ejercicios para reforzar lo aprendido en cada clase. El objetivo es que aprendas a usar el ingles en situaciones reales, no solo a memorizar reglas.</p>
-												<iframe width="900" height="506" src="https://www.youtube.com/embed/RXv_uIN6e-Y" title="Clase de muestra de Real English CR" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                                            <p>Cada modulo incluye practica de conversacion, lectura y escritura. Vas a contar con el acompanamiento del profesor durante todo el curso y con material de apoyo para repasar en casa. </p>
+                                            <p>Real English CR ofrece una experiencia de aprendizaje clara y práctica. En este curso vas a estudiar el contenido por niveles, con ejercicios para reforzar lo aprendido en cada clase. El objetivo es que aprendas a usar el inglés en situaciones reales, no solo a memorizar reglas.</p>
+												<img src="../../assets/img/course/2.png" class="img-fluid" alt="Estudiantes en clase" style="border-radius:10px;margin:20px 0;" />
+                                            <p>Cada módulo incluye práctica de conversación, lectura y escritura. Vas a contar con el acompañamiento del profesor durante todo el curso y con material de apoyo para repasar en casa. </p>
                                             <div class="details-buttons-area">
                                                 <a href="#0" class="custom-button theme-one">Matricularse <i class="fa fa-angle-right"></i></a>
                                                 <a href="#0" class="custom-button bg-white">Ver planes</a>
@@ -72,9 +72,9 @@
                                     </div>
                                     <div class="tab-pane fade" role="tabpanel" id="curriculum">
                                         <div class="overview">
-                                            <p>Real English CR ofrece una experiencia de aprendizaje clara y practica. En este curso vas a estudiar el contenido por niveles, con ejercicios para reforzar lo aprendido en cada clase. El objetivo es que aprendas a usar el ingles en situaciones reales, no solo a memorizar reglas.</p>
-                                            <p>Real English CR ofrece una experiencia de aprendizaje clara y practica. En este curso vas a estudiar el contenido por niveles, con ejercicios para reforzar lo aprendido en cada clase. El objetivo es que aprendas a usar el ingles en situaciones reales, no solo a memorizar reglas.</p>
-                                            <p>Cada modulo incluye practica de conversacion, lectura y escritura. Vas a contar con el acompanamiento del profesor durante todo el curso y con material de apoyo para repasar en casa. </p>
+                                            <p>Real English CR ofrece una experiencia de aprendizaje clara y práctica. En este curso vas a estudiar el contenido por niveles, con ejercicios para reforzar lo aprendido en cada clase. El objetivo es que aprendas a usar el inglés en situaciones reales, no solo a memorizar reglas.</p>
+                                            <p>Real English CR ofrece una experiencia de aprendizaje clara y práctica. En este curso vas a estudiar el contenido por niveles, con ejercicios para reforzar lo aprendido en cada clase. El objetivo es que aprendas a usar el inglés en situaciones reales, no solo a memorizar reglas.</p>
+                                            <p>Cada módulo incluye práctica de conversación, lectura y escritura. Vas a contar con el acompañamiento del profesor durante todo el curso y con material de apoyo para repasar en casa. </p>
                                             <div class="details-buttons-area">
                                                 <a href="#0" class="custom-button theme-one">Matricularse <i class="fa fa-angle-right"></i></a>
                                                 <a href="#0" class="custom-button bg-white">Ver planes</a>
@@ -100,10 +100,10 @@
                                                 </div>
                                                 <div class="instructor-content">
                                                     <h6 class="title"><a href="#0">Manuel Nuer</a></h6>
-                                                    <span class="details">Profesor de Ingles</span>
+                                                    <span class="details">Profesor de Inglés</span>
                                                 </div>
                                             </div>
-                                            <p>Profesor con varios anos de experiencia ensenando ingles en Costa Rica. Le gusta que las clases sean dinamicas y que los estudiantes pierdan el miedo a hablar desde el primer dia.</p>
+                                            <p>Profesor con varios años de experiencia ensenando inglés en Costa Rica. Le gusta que las clases sean dinamicas y que los estudiantes pierdan el miedo a hablar desde el primer dia.</p>
                                             <div class="details-buttons-area">
                                                 <ul class="social-icons justify-content-center w-100">
                                                     <li>
@@ -122,7 +122,7 @@
                                     <div class="tab-pane fade" id="reviews">
                                         <div class="client-review">
                                             <div class="review-comments">
-                                                <h6 class="review-title">Resenas (03)</h6>
+                                                <h6 class="review-title">Reseñas (03)</h6>
                                                 <ul class="review-contents">
                                                     <li>
                                                         <div class="thumb">
@@ -181,7 +181,7 @@
                                                 </ul>
                                             </div>
                                             <div class="review-form">
-                                                <h6 class="review-title">Agregar resena</h6>
+                                                <h6 class="review-title">Agregar reseña</h6>
                                                 <form class="row client-form align-items-center">
                                                     <div class="col-md-4 col-12">
                                                         <input type="text" name="name" placeholder="Nombre completo">
@@ -215,7 +215,7 @@
                                                         <textarea rows="5" placeholder="Escribe tu mensaje aqui"></textarea>
                                                     </div>
                                                     <div class="col-12">
-                                                        <button type="submit" class="custom-button rounded">Enviar resena</button>
+                                                        <button type="submit" class="custom-button rounded">Enviar reseña</button>
                                                     </div>
                                                 </form>
                                             </div>
@@ -228,10 +228,10 @@
 						<div class="course_features">
 							<h3>Detalles del curso</h3>
 							<ul>
-								<li><i class="fa fa-calendar"></i> Duracion <b>10 semanas</b></li>
+								<li><i class="fa fa-calendar"></i> Duración <b>10 semanas</b></li>
 								<li><i class="fa fa-user"></i> Total de lecciones <b>30</b></li>
 								<li><i class="fa fa-user"></i> Estudiantes <b>1000</b></li>
-								<li><i class="fa fa-trophy"></i> Certificacion <b>SI</b></li>
+								<li><i class="fa fa-trophy"></i> Certificación <b>SI</b></li>
 							</ul>
 						</div>
 						<div class="event_info_price">
@@ -251,7 +251,7 @@
 								<i class="fa fa-star"></i>
 								<i class="fa fa-star"></i>
 								<i class="fa fa-star"></i>
-								<h4><a href="#">Ingles Conversacional...</a></h4>
+								<h4><a href="#">Inglés Conversacional...</a></h4>
 								<span>&#8353; 85.000</span>
 							</div><!--- END SINGLE RELATED COURSE -->
 							<div class="single_rc">
@@ -275,7 +275,7 @@
 								<i class="fa fa-star"></i>
 								<i class="fa fa-star"></i>
 								<i class="fa fa-star"></i>
-								<h4><a href="#">Ingles para Ninos...</a></h4>
+								<h4><a href="#">Inglés para Niños...</a></h4>
 								<span>Gratis</span>
 							</div><!--- END SINGLE RELATED COURSE -->
 						</div><!--- END RELATED COURSE -->
@@ -283,12 +283,12 @@
 							<div class="sidebar_title"><h4>CATEGORIAS</h4></div>
 							<div class="single_category">
 								<ul>
-									<li><a href="#">Educacion <sup>11</sup></a></li>
-									<li><a href="#">Pronunciacion <sup>44</sup></a></li>
+									<li><a href="#">Educación <sup>11</sup></a></li>
+									<li><a href="#">Pronunciación <sup>44</sup></a></li>
 									<li><a href="#">Vocabulario <sup>33</sup></a></li>
 									<li><a href="#">Negocios <sup>14</sup></a></li>
-									<li><a href="#">Gramatica <sup>21</sup></a></li>
-									<li><a href="#">Examenes <sup>01</sup></a></li>
+									<li><a href="#">Gramática <sup>21</sup></a></li>
+									<li><a href="#">Exámenes <sup>01</sup></a></li>
 								</ul>
 							</div><!-- END SOCIAL MEDIA POST -->
 						</div><!-- END SIDEBAR POST -->							

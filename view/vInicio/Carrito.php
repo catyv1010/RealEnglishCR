@@ -6,7 +6,7 @@
 			<div class="container">
 				<div class="col-lg-10 offset-lg-1 text-center">
 					<div class="section-top-title wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.3s" data-wow-offset="0">
-						<h1>Mi Carrito de Matricula</h1>
+						<h1>Mi Carrito de Matrícula</h1>
 						<ul>
 							<li><a href="Principal.php">Inicio</a></li>
 							<li> / Carrito</li>
@@ -23,7 +23,7 @@
 				<div class="row wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s">
 					<div class="col-lg-8 col-md-12">
 						<div class="cart-table" style="background:#fff;padding:30px;border-radius:10px;box-shadow:0 0 30px rgba(0,0,0,0.05);">
-							<h3 style="margin-bottom:25px;">Resumen de Matricula</h3>
+							<h3 style="margin-bottom:25px;">Resumen de Matrícula</h3>
 							<table class="table table-striped">
 								<thead>
 									<tr>
@@ -37,7 +37,7 @@
 								<tbody id="cartItems">
 									<!-- Las filas se cargan dinamicamente desde el SP listar_carrito() -->
 									<tr>
-										<td><strong>Ingles Intermedio General</strong><br><small>Sede San Jose - Profe: Andres Vargas</small></td>
+										<td><strong>Inglés Intermedio General</strong><br><small>Sede San Jose - Profe: Andres Vargas</small></td>
 										<td><span class="badge" style="background:#5B6FFC;color:#fff;padding:4px 10px;border-radius:5px;">B1</span></td>
 										<td>L-Mi-V 18:00-20:00</td>
 										<td><strong>&#8353; 95,000</strong></td>

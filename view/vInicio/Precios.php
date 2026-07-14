@@ -23,7 +23,7 @@
 					<div class="col-lg-4 col-sm-4 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s" data-wow-offset="0">
 						<div class="single-pricing">
 							<div class="price-head">								
-								<h2>Basico</h2>
+								<h2>Básico</h2>
 								<span></span>
 								<span></span>
 								<span></span>
@@ -62,7 +62,7 @@
 									<li>3 clases por semana</li>
 									<li>Grupos de hasta 10 estudiantes</li>
 									<li>Material de estudio incluido</li>
-									<li>Practica de conversacion semanal</li>
+									<li>Práctica de conversación semanal</li>
 									<li>Certificado al finalizar</li>
 									<li>Niveles B1 y B2</li>
 								<li>Soporte ilimitado</li>
@@ -107,7 +107,7 @@
 				<div class="row part_bg">
 					<div class="col-lg-4 col-sm-4 col-xs-12">
 						<div class="partner_title">
-							<h3>Mas de <span>86,000+</span> estudiantes han mejorado su ingles con nosotros</h3>
+							<h3>Más de <span>86,000+</span> estudiantes han mejorado su inglés con nosotros</h3>
 						</div>					
 					</div><!-- END COL  -->
 					<div class="col-lg-8 col-sm-8 col-xs-12 text-center">

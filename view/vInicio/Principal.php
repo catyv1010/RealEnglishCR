@@ -1,4 +1,31 @@
-<?php $titulo_pagina = "Real English CR - Inicio"; include_once '../LayoutExterno.php'; ImportCSS($titulo_pagina); PintarHeader(); ?>
+<?php
+// Las estadisticas de esta pagina salen en vivo de Oracle:
+// se cuentan con los paquetes PL/SQL, no con SELECT directos.
+require_once __DIR__ . "/../../model/Conexion.php";
+require_once __DIR__ . "/../../model/Entidades.php";
+require_once __DIR__ . "/../../model/CrudModel.php";
+
+$nCursos = $nSedes = $nProfes = $nAulas = $nEstudiantes = 0;
+try {
+    $nCursos = count(CrudModel::listar("cursos"));
+    $nSedes  = count(CrudModel::listar("sedes"));
+    $nAulas  = count(CrudModel::listar("aulas"));
+
+    foreach (CrudModel::listar("estudiantes") as $e) {
+        if (($e["ACTIVO"] ?? "N") === "S") { $nEstudiantes++; }
+    }
+    foreach (CrudModel::listar("empleados") as $emp) {
+        if (stripos($emp["PUESTO_ID"] ?? "", "PROF") === 0) { $nProfes++; }
+    }
+} catch (Exception $e) {
+    // Si Oracle no responde, la pagina igual se muestra con ceros.
+}
+
+$titulo_pagina = "Real English CR - Inicio";
+include_once "../LayoutExterno.php";
+ImportCSS($titulo_pagina);
+PintarHeader();
+?>
 
 		<!-- START HOME -->
 		<section class="home_bg hb_height" style="background-image: url(../../assets/img/bg/home-bg.jpg);  background-size:cover; background-position: center center;">
@@ -6,8 +33,8 @@
 				<div class="row">
 				  <div class="col-lg-6 col-sm-12 col-xs-12">
 					<div class="hero-text ht_top">
-						<h1>Domina el <span>Ingles</span> con Real English CR</h1>
-						<p>Aprende ingles de la manera mas efectiva en nuestras cinco sedes en Costa Rica. Cursos certificados MCER de A1 a C2, con profesores nativos y bilingues.</p>
+						<h1>Domina el <span>Inglés</span> con Real English CR</h1>
+						<p>Aprende inglés de la manera más efectiva en nuestras cinco sedes en Costa Rica. Cursos certificados MCER de A1 a C2, con profesores nativos y bilingües.</p>
 					</div>
 					<div class="home_sb">
 						<form action="#" class="banner_subs">
@@ -21,7 +48,7 @@
 						<img src="../../assets/img/home-img2.png" class="img-fluid" alt="" />
 						<div class="home_ps">
 							<span class="ti-user"></span>
-							<h2>500+</h2>
+							<h2><?= $nEstudiantes ?></h2>
 							<p>Estudiantes activos</p>
 						</div>
 					</div>					
@@ -38,28 +65,28 @@
 					<div class="col-lg-3 col-sm-6 col-xs-12">
 						<div class="single-counter">
 							<span class="ti-folder sc_one"></span>
-							<h2 class="counter-num">12</h2>
+							<h2 class="counter-num"><?= $nCursos ?></h2>
 							<p>Cursos disponibles</p>
 						</div>							
 					</div>
 					<div class="col-lg-3 col-sm-6 col-xs-12">
 						<div class="single-counter">
 							<span class="ti-medall-alt sc_two"></span>
-							<h2 class="counter-num">5</h2>
+							<h2 class="counter-num"><?= $nSedes ?></h2>
 							<p>Sedes en Costa Rica</p>
 						</div>
 					</div><!-- END COL -->
 					<div class="col-lg-3 col-sm-6 col-xs-12">
 						<div class="single-counter">
 							<span class="ti-id-badge sc_three"></span>
-							<h2 class="counter-num">30</h2>
+							<h2 class="counter-num"><?= $nProfes ?></h2>
 							<p>Profesores certificados</p>
 						</div>
 					</div><!-- END COL -->
 					<div class="col-lg-3 col-sm-6 col-xs-12">
 						<div class="single-counter">
 							<span class="ti-user sc_four"></span>
-							<h2 class="counter-num">12</h2>
+							<h2 class="counter-num"><?= $nAulas ?></h2>
 							<p>Aulas equipadas</p>
 						</div>
 					</div><!-- END COL -->						
@@ -73,35 +100,35 @@
 		<div class="container">									
 			<div class="section-title text-center">
 				<h2>Comienza tu viaje con nosotros</h2>
-				<p>Ofrecemos un enfoque innovador para que aprendas ingles a tu ritmo. Elige entre nuestra amplia variedad de cursos certificados MCER y desarrolla habilidades reales para el mundo profesional.</p>
+				<p>Ofrecemos un enfoque innovador para que aprendas inglés a tu ritmo. Elige entre nuestra amplia variedad de cursos certificados MCER y desarrolla habilidades reales para el mundo profesional.</p>
 			</div>						
 			<div class="row">					
 				<div class="col-lg-3 col-sm-6 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s" data-wow-offset="0">
 					<div class="single_tp">
 						<span class="sc_one">01</span>
 						<h3>Profesores <br />Expertos</h3>
-						<p>Cursos diseñados para que aprendas ingles a tu ritmo, con metodologia probada y profesores expertos.</p>
+						<p>Cursos diseñados para que aprendas inglés a tu ritmo, con metodologia probada y profesores expertos.</p>
 					</div>
 				</div><!-- END COL -->			
 				<div class="col-lg-3 col-sm-6 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.3s" data-wow-offset="0">
 					<div class="single_tp">
 						<span class="sc_two">02</span>
-						<h3>Educacion <br />de Calidad</h3>
-						<p>Cursos diseñados para que aprendas ingles a tu ritmo, con metodologia probada y profesores expertos.</p>
+						<h3>Educación <br />de Calidad</h3>
+						<p>Cursos diseñados para que aprendas inglés a tu ritmo, con metodologia probada y profesores expertos.</p>
 					</div>
 				</div><!-- END COL -->			
 				<div class="col-lg-3 col-sm-6 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.4s" data-wow-offset="0">
 					<div class="single_tp">
 						<span class="sc_three">03</span>
 						<h3>Aprendizaje <br />Remoto</h3>
-						<p>Cursos diseñados para que aprendas ingles a tu ritmo, con metodologia probada y profesores expertos.</p>
+						<p>Cursos diseñados para que aprendas inglés a tu ritmo, con metodologia probada y profesores expertos.</p>
 					</div>
 				</div><!-- END COL -->	
 				<div class="col-lg-3 col-sm-6 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.4s" data-wow-offset="0">
 					<div class="single_tp">
 						<span class="sc_four">04</span>
 						<h3>Soporte <br />Permanente</h3>
-						<p>Cursos diseñados para que aprendas ingles a tu ritmo, con metodologia probada y profesores expertos.</p>
+						<p>Cursos diseñados para que aprendas inglés a tu ritmo, con metodologia probada y profesores expertos.</p>
 					</div>
 				</div><!-- END COL -->							
 			</div><!-- END ROW -->
@@ -120,9 +147,9 @@
 				</div><!--- END COL -->						
 				<div class="col-lg-6 col-sm-12 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s" data-wow-offset="0">
 					<div class="ab_content">
-						<h2>Ofrecemos cursos de ingles en cinco sedes en Costa Rica</h2>
-						<p>Ofrecemos un enfoque innovador para que aprendas ingles a tu ritmo. Elige entre nuestra amplia variedad de cursos certificados MCER y desarrolla habilidades reales para el mundo profesional.</p>
-						<p>Ofrecemos un enfoque innovador para que aprendas ingles a tu ritmo. Elige entre nuestra amplia variedad de cursos certificados MCER y desarrolla habilidades reales para el mundo profesional.</p>
+						<h2>Ofrecemos cursos de inglés en cinco sedes en Costa Rica</h2>
+						<p>Ofrecemos un enfoque innovador para que aprendas inglés a tu ritmo. Elige entre nuestra amplia variedad de cursos certificados MCER y desarrolla habilidades reales para el mundo profesional.</p>
+						<p>Ofrecemos un enfoque innovador para que aprendas inglés a tu ritmo. Elige entre nuestra amplia variedad de cursos certificados MCER y desarrolla habilidades reales para el mundo profesional.</p>
 						<ul>
 							<li><span class="ti-check"></span> Accede a <b>+12</b> cursos especializados certificados</li>
 							<li><span class="ti-check"></span> Temas populares para todos los niveles MCER</li>
@@ -141,24 +168,24 @@
 		<div class="container">									
 			<div class="section-title text-center">
 				<h2>Explora nuestras categorias populares</h2>
-				<p>Ofrecemos un enfoque innovador para que aprendas ingles a tu ritmo. Elige entre nuestra amplia variedad de cursos certificados MCER y desarrolla habilidades reales para el mundo profesional.</p>
+				<p>Ofrecemos un enfoque innovador para que aprendas inglés a tu ritmo. Elige entre nuestra amplia variedad de cursos certificados MCER y desarrolla habilidades reales para el mundo profesional.</p>
 			</div>						
 			<div class="row">													
 				<div class="col-lg-12 col-sm-12 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s" data-wow-offset="0">
 					<div class="cat_list">
 						<ul>
 							<li><a href="#"><img src="../../assets/img/e1.png" alt="categoria" /> Preparacion TOEFL</a></li>
-							<li><a href="#"><img src="../../assets/img/e2.png" alt="categoria" /> Ingles Conversacional</a></li>
-							<li><a href="#"><img src="../../assets/img/e3.png" alt="categoria" /> Ingles Avanzado C1-C2</a></li>
-							<li><a href="#"><img src="../../assets/img/e4.png" alt="categoria" /> Ingles para Negocios</a></li>
+							<li><a href="#"><img src="../../assets/img/e2.png" alt="categoria" /> Inglés Conversacional</a></li>
+							<li><a href="#"><img src="../../assets/img/e3.png" alt="categoria" /> Inglés Avanzado C1-C2</a></li>
+							<li><a href="#"><img src="../../assets/img/e4.png" alt="categoria" /> Inglés para Negocios</a></li>
 							<li><a href="#"><img src="../../assets/img/e5.png" alt="categoria" /> Preparacion IELTS</a></li>
-							<li><a href="#"><img src="../../assets/img/e6.png" alt="categoria" /> Ingles para Niños</a></li>
-							<li><a href="#"><img src="../../assets/img/e7.png" alt="categoria" /> Gramatica y Escritura</a></li>
-							<li><a href="#"><img src="../../assets/img/e8.png" alt="categoria" /> Pronunciacion</a></li>
-							<li><a href="#"><img src="../../assets/img/e9.png" alt="categoria" /> Ingles Academico</a></li>
-							<li><a href="#"><img src="../../assets/img/e2.png" alt="categoria" /> Ingles Basico A1-A2</a></li>
-							<li><a href="#"><img src="../../assets/img/e3.png" alt="categoria" /> Ingles Intermedio B1-B2</a></li>
-							<li><a href="#"><img src="../../assets/img/e7.png" alt="categoria" /> Ingles para Viajar</a></li>
+							<li><a href="#"><img src="../../assets/img/e6.png" alt="categoria" /> Inglés para Niños</a></li>
+							<li><a href="#"><img src="../../assets/img/e7.png" alt="categoria" /> Gramática y Escritura</a></li>
+							<li><a href="#"><img src="../../assets/img/e8.png" alt="categoria" /> Pronunciación</a></li>
+							<li><a href="#"><img src="../../assets/img/e9.png" alt="categoria" /> Inglés Académico</a></li>
+							<li><a href="#"><img src="../../assets/img/e2.png" alt="categoria" /> Inglés Básico A1-A2</a></li>
+							<li><a href="#"><img src="../../assets/img/e3.png" alt="categoria" /> Inglés Intermedio B1-B2</a></li>
+							<li><a href="#"><img src="../../assets/img/e7.png" alt="categoria" /> Inglés para Viajar</a></li>
 						</ul>
 					</div>
 				</div><!--- END COL -->							  
@@ -173,7 +200,7 @@
 				<div class="row">
 					<div class="col-lg-8 col-sm-6 col-xs-12">
 						<div class="section-title">
-							<h2>Unete a mas de <b>80,000+ </b> <br />Cursos y aprendizaje de calidad.</h2>
+							<h2>Unete a más de <b>80,000+ </b> <br />Cursos y aprendizaje de calidad.</h2>
 						</div>					
 					</div><!--- END COL -->
 					<div class="col-lg-4 col-sm-6 col-xs-12">
@@ -190,7 +217,7 @@
 								<span>A1 Principiante</span>
 							</div>
 							<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
-							<h4><a href="Cursos.php">Ingles desde Cero A1</a></h4>
+							<h4><a href="Cursos.php">Inglés desde Cero A1</a></h4>
 							<p><span class="ti-book"> </span> 12 lecciones</p>
 							<p><span class="ti-alarm-clock"> </span>72 horas</p>
 							<div class="price">Precio: &#8353; 110,000</div>
@@ -200,10 +227,10 @@
 						<div class="single_course">
 							<div class="single_c_img">
 								<img src="../../assets/img/course/2.png" class="img-fluid" alt="course-image" />
-								<span>A2 Basico</span>
+								<span>A2 Básico</span>
 							</div>
 							<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
-							<h4><a href="Cursos.php">Ingles Intermedio B1 General</a></h4>
+							<h4><a href="Cursos.php">Inglés Intermedio B1 General</a></h4>
 							<p><span class="ti-book"> </span> 36 lecciones</p>
 							<p><span class="ti-alarm-clock"> </span>84 horas</p>
 							<div class="price">Precio: &#8353; 85,000</div>
@@ -216,7 +243,7 @@
 								<span>Conversacional</span>
 							</div>
 							<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
-							<h4><a href="Cursos.php">Conversacion - Practica Diaria</a></h4>
+							<h4><a href="Cursos.php">Conversación - Práctica Diaria</a></h4>
 							<p><span class="ti-book"> </span> 24 lecciones</p>
 							<p><span class="ti-alarm-clock"> </span>72 horas</p>
 							<div class="price">Precio: Gratis</div>
@@ -229,7 +256,7 @@
 								<span>B1 Intermedio</span>
 							</div>
 							<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
-							<h4><a href="Cursos.php">Ingles Basico A1-A2</a></h4>
+							<h4><a href="Cursos.php">Inglés Básico A1-A2</a></h4>
 							<p><span class="ti-book"> </span> 18 lecciones</p>
 							<p><span class="ti-alarm-clock"> </span>72 horas</p>
 							<div class="price">Precio: &#8353; 90,000</div>
@@ -242,7 +269,7 @@
 								<span>C1 Avanzado</span>
 							</div>
 							<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
-							<h4><a href="Cursos.php">Ingles Conversacional - Practica Real</a></h4>
+							<h4><a href="Cursos.php">Inglés Conversacional - Práctica Real</a></h4>
 							<p><span class="ti-book"> </span> 20 lecciones</p>
 							<p><span class="ti-alarm-clock"> </span>72 horas</p>
 							<div class="price">Precio: &#8353; 95,000</div>
@@ -255,7 +282,7 @@
 								<span>Negocios</span>
 							</div>
 							<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
-							<h4><a href="Cursos.php">Ingles para Negocios B2</a></h4>
+							<h4><a href="Cursos.php">Inglés para Negocios B2</a></h4>
 							<p><span class="ti-book"> </span> 16 lecciones</p>
 							<p><span class="ti-alarm-clock"> </span>72 horas</p>
 							<div class="price">Precio: &#8353; 70,000</div>
@@ -272,7 +299,7 @@
 				<div class="row part_bg">
 					<div class="col-lg-4 col-sm-4 col-xs-12">
 						<div class="partner_title">
-							<h3>Mas de <span>86,000+</span> estudiantes han mejorado su ingles con nosotros</h3>
+							<h3>Más de <span>86,000+</span> estudiantes han mejorado su inglés con nosotros</h3>
 						</div>					
 					</div><!-- END COL  -->
 					<div class="col-lg-8 col-sm-8 col-xs-12 text-center">
@@ -312,7 +339,7 @@
 			<div class="container">									
 				<div class="section-title text-center">
 					<h2>Conoce a nuestros profesores</h2>
-					<p>Ofrecemos un enfoque innovador para que aprendas ingles a tu ritmo. Elige entre nuestra amplia variedad de cursos certificados MCER y desarrolla habilidades reales para el mundo profesional.</p>
+					<p>Ofrecemos un enfoque innovador para que aprendas inglés a tu ritmo. Elige entre nuestra amplia variedad de cursos certificados MCER y desarrolla habilidades reales para el mundo profesional.</p>
 				</div>						
 				<div class="row">													
 					<div class="col-lg-3 col-sm-6 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s" data-wow-offset="0">
@@ -327,7 +354,7 @@
 							</div>
 							<div class="team-prof">
 								<h3>Jennifer Smith</h3>
-								<span>Profesora de Ingles</span>
+								<span>Profesora de Inglés</span>
 							</div>
 							<div class="sth_det2">
 								<span class="ti-file"> <u>04 lecciones</u></span>
@@ -367,7 +394,7 @@
 							</div>
 							<div class="team-prof">
 								<h3>Laura Jimenez</h3>
-								<span>Director Academico</span>
+								<span>Director Académico</span>
 							</div>
 							<div class="sth_det2">
 								<span class="ti-file"> <u>13 lecciones</u></span>
@@ -407,8 +434,8 @@
 				<div class="col-lg-6 col-sm-12 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s" data-wow-offset="0">
 					<div class="ab_content">
 						<h2>Por que elegir Real English CR</h2>
-						<p>Ofrecemos un enfoque innovador para que aprendas ingles a tu ritmo. Elige entre nuestra amplia variedad de cursos certificados MCER y desarrolla habilidades reales para el mundo profesional.</p>
-						<p>Ofrecemos un enfoque innovador para que aprendas ingles a tu ritmo. Elige entre nuestra amplia variedad de cursos certificados MCER y desarrolla habilidades reales para el mundo profesional.</p>
+						<p>Ofrecemos un enfoque innovador para que aprendas inglés a tu ritmo. Elige entre nuestra amplia variedad de cursos certificados MCER y desarrolla habilidades reales para el mundo profesional.</p>
+						<p>Ofrecemos un enfoque innovador para que aprendas inglés a tu ritmo. Elige entre nuestra amplia variedad de cursos certificados MCER y desarrolla habilidades reales para el mundo profesional.</p>
 						<ul>
 							<li><span class="ti-check"></span> Accede a <b>+12</b> cursos especializados certificados</li>
 							<li><span class="ti-check"></span> Temas populares para todos los niveles MCER</li>
@@ -454,7 +481,7 @@
 									<i class="ti-star"></i>
 									<i class="ti-star"></i>
 									<i class="ti-star"></i>
-									<p>Tome el curso de conversacion y en pocos meses ya podia hablar con confianza. Los profesores son muy pacientes y las clases son dinamicas. Lo recomiendo de verdad.</p>
+									<p>Tome el curso de conversación y en pocos meses ya podia hablar con confianza. Los profesores son muy pacientes y las clases son dinamicas. Lo recomiendo de verdad.</p>
 								</div>
 								<div class="testi_pic_title">
 									<img src="../../assets/img/testimonial/1.png" alt="">
@@ -470,7 +497,7 @@
 									<i class="ti-star"></i>
 									<i class="ti-star"></i>
 									<i class="ti-star"></i>
-									<p>Tome el curso de conversacion y en pocos meses ya podia hablar con confianza. Los profesores son muy pacientes y las clases son dinamicas. Lo recomiendo de verdad.</p>
+									<p>Tome el curso de conversación y en pocos meses ya podia hablar con confianza. Los profesores son muy pacientes y las clases son dinamicas. Lo recomiendo de verdad.</p>
 								</div>
 								<div class="testi_pic_title">
 									<img src="../../assets/img/testimonial/2.png" alt="">
@@ -486,7 +513,7 @@
 									<i class="ti-star"></i>
 									<i class="ti-star"></i>
 									<i class="ti-star"></i>
-									<p>Tome el curso de conversacion y en pocos meses ya podia hablar con confianza. Los profesores son muy pacientes y las clases son dinamicas. Lo recomiendo de verdad.</p>
+									<p>Tome el curso de conversación y en pocos meses ya podia hablar con confianza. Los profesores son muy pacientes y las clases son dinamicas. Lo recomiendo de verdad.</p>
 								</div>
 								<div class="testi_pic_title">
 									<img src="../../assets/img/testimonial/3.png" alt="">
@@ -502,7 +529,7 @@
 									<i class="ti-star"></i>
 									<i class="ti-star"></i>
 									<i class="ti-star"></i>
-									<p>Tome el curso de conversacion y en pocos meses ya podia hablar con confianza. Los profesores son muy pacientes y las clases son dinamicas. Lo recomiendo de verdad.</p>
+									<p>Tome el curso de conversación y en pocos meses ya podia hablar con confianza. Los profesores son muy pacientes y las clases son dinamicas. Lo recomiendo de verdad.</p>
 								</div>
 								<div class="testi_pic_title">
 									<img src="../../assets/img/testimonial/4.png" alt="">
@@ -518,7 +545,7 @@
 									<i class="ti-star"></i>
 									<i class="ti-star"></i>
 									<i class="ti-star"></i>
-									<p>Tome el curso de conversacion y en pocos meses ya podia hablar con confianza. Los profesores son muy pacientes y las clases son dinamicas. Lo recomiendo de verdad.</p>
+									<p>Tome el curso de conversación y en pocos meses ya podia hablar con confianza. Los profesores son muy pacientes y las clases son dinamicas. Lo recomiendo de verdad.</p>
 								</div>
 								<div class="testi_pic_title">
 									<img src="../../assets/img/testimonial/5.png" alt="">
@@ -538,7 +565,7 @@
 			<div class="container">
 				<div class="section-title text-center">
 					<h2>Ultimas noticias del blog</h2>
-					<p>Ofrecemos un enfoque innovador para que aprendas ingles a tu ritmo. Elige entre nuestra amplia variedad de cursos certificados MCER y desarrolla habilidades reales para el mundo profesional.</p>
+					<p>Ofrecemos un enfoque innovador para que aprendas inglés a tu ritmo. Elige entre nuestra amplia variedad de cursos certificados MCER y desarrolla habilidades reales para el mundo profesional.</p>
 				</div>	
 				<div class="row">		
 					<div class="col-lg-4 col-sm-4 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s" data-wow-offset="0">
@@ -546,8 +573,8 @@
 							<img src="../../assets/img/blog/1.jpg" class="img-fluid" alt="image" />
 							<div class="content_box">
 								<span>10 de mayo de 2024 | <a href="Blog.php">A1 Principiante</a></span>
-								<h2><a href="Blog.php">5 consejos para mejorar tu pronunciacion en ingles</a></h2>
-								<a class="btn_one" href="Blog.php">Leer mas <i class="ti-arrow-top-right"></i></a>
+								<h2><a href="Blog.php">5 consejos para mejorar tu pronunciación en inglés</a></h2>
+								<a class="btn_one" href="Blog.php">Leer más <i class="ti-arrow-top-right"></i></a>
 							</div>
 						</div>
 					</div><!-- END COL-->				
@@ -557,7 +584,7 @@
 							<div class="content_box">
 								<span>16 de mayo de 2024 | <a href="Blog.php">A1 Principiante</a></span>
 								<h2><a href="Blog.php">Como prepararte para el examen TOEFL</a></h2>
-								<a class="btn_one" href="Blog.php">Leer mas <i class="ti-arrow-top-right"></i></a>							
+								<a class="btn_one" href="Blog.php">Leer más <i class="ti-arrow-top-right"></i></a>							
 							</div>
 						</div>
 					</div><!-- END COL-->
@@ -567,7 +594,7 @@
 							<div class="content_box">
 								<span>18 de mayo de 2024 | <a href="Blog.php">Consejos</a></span>
 								<h2><a href="Blog.php">Educamos a los lideres del manana, hoy </a></h2>
-								<a class="btn_one" href="Blog.php">Leer mas <i class="ti-arrow-top-right"></i></a>
+								<a class="btn_one" href="Blog.php">Leer más <i class="ti-arrow-top-right"></i></a>
 							</div>
 						</div>
 					</div><!-- END COL-->						
