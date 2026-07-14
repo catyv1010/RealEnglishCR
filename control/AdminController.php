@@ -11,6 +11,7 @@ session_start();
 
 require_once __DIR__ . '/../model/Entidades.php';
 require_once __DIR__ . '/../model/CrudModel.php';
+require_once __DIR__ . '/../model/Autenticacion.php';
 
 class AdminController
 {
@@ -142,44 +143,41 @@ class AdminController
     }
 
     // -----------------------------------------------------------------------
-    // Valida la cedula contra EMPLEADOS y exige un puesto administrativo.
-    // Lee con el paquete PL/SQL: aqui tampoco hay SQL directo.
+    // Valida cedula + contrasena. NO compara nada aqui: delega en la funcion
+    // PL/SQL REALENGLISH.fn_validar_admin, que verifica el hash y el puesto
+    // dentro de la base de datos.
     // -----------------------------------------------------------------------
     private static function entrar()
     {
         $cedula = isset($_POST['cedula']) ? trim($_POST['cedula']) : '';
+        $clave  = isset($_POST['clave'])  ? $_POST['clave']        : '';
 
-        $empleado = null;
+        try {
+            $empleadoId = Autenticacion::validarAdmin($cedula, $clave);
+        } catch (Exception $ex) {
+            $_SESSION['admin_error'] = 'Error al validar: ' . $ex->getMessage();
+            header('Location: admin.php');
+            return;
+        }
+
+        if ($empleadoId === null) {
+            // Un solo mensaje para todos los casos (cedula mala, clave mala o
+            // puesto sin permiso): no le confirmamos nada a un atacante.
+            $_SESSION['admin_error'] = 'Cedula o contrasena incorrecta, o su puesto no tiene acceso.';
+            header('Location: admin.php');
+            return;
+        }
+
+        // Credenciales validas: guardamos los datos del empleado para la barra
+        // lateral. Se leen con el paquete CRUD, no con SELECT directo.
+        $_SESSION['admin_id'] = $empleadoId;
         foreach (CrudModel::listar('empleados') as $e) {
-            if (isset($e['CEDULA']) && trim($e['CEDULA']) === $cedula) {
-                $empleado = $e;
+            if ((string) $e['EMPLEADO_ID'] === (string) $empleadoId) {
+                $_SESSION['admin_nombre'] = $e['NOMBRE'] . ' ' . $e['APELLIDO_P'];
+                $_SESSION['admin_puesto'] = $e['PUESTO_ID'];
                 break;
             }
         }
-
-        if ($empleado === null) {
-            $_SESSION['admin_error'] = 'Esa cedula no corresponde a ningun empleado.';
-            header('Location: admin.php');
-            return;
-        }
-
-        if (($empleado['ACTIVO'] ?? 'N') !== 'S') {
-            $_SESSION['admin_error'] = 'El empleado esta inactivo.';
-            header('Location: admin.php');
-            return;
-        }
-
-        if (!in_array($empleado['PUESTO_ID'] ?? '', self::PUESTOS_ADMIN, true)) {
-            $_SESSION['admin_error'] =
-                'Su puesto no tiene acceso al modulo de mantenimientos. '
-              . 'Solo Direccion Academica y Coordinacion de Sede.';
-            header('Location: admin.php');
-            return;
-        }
-
-        $_SESSION['admin_id']     = $empleado['EMPLEADO_ID'];
-        $_SESSION['admin_nombre'] = $empleado['NOMBRE'] . ' ' . $empleado['APELLIDO_P'];
-        $_SESSION['admin_puesto'] = $empleado['PUESTO_ID'];
 
         header('Location: admin.php?entidad=estudiantes');
     }

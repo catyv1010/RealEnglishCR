@@ -42,8 +42,13 @@
                 <label for="cedula" class="form-label">Cédula del empleado</label>
                 <input type="text" name="cedula" id="cedula" class="form-control"
                        placeholder="1-1234-5678" pattern="[18]-[0-9]{4}-[0-9]{4}" required autofocus>
+            </div>
+            <div class="mb-3">
+                <label for="clave" class="form-label">Contraseña</label>
+                <input type="password" name="clave" id="clave" class="form-control"
+                       placeholder="Tu contraseña" required>
                 <div class="form-text">
-                    Solo Dirección Académica y Coordinación de Sede.
+                    Acceso solo para Dirección Académica y Coordinación de Sede.
                 </div>
             </div>
             <button type="submit" class="btn btn-primary w-100">Entrar</button>
