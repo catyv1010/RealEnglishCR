@@ -33,7 +33,12 @@ function AdminHeader($titulo, $entidadActiva)
   <div class="row">
     <nav class="col-md-2 d-none d-md-block sidebar">
         <div class="marca">Real English CR<br><small>Administraci&oacute;n</small></div>
+        <div style="color:#8fa3c8;font-size:.78rem;padding:0 1.2rem .9rem;line-height:1.5;">
+            <?= htmlspecialchars($_SESSION['admin_nombre'] ?? '') ?><br>
+            <span style="opacity:.7;"><?= htmlspecialchars($_SESSION['admin_puesto'] ?? '') ?></span>
+        </div>
         <a href="index.php">&larr; Volver al sitio</a>
+        <a href="admin.php?accion=salir">Cerrar sesión</a>
         <hr style="border-color:#33507f">
         <?php foreach ($entidades as $clave => $ent): ?>
             <a href="admin.php?entidad=<?php echo $clave; ?>&accion=listar"

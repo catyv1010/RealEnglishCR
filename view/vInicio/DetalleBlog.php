@@ -26,12 +26,12 @@
 							<img src="../../assets/img/blog/3.jpg" class="img-fluid" alt="Blog image" />
 						</div>
 						<div class="arti_content ">
-							<p>Cuando empece a estudiar inglés me costaba mucho entender lo que escuchaba. Lo que más me ayudo fue practicar todos los días un rato corto, ver series con subtitulos en inglés y no tener miedo a equivocarme al hablar. Poco a poco fui ganando confianza y hoy puedo mantener una conversación sin problema. La clave es la constancia, no estudiar muchas horas un solo dia.</p>
+							<p>Cuando empecé a estudiar inglés me costaba mucho entender lo que escuchaba. Lo que más me ayudó fue practicar todos los días un rato corto, ver series con subtítulos en inglés y no tener miedo a equivocarme al hablar. Poco a poco fui ganando confianza y hoy puedo mantener una conversación sin problema. La clave es la constancia, no estudiar muchas horas un solo dia.</p>
 						</div>
 						<div class="arti_sp">
 							<h2>La importancia de practicar el inglés todos los días</h2>
 							<img src="../../assets/img/blog/2.jpg" class="img-fluid" alt="Blog image" />
-							<p>Otro consejo util es repasar el vocabulario nuevo en contexto y no como una lista suelta. Anota frases completas, repitelas en voz alta y usalas en tus propias oraciones. Asi se te quedan mucho mejor y las vas a poder usar cuando hables.</p>
+							<p>Otro consejo útil es repasar el vocabulario nuevo en contexto y no como una lista suelta. Anota frases completas, repitelas en voz alta y usalas en tus propias oraciones. Así se te quedan mucho mejor y las vas a poder usar cuando hables.</p>
 						</div>
 						<div class="share_sp">
 							<h4>Compartir</h4>
@@ -55,18 +55,18 @@
 						<h3 class="blog_head_title">Comentarios</h3>
 						<div class="single_comment">
 							<img src="../../assets/img/blog/c1.jpg" alt="" />
-							<h4>Ayoub Fennouni</h4>
-							<p>Aprende inglés de la manera más efectiva. Con práctica constante y buenas técnicas de estudio vas a notar el avance en pocas semanas. Lo importante es perderle el miedo a hablar y equivocarse.</p>
+							<h4>Mariana Cordero</h4>
+							<p>Muy buen artículo. Lo de repasar el vocabulario en contexto y no como lista suelta me cambió la forma de estudiar.</p>
 						</div><!--- END SINGLE COMMENT -->
 						<div class="single_comment sc_left">
 							<img src="../../assets/img/blog/c3.jpg" alt="" />
-							<h4>Kader Bhai</h4>
-							<p>Aprende inglés de la manera más efectiva. Con práctica constante y buenas técnicas de estudio vas a notar el avance en pocas semanas. Lo importante es perderle el miedo a hablar y equivocarse.</p>
+							<h4>Bryan Mendoza</h4>
+							<p>Coincido con lo de la constancia. Yo estudio 20 minutos diarios y avancé más que cuando hacía maratones de tres horas los domingos.</p>
 						</div><!--- END SINGLE COMMENT -->
 						<div class="single_comment single_comment_mbnone">
 							<img src="../../assets/img/blog/c2.jpg" alt="" />
-							<h4>Mark Linomi</h4>
-							<p>Aprende inglés de la manera más efectiva. Con práctica constante y buenas técnicas de estudio vas a notar el avance en pocas semanas. Lo importante es perderle el miedo a hablar y equivocarse.</p>
+							<h4>Adrián Garro</h4>
+							<p>Lo del miedo a equivocarse es lo más difícil. En clase de conversación fue donde por fin lo solté.</p>
 						</div><!--- END SINGLE COMMENT -->
 					</div><!--- END COMMENTS PART -->	
 					<div class="comment_form">
@@ -107,7 +107,7 @@
 							<h4>Suscribite para recibir novedades</h4>
 							<p>Aprende inglés de la manera más efectiva con nuestros cursos</p>
 							<form action="#" class="subscribe">
-								<input type="text" class="subscribe__input" placeholder="Correo electronico">
+								<input type="text" class="subscribe__input" placeholder="Correo electrónico">
 								<button type="button" class="sub_btn">Suscribirse</button>
 							</form>
 						</div>						
@@ -120,15 +120,15 @@
 						</div><!-- END SINGLE POPULAR POST -->
 						<div class="single_popular">
 							<a href="DetalleBlog.php"><img src="../../assets/img/blog/blog-2.png" alt="" /></a>
-							<h5><a href="DetalleBlog.php">Por que el inglés te abre más puertas laborales</a></h5>
+							<h5><a href="DetalleBlog.php">Por qué el inglés te abre más puertas laborales</a></h5>
 						</div><!-- END SINGLE POPULAR POST -->
 						<div class="single_popular">
 							<a href="DetalleBlog.php"><img src="../../assets/img/blog/blog-3.png" alt="" /></a>
-							<h5><a href="DetalleBlog.php">Errores comunes al aprender inglés y como evitarlos</a></h5>
+							<h5><a href="DetalleBlog.php">Errores comunes al aprender inglés y cómo evitarlos</a></h5>
 						</div><!-- END SINGLE POPULAR POST -->
 						<div class="single_popular">
 							<a href="DetalleBlog.php"><img src="../../assets/img/blog/blog-4.png" alt="" /></a>
-							<h5><a href="DetalleBlog.php">Como organizar tu tiempo para estudiar inglés</a></h5>
+							<h5><a href="DetalleBlog.php">Cómo organizar tu tiempo para estudiar inglés</a></h5>
 						</div><!-- END SINGLE POPULAR POST -->
 						<div class="single_popular">
 							<a href="DetalleBlog.php"><img src="../../assets/img/blog/blog-5.png" alt="" /></a>
@@ -136,7 +136,7 @@
 						</div><!-- END SINGLE POPULAR POST -->	
 					</div><!-- END SIDEBAR POST -->					
 					<div class="sidebar-post">
-						<div class="sidebar_title"><h4>Siguenos</h4></div>
+						<div class="sidebar_title"><h4>Síguenos</h4></div>
 						<div class="single_social">
 							<ul>
 								<li><div class="social_item b_facebook"><a href="#" title="facebook"><i class="fa fa-facebook"></i><span class="item-list">150K Me gusta</span></a></div></li>
@@ -175,7 +175,7 @@
 							<a href="#">Vocabulario</a>
 							<a href="#">Gramática</a>
 							<a href="#">Conversación</a>
-							<a href="#">Preparacion TOEFL</a>
+							<a href="#">Preparación TOEFL</a>
 							<a href="#">Todos los proyectos</a>
 							
 						</div>					

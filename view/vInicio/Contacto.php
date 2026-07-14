@@ -5,7 +5,7 @@
 			<div class="container">
 				<div class="col-lg-10 offset-lg-1 text-center">
 					<div class="section-top-title wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.3s" data-wow-offset="0">
-						<h1>Contactanos</h1>
+						<h1>Contáctanos</h1>
 						<ul>
 							<li><a href="Principal.php">Inicio</a></li>
 							<li> / Contacto</li>
@@ -24,7 +24,7 @@
 						<div class="single_address sa_one">
 							<i class="ti-map"></i>
 							<h4>Nuestra Ubicación</h4>
-							<p>Avenida Central, Calle 5, Edificio Plaza <br />San Jose, Costa Rica</p>
+							<p>Avenida Central, Calle 5, Edificio Plaza <br />San José, Costa Rica</p>
 						</div>
 					</div><!-- END COL -->
 					<div class="col-lg-4 col-sm-4 col-xs-12 no-padding wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s" data-wow-offset="0">
@@ -38,7 +38,7 @@
 					<div class="col-lg-4 col-sm-4 col-xs-12 no-padding wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.3s" data-wow-offset="0">
 						<div class="single_address sa_three">
 							<i class="ti-email"></i>
-							<h4>Escribenos</h4>
+							<h4>Escríbenos</h4>
 							<p>info@realenglishcr.com</p>
 							<p>admisiones@realenglishcr.com</p>
 						</div>

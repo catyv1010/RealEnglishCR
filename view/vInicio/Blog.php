@@ -35,7 +35,7 @@
 							<img src="../../assets/img/blog/2.jpg" class="img-fluid" alt="image" />
 							<div class="content_box">
 								<span>16 de mayo de 2024 | <a href="DetalleBlog.php">A1 Principiante</a></span>
-								<h2><a href="DetalleBlog.php">Como prepararte para el examen TOEFL</a></h2>
+								<h2><a href="DetalleBlog.php">Cómo prepararte para el examen TOEFL</a></h2>
 								<a class="btn_one" href="Cursos.php">Leer más <i class="ti-arrow-top-right"></i></a>							
 							</div>
 						</div>
@@ -45,7 +45,7 @@
 							<img src="../../assets/img/blog/3.jpg" class="img-fluid" alt="image" />
 							<div class="content_box">
 								<span>18 de mayo de 2024 | <a href="DetalleBlog.php">Consejos</a></span>
-								<h2><a href="DetalleBlog.php">Educamos a los lideres del manana, hoy </a></h2>
+								<h2><a href="DetalleBlog.php">Educamos a los líderes del mañana, hoy </a></h2>
 								<a class="btn_one" href="Cursos.php">Leer más <i class="ti-arrow-top-right"></i></a>
 							</div>
 						</div>
@@ -65,7 +65,7 @@
 							<img src="../../assets/img/blog/5.jpg" class="img-fluid" alt="image" />
 							<div class="content_box">
 								<span>16 de mayo de 2024 | <a href="DetalleBlog.php">A1 Principiante</a></span>
-								<h2><a href="DetalleBlog.php">Como prepararte para el examen TOEFL</a></h2>
+								<h2><a href="DetalleBlog.php">Cómo prepararte para el examen TOEFL</a></h2>
 								<a class="btn_one" href="Cursos.php">Leer más <i class="ti-arrow-top-right"></i></a>							
 							</div>
 						</div>
@@ -75,7 +75,7 @@
 							<img src="../../assets/img/blog/6.jpg" class="img-fluid" alt="image" />
 							<div class="content_box">
 								<span>18 de mayo de 2024 | <a href="DetalleBlog.php">Consejos</a></span>
-								<h2><a href="DetalleBlog.php">Educamos a los lideres del manana, hoy </a></h2>
+								<h2><a href="DetalleBlog.php">Educamos a los líderes del mañana, hoy </a></h2>
 								<a class="btn_one" href="Cursos.php">Leer más <i class="ti-arrow-top-right"></i></a>
 							</div>
 						</div>

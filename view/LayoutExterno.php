@@ -1,7 +1,7 @@
 <?php
 // Layout externo de Real English CR
 // Aqui pongo todo lo que se repite en las paginas: el head con los CSS,
-// el menu de arriba, el footer y los scripts. Asi no lo copio en cada vista.
+// el menu de arriba, el footer y los scripts. Así no lo copio en cada vista.
 // Las rutas estan pensadas para las vistas que viven en view/vInicio,
 // por eso todo apunta a ../../assets
 //
@@ -176,7 +176,7 @@ function PintarFooter()
     // en el resto del sitio (Catalogo -> CrudModel -> pkg_cursos_crud.listar).
     //
     // El try/catch NO es adorno: el footer se pinta en las 15 paginas. Si la
-    // base esta caida y esto reventara, se caeria el sitio entero. Asi, en el
+    // base esta caida y esto reventara, se caeria el sitio entero. Así, en el
     // peor caso la columna sale vacia y lo demas sigue funcionando.
     $cursosPopulares = [];
     try {
@@ -243,7 +243,7 @@ function PintarFooter()
 							<h4>Contacto</h4>
 							<div class="sf_contact">
 								<span class="ti-map"></span>
-								<p>Avenida Central, San Jose, Costa Rica</p>
+								<p>Avenida Central, San José, Costa Rica</p>
 							</div>
 							<div class="sf_contact">
 								<span class="ti-mobile"></span>

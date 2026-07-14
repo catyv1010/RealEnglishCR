@@ -23,8 +23,8 @@
 			  <div class="col-lg-12 col-sm-12 col-xs-12 text-center">
 					<div class="error_page">
 						<img src="../../assets/img/404.svg" class="img-fluid" alt="404 error" />
-						<h2>Ups! Página no encontrada</h2>
-						<p>No encontramos la página que buscas. Revisa la dirección o volve al inicio.</p>
+						<h2>¡Ups! Página no encontrada</h2>
+						<p>No encontramos la página que buscas. Revisa la dirección o volvé al inicio.</p>
 						<div class="home_btn">
 							<a href="Principal.php" class="btn_one">Volver al inicio</a>
 						</div>	

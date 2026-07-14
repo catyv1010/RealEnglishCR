@@ -10,9 +10,27 @@ $pagoId  = isset($_GET['pago']) ? preg_replace('/\D/', '', $_GET['pago']) : '';
 $pago    = null;
 $errorBD = null;
 
+// Sin sesion no se ve ningun comprobante. Antes esta pagina no lo comprobaba:
+// se podia recorrer Gracias.php?pago=1,2,3... y ver el monto, el metodo de pago
+// y la matricula de cualquier estudiante.
+if (!isset($_SESSION['estudiante_id'])) {
+    header('Location: IniciarSesion.php');
+    exit();
+}
+
 try {
     if ($pagoId !== '') {
         $pago = CrudModel::obtener('pagos', $pagoId);
+
+        // Y ademas el comprobante tiene que ser suyo: se comprueba subiendo
+        // del pago a su matricula y de ahi al estudiante dueno.
+        if ($pago !== null) {
+            $matricula = CrudModel::obtener('matriculas', $pago['MATRICULA_ID']);
+            if ($matricula === null ||
+                (string) $matricula['ESTUDIANTE_ID'] !== (string) $_SESSION['estudiante_id']) {
+                $pago = null;
+            }
+        }
     }
 } catch (Exception $e) {
     $errorBD = $e->getMessage();
@@ -31,14 +49,14 @@ PintarHeader();
 
 					<div style="background:#fff;border:1px solid #e5e8e8;border-radius:12px;padding:50px 40px;">
 						<span class="ti-check-box" style="font-size:64px;color:#1e8449;"></span>
-						<h1 style="color:#1e8449;margin-top:20px;">¡Listo, quedaste matriculada!</h1>
+						<h1 style="color:#1e8449;margin-top:20px;"><?= $pago !== null ? '¡Listo, quedaste matriculada!' : 'Comprobante no disponible' ?></h1>
 
 <?php if ($errorBD !== null) { ?>
 						<p style="color:#c0392b;"><?= htmlspecialchars($errorBD) ?></p>
 <?php } elseif ($pago !== null) { ?>
 						<p style="font-size:18px;">
 							Registramos tu pago de <b><?= Catalogo::colones($pago['MONTO']) ?></b>
-							por <b><?= htmlspecialchars(strtolower($pago['METODO_PAGO'])) ?></b>
+							por <b><?= htmlspecialchars(strtolower($pago['METODO_PAGO'] ?? 'metodo pendiente')) ?></b>
 							el <?= htmlspecialchars(Catalogo::fecha($pago['FECHA_PAGO'])) ?>.
 						</p>
 						<p style="color:#7f8c8d;">
@@ -51,7 +69,7 @@ PintarHeader();
 							Nos vemos en la primera lección.
 						</p>
 <?php } else { ?>
-						<p>Gracias por escribirnos. Te contestamos pronto.</p>
+						<p>No encontramos ese comprobante a tu nombre. Revisá tus matrículas.</p>
 <?php } ?>
 
 						<a class="btn_one" href="Principal.php" style="margin-top:25px;">Volver al inicio</a>

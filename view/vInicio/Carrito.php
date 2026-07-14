@@ -1,81 +1,142 @@
-<?php $titulo_pagina = "Real English CR - Carrito"; include_once '../LayoutExterno.php'; ImportCSS($titulo_pagina); PintarHeader(); ?>
+<?php
+// Mis matriculas. Antes esta pagina era una maqueta: el curso, el profesor y
+// el precio estaban escritos a mano, y el boton "Proceder al pago" llevaba a
+// Pagar.php SIN el numero de matricula, asi que era un callejon sin salida.
+//
+// Ahora muestra las matriculas reales del estudiante que tiene la sesion
+// abierta, con su pago, leyendo todo con los paquetes PL/SQL.
+require_once __DIR__ . "/../../model/Conexion.php";
+require_once __DIR__ . "/../../model/Entidades.php";
+require_once __DIR__ . "/../../model/CrudModel.php";
+require_once __DIR__ . "/../../model/Catalogo.php";
 
+session_start();
 
-		<!-- START SECTION TOP -->
+// Sin sesion no hay matriculas que mostrar.
+if (!isset($_SESSION['estudiante_id'])) {
+    header('Location: IniciarSesion.php');
+    exit();
+}
+
+$misMatriculas = [];
+$errorBD       = null;
+
+try {
+    $yo = (string) $_SESSION['estudiante_id'];
+
+    // Los pagos se leen una sola vez y se indexan por matricula, en vez de
+    // recorrer la lista completa dentro del bucle de matriculas.
+    $pagosPorMatricula = [];
+    foreach (CrudModel::listar('pagos') as $p) {
+        $pagosPorMatricula[(string) $p['MATRICULA_ID']] = $p;
+    }
+
+    foreach (CrudModel::listar('matriculas') as $m) {
+        if ((string) $m['ESTUDIANTE_ID'] !== $yo) {
+            continue;
+        }
+
+        $grupo = Catalogo::grupo($m['GRUPO_ID']);
+        $curso = $grupo ? Catalogo::curso($grupo['CURSO_ID']) : null;
+        $clave = (string) $m['MATRICULA_ID'];
+
+        $misMatriculas[] = [
+            'matricula' => $m,
+            'grupo'     => $grupo,
+            'curso'     => $curso,
+            'pago'      => isset($pagosPorMatricula[$clave]) ? $pagosPorMatricula[$clave] : null,
+        ];
+    }
+} catch (Exception $e) {
+    $errorBD = $e->getMessage();
+}
+
+$titulo_pagina = "Real English CR - Mis matriculas";
+include_once "../LayoutExterno.php";
+ImportCSS($titulo_pagina);
+PintarHeader();
+?>
+
 		<section class="section-top">
 			<div class="container">
 				<div class="col-lg-10 offset-lg-1 text-center">
-					<div class="section-top-title wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.3s" data-wow-offset="0">
-						<h1>Mi Carrito de Matrícula</h1>
+					<div class="section-top-title">
+						<h1>Mis Matrículas</h1>
 						<ul>
 							<li><a href="Principal.php">Inicio</a></li>
-							<li> / Carrito</li>
+							<li> / Mis matrículas</li>
 						</ul>
 					</div>
 				</div>
 			</div>
 		</section>
-		<!-- END SECTION TOP -->
 
-		<!-- START CART -->
-		<section class="cart_area section-padding">
+		<section class="section-padding">
 			<div class="container">
-				<div class="row wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s">
-					<div class="col-lg-8 col-md-12">
-						<div class="cart-table" style="background:#fff;padding:30px;border-radius:10px;box-shadow:0 0 30px rgba(0,0,0,0.05);">
-							<h3 style="margin-bottom:25px;">Resumen de Matrícula</h3>
-							<table class="table table-striped">
-								<thead>
-									<tr>
-										<th>Curso</th>
-										<th>Nivel</th>
-										<th>Horario</th>
-										<th>Precio</th>
-										<th></th>
-									</tr>
-								</thead>
-								<tbody id="cartItems">
-									<!-- Las filas se cargan dinamicamente desde el SP listar_carrito() -->
-									<tr>
-										<td><strong>Inglés Intermedio General</strong><br><small>Sede San Jose - Profe: Andres Vargas</small></td>
-										<td><span class="badge" style="background:#5B6FFC;color:#fff;padding:4px 10px;border-radius:5px;">B1</span></td>
-										<td>L-Mi-V 18:00-20:00</td>
-										<td><strong>&#8353; 95,000</strong></td>
-										<td><a href="#" style="color:#ff5252;"><i class="fa-solid fa-trash"></i></a></td>
-									</tr>
-								</tbody>
-							</table>
-							<div style="margin-top:30px;text-align:center;">
-								<a href="Cursos.php" style="color:#5B6FFC;">+ Agregar otro curso</a>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-4 col-md-12">
-						<div class="cart-summary" style="background:#fff;padding:30px;border-radius:10px;box-shadow:0 0 30px rgba(0,0,0,0.05);">
-							<h4 style="margin-bottom:20px;">Total a Pagar</h4>
-							<div style="display:flex;justify-content:space-between;margin-bottom:10px;">
-								<span>Subtotal:</span>
-								<strong>&#8353; 95,000</strong>
-							</div>
-							<div style="display:flex;justify-content:space-between;margin-bottom:10px;">
-								<span>Descuento:</span>
-								<strong style="color:#28a745;">- &#8353; 0</strong>
-							</div>
-							<hr>
-							<div style="display:flex;justify-content:space-between;margin-bottom:20px;font-size:18px;">
-								<strong>Total:</strong>
-								<strong style="color:#5B6FFC;">&#8353; 95,000</strong>
-							</div>
-							<form action="Pagar.php" method="GET">
-								<button type="submit" class="btn_one w-100" style="width:100%;">Proceder al Pago</button>
-							</form>
-							<p style="margin-top:15px;text-align:center;color:#999;font-size:13px;">
-								Pago seguro con SINPE Movil, tarjeta o transferencia
-							</p>
-						</div>
-					</div>
+
+<?php if ($errorBD !== null) { ?>
+				<p style="color:#c0392b;">No se pudieron cargar tus matrículas: <?= htmlspecialchars($errorBD) ?></p>
+
+<?php } elseif (count($misMatriculas) === 0) { ?>
+				<div style="background:#fff;border:1px solid #e5e8e8;border-radius:12px;padding:50px;text-align:center;">
+					<h3 style="margin-top:0;">Todavía no tenés matrículas</h3>
+					<p style="color:#7f8c8d;">Elegí un curso del catálogo y matriculate en el grupo que mejor te calce.</p>
+					<a class="btn_one" href="Cursos.php">Ver los cursos</a>
 				</div>
+
+<?php } else { ?>
+				<div class="table-responsive" style="background:#fff;border:1px solid #e5e8e8;border-radius:12px;padding:24px;">
+					<table class="table align-middle">
+						<thead>
+							<tr>
+								<th>Curso</th>
+								<th>Grupo</th>
+								<th>Estado</th>
+								<th>Monto</th>
+								<th>Pago</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+<?php foreach ($misMatriculas as $fila) {
+          $m     = $fila['matricula'];
+          $grupo = $fila['grupo'];
+          $curso = $fila['curso'];
+          $pago  = $fila['pago'];
+?>
+							<tr>
+								<td>
+									<b><?= htmlspecialchars($curso['NOMBRE'] ?? 'Curso') ?></b><br>
+									<span style="color:#7f8c8d;font-size:13px;">
+										<?= htmlspecialchars($curso['CODIGO'] ?? '') ?> &middot;
+										<?= htmlspecialchars($curso['MODALIDAD'] ?? '') ?>
+									</span>
+								</td>
+								<td><?= htmlspecialchars($grupo['CODIGO'] ?? '-') ?></td>
+								<td><?= htmlspecialchars($m['ESTADO']) ?></td>
+								<td><?= $curso ? Catalogo::colones($curso['PRECIO_COLONES']) : '-' ?></td>
+								<td>
+<?php     if ($pago === null) { ?>
+									<span style="color:#c0392b;">Sin registrar</span>
+<?php     } else { ?>
+									<?= htmlspecialchars($pago['ESTADO']) ?>
+<?php     } ?>
+								</td>
+								<td>
+<?php     if ($pago !== null && $pago['ESTADO'] === 'PAGADO') { ?>
+									<a class="btn btn-sm btn-outline-secondary" href="Gracias.php?pago=<?= urlencode($pago['PAGO_ID']) ?>">Ver comprobante</a>
+<?php     } else { ?>
+									<a class="btn btn-sm btn-primary" href="Pagar.php?matricula=<?= urlencode($m['MATRICULA_ID']) ?>">Pagar</a>
+<?php     } ?>
+								</td>
+							</tr>
+<?php } ?>
+						</tbody>
+					</table>
+				</div>
+<?php } ?>
+
 			</div>
 		</section>
-		<!-- END CART -->
+
 <?php PintarFooter(); ImportJS(); ?>

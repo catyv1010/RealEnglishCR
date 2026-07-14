@@ -66,7 +66,7 @@
 								<div class="form-group mb-3">
 									<label for="nivel_inicial">Nivel inicial estimado de inglés</label>
 									<select name="nivel_inicial" id="nivel_inicial" class="form-control">
-										<option value="">-- No estoy seguro / Solicitar prueba diagnostica --</option>
+										<option value="">-- No estoy seguro / Solicitar prueba diagnóstica --</option>
 										<option value="1">A1 - Principiante</option>
 										<option value="2">A2 - Básico</option>
 										<option value="3">B1 - Intermedio</option>
@@ -78,12 +78,12 @@
 								<div class="form-group mb-3">
 									<input type="checkbox" name="terminos" id="terminos" required>
 									<label for="terminos" style="margin-left:5px;font-weight:normal;">
-										Acepto los <a href="#">terminos y condiciones</a> de Real English CR
+										Acepto los <a href="#">términos y condiciones</a> de Real English CR
 									</label>
 								</div>
 								<button type="submit" name="btnRegistrar" class="btn_one w-100" style="width:100%;">Crear mi cuenta</button>
 								<p class="text-center mt-3" style="margin-top:20px;">
-									Ya tienes cuenta? <a href="IniciarSesion.php"><strong>Inicia sesión</strong></a>
+									¿Ya tienes cuenta? <a href="IniciarSesion.php"><strong>Inicia sesión</strong></a>
 								</p>
 							</form>
 						</div>

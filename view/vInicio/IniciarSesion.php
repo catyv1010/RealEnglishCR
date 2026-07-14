@@ -35,7 +35,7 @@
 									</div>
 								<button type="submit" name="btnLogin" class="btn_one w-100" style="width:100%;">Iniciar Sesión</button>
 								<p class="text-center mt-3" style="margin-top:20px;">
-									Eres nuevo? <a href="RegistrarUsuarios.php"><strong>Registrate aquí</strong></a>
+									¿Eres nuevo? <a href="RegistrarUsuarios.php"><strong>Regístrate aquí</strong></a>
 								</p>
 							</form>
 						</div>
