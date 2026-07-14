@@ -258,4 +258,6 @@ class Entidades
     public static function obtener($nombre)
     {
         $todas = self::todas();
-        return isset($todas[$nombre]) ? $todas[$nombre] : nu
+        return isset($todas[$nombre]) ? $todas[$nombre] : null;
+    }
+}

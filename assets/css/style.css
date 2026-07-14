@@ -249,12 +249,13 @@ margin-top: 0px;
 	width: 20%;
 }
 .site-logo{
-	width: 260px;
+	width: 320px;
 }
 .site-logo a{
 	display: block;
 }
 .site-logo img{
+	width: 100%;
 	max-width: 100%;
 	height: auto;
 }

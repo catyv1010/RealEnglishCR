@@ -40,7 +40,7 @@ function ImportCSS($titulo = 'Real English CR')
 		<!-- animate CSS -->
 		<link rel="stylesheet" href="../../assets/css/animate.css">
 		<!-- Style CSS -->
-		<link rel="stylesheet" href="../../assets/css/style.css">
+		<link rel="stylesheet" href="../../assets/css/style.css?v=2">
 	</head>
 
 	<body data-spy="scroll" data-offset="80">
