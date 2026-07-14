@@ -1,53 +1,135 @@
-<?php $titulo_pagina = "Real English CR - Perfil del Profesor"; include_once '../LayoutExterno.php'; ImportCSS($titulo_pagina); PintarHeader(); ?>
+<?php
+// Perfil de UN profesor. Antes era una ficha fija de "Laura Jimenez" escrita a
+// mano en el HTML: no recibia id ni consultaba la base de datos.
+//
+// Ahora recibe PerfilProfesor.php?id=<empleado_id> y arma todo desde Oracle:
+//   Catalogo::profesor()          -> pkg_empleados_crud.listar
+//   Catalogo::gruposDeProfesor()  -> pkg_grupos_crud.listar
+//   Catalogo::curso()             -> pkg_cursos_crud.listar
+require_once __DIR__ . "/../../model/Catalogo.php";
+
+$id      = isset($_GET['id']) ? preg_replace('/\D/', '', $_GET['id']) : '';
+$profe   = null;
+$grupos  = [];
+$errorBD = null;
+
+try {
+    if ($id !== '') {
+        $profe = Catalogo::profesor($id);
+        // Solo se publica el perfil de un profesor activo. Si el id es de un
+        // cajero o de un empleado inactivo, no se muestra.
+        if ($profe && (stripos($profe['PUESTO_ID'] ?? '', 'PROF') !== 0 || ($profe['ACTIVO'] ?? 'N') !== 'S')) {
+            $profe = null;
+        }
+        if ($profe) {
+            $grupos = Catalogo::gruposDeProfesor($id);
+        }
+    }
+} catch (Exception $e) {
+    $errorBD = $e->getMessage();
+}
+
+if ($errorBD === null && $profe === null) {
+    header('Location: Profesores.php');
+    exit;
+}
+
+$nombre = $profe ? trim($profe['NOMBRE'] . ' ' . $profe['APELLIDO_P'] . ' ' . ($profe['APELLIDO_M'] ?? '')) : '';
+
+$titulo_pagina = "Real English CR - " . $nombre;
+include_once "../LayoutExterno.php";
+ImportCSS($titulo_pagina);
+PintarHeader();
+?>
 
 		<!-- START SECTION TOP -->
 		<section class="section-top">
 			<div class="container">
 				<div class="col-lg-10 offset-lg-1 text-center">
-					<div class="section-top-title wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.3s" data-wow-offset="0">
-						<h1>Perfil Profesor</h1>
+					<div class="section-top-title wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.3s">
+						<h1><?= htmlspecialchars($nombre) ?></h1>
 						<ul>
 							<li><a href="Principal.php">Inicio</a></li>
-							<li> / Perfil Profesor</li>
+							<li> / <a href="Profesores.php">Profesores</a></li>
 						</ul>
-					</div><!-- //.HERO-TEXT -->
-				</div><!--- END COL -->
-			</div><!--- END CONTAINER -->
-		</section>	
+					</div>
+				</div>
+			</div>
+		</section>
 		<!-- END SECTION TOP -->
-		
-	<!-- START AGENT PROFILE -->
-	<section class="template_agent section-padding">
-		<div class="container">
-			<div class="row">
-			  <div class="col-lg-12 col-sm-12 col-xs-12">
-					<div class="single_agent">
-						<div class="single_agent_image">
-							<img src="../../assets/img/team/team1.jpg" class="img-fluid" alt=""/>
+
+		<section class="section-padding">
+			<div class="container">
+<?php if ($errorBD !== null) { ?>
+				<p style="color:#c0392b;">No se pudo cargar el perfil: <?= htmlspecialchars($errorBD) ?></p>
+<?php } else { ?>
+				<div class="row">
+
+					<div class="col-lg-4">
+						<img src="<?= Catalogo::imagenProfesor($profe['EMPLEADO_ID']) ?>" class="img-fluid"
+						     style="border-radius:10px;width:100%;"
+						     alt="<?= htmlspecialchars($nombre) ?>">
+
+						<div style="background:#fff;border:1px solid #e5e8e8;border-radius:10px;padding:24px;margin-top:22px;">
+							<p><span class="ti-medall-alt"></span> <b>Nivel de inglés:</b> <?= htmlspecialchars($profe['NIVEL_INGLES'] ?: 'C1') ?></p>
+							<p><span class="ti-bookmark"></span> <b>Especialidad:</b> <?= htmlspecialchars($profe['ESPECIALIDAD'] ?: 'Inglés General') ?></p>
+							<p><span class="ti-briefcase"></span> <b>Puesto:</b> <?= $profe['PUESTO_ID'] === 'PROF_SR' ? 'Profesor Senior' : 'Profesor Junior' ?></p>
+							<p><span class="ti-calendar"></span> <b>En la academia desde:</b> <?= htmlspecialchars(Catalogo::fecha($profe['FECHA_INGRESO'])) ?></p>
+							<p><span class="ti-email"></span> <?= htmlspecialchars($profe['CORREO']) ?></p>
+<?php if (!empty($profe['TELEFONO'])) { ?>
+							<p><span class="ti-mobile"></span> <?= htmlspecialchars($profe['TELEFONO']) ?></p>
+<?php } ?>
 						</div>
-						<div class="single_agent_content">
-							<h4>Laura Jimenez</h4>
-							<h5>Coordinadora Academica</h5>
-							<p>Profesora de inglés con más de diez años de experiencia. Le gusta ensenar con ejemplos de la vida diaria y acompanar a cada estudiante segun su nivel. Especialista en preparacion de exámenes IELTS y TOEFL.</p>
-							<ul>
-								<li><i class="fa fa-envelope-o"></i>laura.jimenez@realenglishcr.com</li>
-								<li><i class="fa fa-phone"></i>+506 2222-1010</li>
-								<li><i class="fa fa-plane"></i>www.realenglishcr.com</li>
-								<li><i class="fa fa-skype"></i>realenglishcr</li>
-							</ul>
-						</div>
-						<div class="agent_social">
-							<ul class="list-inline">
-								<li><a href="#" class="top_f_facebook"><img src="../../assets/img/fb.svg" alt="" /></a></li>
-								<li><a href="#" class="top_f_facebook"><img src="../../assets/img/pn.svg" alt="" /></a></li>
-								<li><a href="#" class="top_f_facebook"><img src="../../assets/img/ins.svg" alt="" /></a></li>
-							</ul>
-						</div>
-					</div><!--- END SINGLE ITEM -->		
-			  </div><!--- END COL -->				  
-			</div><!--- END ROW -->
-		</div><!--- END CONTAINER -->		
-	</section>
-	<!-- END AGENT PROFILE -->	
-		
+					</div><!-- END COL -->
+
+					<div class="col-lg-8">
+						<h3>Sobre <?= htmlspecialchars($profe['NOMBRE']) ?></h3>
+						<p>
+							<?= htmlspecialchars($profe['NOMBRE'] . ' ' . $profe['APELLIDO_P']) ?> forma parte del equipo docente de
+							Real English CR y está certificado en el nivel
+							<?= htmlspecialchars($profe['NIVEL_INGLES'] ?: 'C1') ?> del Marco Común Europeo de Referencia.
+							Su área de trabajo es <b><?= htmlspecialchars($profe['ESPECIALIDAD'] ?: 'Inglés General') ?></b>,
+							y actualmente tiene <?= count($grupos) ?> grupo(s) a cargo.
+						</p>
+
+						<h3 style="margin-top:40px;">Grupos a cargo</h3>
+<?php if (count($grupos) === 0) { ?>
+						<p>Por el momento no tiene grupos asignados.</p>
+<?php } else { ?>
+						<table class="table table-hover">
+							<thead>
+								<tr>
+									<th>Grupo</th>
+									<th>Curso</th>
+									<th>Días</th>
+									<th>Horario</th>
+									<th>Estado</th>
+									<th>Cupo</th>
+								</tr>
+							</thead>
+							<tbody>
+<?php   foreach ($grupos as $g) { $c = Catalogo::curso($g['CURSO_ID']); ?>
+								<tr>
+									<td><?= htmlspecialchars($g['CODIGO']) ?></td>
+									<td>
+<?php     if ($c) { ?>
+										<a href="DetalleCurso.php?id=<?= urlencode($c['CURSO_ID']) ?>"><?= htmlspecialchars($c['NOMBRE']) ?></a>
+<?php     } else { echo '&mdash;'; } ?>
+									</td>
+									<td><?= htmlspecialchars($g['DIAS']) ?></td>
+									<td><?= htmlspecialchars($g['HORARIO']) ?></td>
+									<td><?= htmlspecialchars($g['ESTADO']) ?></td>
+									<td><?= htmlspecialchars($g['CUPO_ACTUAL']) ?> / <?= htmlspecialchars($g['CUPO_MAX']) ?></td>
+								</tr>
+<?php   } ?>
+							</tbody>
+						</table>
+<?php } ?>
+					</div><!-- END COL -->
+
+				</div><!--- END ROW -->
+<?php } ?>
+			</div><!--- END CONTAINER -->
+		</section>
+
 <?php PintarFooter(); ImportJS(); ?>

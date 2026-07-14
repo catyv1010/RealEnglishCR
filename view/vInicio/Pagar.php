@@ -1,12 +1,68 @@
-<?php $titulo_pagina = "Real English CR - Pagar"; include_once '../LayoutExterno.php'; ImportCSS($titulo_pagina); PintarHeader(); ?>
+<?php
+// Pago de una matricula recien creada.
+// Antes esta pagina tenia un formulario que apuntaba a procesar_pago.php,
+// un archivo que NO existia: el boton daba 404.
+//
+// Ahora recibe Pagar.php?matricula=<id>, busca en Oracle el pago PENDIENTE que
+// el sistema genero para esa matricula (pkg_pagos_crud.listar) y lo muestra con
+// el monto REAL del curso. Al confirmar, el controlador lo pasa a PAGADO con
+// pkg_pagos_crud.actualizar, y el trigger trg_aud_pagos deja el rastro en la
+// bitacora.
+require_once __DIR__ . "/../../model/Catalogo.php";
+require_once __DIR__ . "/../../model/CrudModel.php";
+session_start();
 
+if (!isset($_SESSION['estudiante_id'])) {
+    header('Location: IniciarSesion.php');
+    exit;
+}
+
+$matriculaId = isset($_GET['matricula']) ? preg_replace('/\D/', '', $_GET['matricula']) : '';
+$pago = null; $matricula = null; $grupo = null; $curso = null; $errorBD = null;
+
+try {
+    if ($matriculaId !== '') {
+        $matricula = CrudModel::obtener('matriculas', $matriculaId);
+
+        // Nadie puede pagar la matricula de otra persona.
+        if ($matricula && (string) $matricula['ESTUDIANTE_ID'] !== (string) $_SESSION['estudiante_id']) {
+            $matricula = null;
+        }
+
+        if ($matricula) {
+            $grupo = Catalogo::grupo($matricula['GRUPO_ID']);
+            $curso = $grupo ? Catalogo::curso($grupo['CURSO_ID']) : null;
+
+            // El pago pendiente de esta matricula
+            foreach (CrudModel::listar('pagos') as $p) {
+                if ((string) $p['MATRICULA_ID'] === (string) $matriculaId) {
+                    $pago = $p;
+                    break;
+                }
+            }
+        }
+    }
+} catch (Exception $e) {
+    $errorBD = $e->getMessage();
+}
+
+if ($errorBD === null && $pago === null) {
+    header('Location: Cursos.php');
+    exit;
+}
+
+$titulo_pagina = "Real English CR - Pagar";
+include_once "../LayoutExterno.php";
+ImportCSS($titulo_pagina);
+PintarHeader();
+?>
 
 		<!-- START SECTION TOP -->
 		<section class="section-top">
 			<div class="container">
 				<div class="col-lg-10 offset-lg-1 text-center">
-					<div class="section-top-title wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.3s" data-wow-offset="0">
-						<h1>Procesar Pago</h1>
+					<div class="section-top-title wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.3s">
+						<h1>Confirmá tu matrícula</h1>
 						<ul>
 							<li><a href="Principal.php">Inicio</a></li>
 							<li> / Pago</li>
@@ -17,128 +73,84 @@
 		</section>
 		<!-- END SECTION TOP -->
 
-		<!-- START CHECKOUT -->
-		<section class="checkout_area section-padding">
+		<section class="section-padding">
 			<div class="container">
-				<div class="row wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s">
-					<div class="col-lg-8 col-md-12">
-						<div class="checkout-form" style="background:#fff;padding:30px;border-radius:10px;box-shadow:0 0 30px rgba(0,0,0,0.05);">
-							<h3 style="margin-bottom:25px;">Información de Pago</h3>
-							<form action="procesar_pago.php" method="POST">
-								<h5 style="margin-top:20px;margin-bottom:15px;">Método de Pago</h5>
-								<div class="row" style="margin-bottom:25px;">
-									<div class="col-md-3 col-6 mb-2">
-										<label style="display:block;border:2px solid #eee;padding:15px;border-radius:8px;cursor:pointer;text-align:center;" class="metodo-pago">
-											<input type="radio" name="metodo" value="SINPE" required style="display:none;">
-											<i class="fa-solid fa-mobile-screen" style="font-size:30px;color:#5B6FFC;display:block;margin-bottom:5px;"></i>
-											<strong>SINPE Movil</strong>
-										</label>
-									</div>
-									<div class="col-md-3 col-6 mb-2">
-										<label style="display:block;border:2px solid #eee;padding:15px;border-radius:8px;cursor:pointer;text-align:center;" class="metodo-pago">
-											<input type="radio" name="metodo" value="TARJETA" style="display:none;">
-											<i class="fa-solid fa-credit-card" style="font-size:30px;color:#5B6FFC;display:block;margin-bottom:5px;"></i>
-											<strong>Tarjeta</strong>
-										</label>
-									</div>
-									<div class="col-md-3 col-6 mb-2">
-										<label style="display:block;border:2px solid #eee;padding:15px;border-radius:8px;cursor:pointer;text-align:center;" class="metodo-pago">
-											<input type="radio" name="metodo" value="TRANSFERENCIA" style="display:none;">
-											<i class="fa-solid fa-building-columns" style="font-size:30px;color:#5B6FFC;display:block;margin-bottom:5px;"></i>
-											<strong>Transferencia</strong>
-										</label>
-									</div>
-									<div class="col-md-3 col-6 mb-2">
-										<label style="display:block;border:2px solid #eee;padding:15px;border-radius:8px;cursor:pointer;text-align:center;" class="metodo-pago">
-											<input type="radio" name="metodo" value="EFECTIVO" style="display:none;">
-											<i class="fa-solid fa-money-bill-wave" style="font-size:30px;color:#5B6FFC;display:block;margin-bottom:5px;"></i>
-											<strong>Efectivo</strong>
-										</label>
-									</div>
+<?php if ($errorBD !== null) { ?>
+				<p style="color:#c0392b;">No se pudo cargar el pago: <?= htmlspecialchars($errorBD) ?></p>
+<?php } else { ?>
+				<div class="row">
+					<div class="col-lg-7">
+						<div style="background:#eafaf1;border:1px solid #a9dfbf;border-radius:10px;padding:22px;margin-bottom:28px;">
+							<b style="color:#1e8449;">¡Quedaste matriculada!</b><br>
+							Tu matrícula es la <b>#<?= htmlspecialchars($matriculaId) ?></b>.
+							Ya la base de datos apartó tu cupo en el grupo. Ahora solo falta el pago.
+						</div>
+
+						<h3>Resumen</h3>
+						<table class="table">
+							<tr>
+								<td>Curso</td>
+								<td><b><?= htmlspecialchars($curso ? $curso['NOMBRE'] : '') ?></b><br>
+									<small style="color:#7f8c8d;"><?= htmlspecialchars($curso ? $curso['CODIGO'] : '') ?>
+									&middot; <?= htmlspecialchars($curso ? Catalogo::nivelTexto($curso['NIVEL_ID']) : '') ?></small></td>
+							</tr>
+							<tr>
+								<td>Grupo</td>
+								<td><?= htmlspecialchars($grupo ? $grupo['CODIGO'] : '') ?>
+									&middot; <?= htmlspecialchars($grupo ? $grupo['DIAS'] : '') ?>
+									&middot; <?= htmlspecialchars($grupo ? $grupo['HORARIO'] : '') ?></td>
+							</tr>
+							<tr>
+								<td>Inicio de lecciones</td>
+								<td><?= htmlspecialchars($grupo ? Catalogo::fecha($grupo['FECHA_INICIO']) : '') ?></td>
+							</tr>
+							<tr>
+								<td>Vence el</td>
+								<td><?= htmlspecialchars(Catalogo::fecha($pago['FECHA_VENCIMIENTO'])) ?>
+									<small style="color:#7f8c8d;">(8 días de plazo)</small></td>
+							</tr>
+							<tr>
+								<td><b>Total a pagar</b></td>
+								<td style="font-size:22px;font-weight:700;"><?= Catalogo::colones($pago['MONTO']) ?></td>
+							</tr>
+						</table>
+						<p style="color:#7f8c8d;font-size:14px;">
+							El monto no lo escribe la página: sale del precio que tiene el curso en la
+							base de datos (<code>CURSOS.PRECIO_COLONES</code>).
+						</p>
+					</div><!-- END COL -->
+
+					<div class="col-lg-5">
+						<div style="background:#fff;border:1px solid #e5e8e8;border-radius:10px;padding:28px;">
+							<h4>Método de pago</h4>
+<?php if ($pago['ESTADO'] === 'PAGADO') { ?>
+							<p style="color:#1e8449;"><b>Este pago ya está registrado como PAGADO.</b></p>
+							<a href="Principal.php" class="btn_one">Volver al inicio</a>
+<?php } else { ?>
+							<form action="../../control/InicioController.php" method="POST">
+								<input type="hidden" name="pago_id" value="<?= htmlspecialchars($pago['PAGO_ID']) ?>">
+
+								<div style="margin:18px 0;">
+									<label><input type="radio" name="metodo_pago" value="SINPE" checked> SINPE Móvil</label><br>
+									<label><input type="radio" name="metodo_pago" value="TRANSFERENCIA"> Transferencia bancaria</label><br>
+									<label><input type="radio" name="metodo_pago" value="TARJETA"> Tarjeta de crédito o débito</label><br>
+									<label><input type="radio" name="metodo_pago" value="EFECTIVO"> Efectivo en la sede</label>
 								</div>
 
-								<h5 style="margin-bottom:15px;">Datos del Estudiante</h5>
-								<div class="row">
-									<div class="form-group col-md-6 mb-3">
-										<label>Cédula <span style="color:red;">*</span></label>
-										<input type="text" name="cedula" class="form-control" placeholder="1-1234-5678" required>
-									</div>
-									<div class="form-group col-md-6 mb-3">
-										<label>Nombre completo <span style="color:red;">*</span></label>
-										<input type="text" name="nombre" class="form-control" required>
-									</div>
-								</div>
-								<div class="row">
-									<div class="form-group col-md-6 mb-3">
-										<label>Correo electrónico <span style="color:red;">*</span></label>
-										<input type="email" name="correo" class="form-control" required>
-									</div>
-									<div class="form-group col-md-6 mb-3">
-										<label>Teléfono <span style="color:red;">*</span></label>
-										<input type="tel" name="telefono" class="form-control" placeholder="8888-1234" required>
-									</div>
-								</div>
-
-								<h5 style="margin-top:20px;margin-bottom:15px;">Datos de Facturacion</h5>
-								<div class="row">
-									<div class="form-group col-md-6 mb-3">
-										<label>Provincia</label>
-										<select name="provincia" class="form-control">
-											<option>San Jose</option>
-											<option>Heredia</option>
-											<option>Cartago</option>
-											<option>Alajuela</option>
-											<option>Guanacaste</option>
-											<option>Puntarenas</option>
-											<option>Limon</option>
-										</select>
-									</div>
-									<div class="form-group col-md-6 mb-3">
-										<label>Dirección</label>
-										<input type="text" name="direccion" class="form-control" placeholder="Direccion exacta">
-									</div>
-								</div>
-
-								<div class="form-group mb-3">
-									<input type="checkbox" name="aceptar" required>
-									<label style="margin-left:5px;font-weight:normal;">
-										Confirmo que la información es correcta y autorizo el cobro
-									</label>
-								</div>
-								<button type="submit" class="btn_one w-100" style="width:100%;">Confirmar y Pagar</button>
+								<button type="submit" name="btnPagar" class="btn_one" style="width:100%;">
+									Confirmar y pagar <?= Catalogo::colones($pago['MONTO']) ?>
+								</button>
 							</form>
-						</div>
-					</div>
-
-					<div class="col-lg-4 col-md-12">
-						<div class="order-summary" style="background:#fff;padding:30px;border-radius:10px;box-shadow:0 0 30px rgba(0,0,0,0.05);">
-							<h4 style="margin-bottom:20px;">Detalle de tu Orden</h4>
-							<div style="border-bottom:1px solid #eee;padding-bottom:15px;margin-bottom:15px;">
-								<strong>Inglés Intermedio General</strong><br>
-								<small style="color:#777;">Nivel B1 - Sede San Jose</small><br>
-								<small style="color:#777;">L-Mi-V 18:00-20:00</small><br>
-								<span style="font-size:18px;color:#5B6FFC;font-weight:bold;">&#8353; 95,000</span>
-							</div>
-							<div style="display:flex;justify-content:space-between;margin-bottom:10px;">
-								<span>Subtotal:</span>
-								<strong>&#8353; 95,000</strong>
-							</div>
-							<div style="display:flex;justify-content:space-between;margin-bottom:10px;">
-								<span>Descuento:</span>
-								<strong style="color:#28a745;">- &#8353; 0</strong>
-							</div>
-							<hr>
-							<div style="display:flex;justify-content:space-between;font-size:20px;">
-								<strong>Total:</strong>
-								<strong style="color:#5B6FFC;">&#8353; 95,000</strong>
-							</div>
-							<p style="margin-top:20px;text-align:center;color:#999;font-size:13px;">
-								<i class="fa-solid fa-lock"></i> Tu pago esta protegido
+							<p style="color:#7f8c8d;font-size:13px;margin-top:16px;">
+								Si preferís pagar después, tu cupo queda apartado hasta el
+								<?= htmlspecialchars(Catalogo::fecha($pago['FECHA_VENCIMIENTO'])) ?>.
 							</p>
+<?php } ?>
 						</div>
-					</div>
-				</div>
-			</div>
+					</div><!-- END COL -->
+				</div><!--- END ROW -->
+<?php } ?>
+			</div><!--- END CONTAINER -->
 		</section>
-		<!-- END CHECKOUT -->
+
 <?php PintarFooter(); ImportJS(); ?>

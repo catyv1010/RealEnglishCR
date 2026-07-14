@@ -1,18 +1,17 @@
 <?php
-// Cursos leidos en vivo desde Oracle. La consulta pasa por
-// REALENGLISH.pkg_cursos_crud.listar (nunca un SELECT directo).
-require_once __DIR__ . "/../../model/Conexion.php";
-require_once __DIR__ . "/../../model/Entidades.php";
-require_once __DIR__ . "/../../model/CrudModel.php";
+// Catalogo de cursos leido en vivo desde Oracle.
+// Catalogo::cursos() -> CrudModel -> REALENGLISH.pkg_cursos_crud.listar
+// Nunca hay un SELECT directo en la vista.
+//
+// La portada de cada curso se deriva de su CURSO_ID (curso_<id>.png), no de su
+// posicion en la lista. Antes se usaba (($i-1) % 6) + 1 y, como solo habia 6
+// imagenes, el curso 7 mostraba la foto del curso 1.
+require_once __DIR__ . "/../../model/Catalogo.php";
 
 $cursos  = [];
 $errorBD = null;
 try {
-    $cursos  = CrudModel::listar("cursos");
-    $niveles = [];
-    foreach (CrudModel::listar("niveles") as $n) {
-        $niveles[$n["NIVEL_ID"]] = $n["CODIGO"] . " " . $n["NOMBRE"];
-    }
+    $cursos = Catalogo::cursos();
 } catch (Exception $e) {
     $errorBD = $e->getMessage();
 }
@@ -36,12 +35,12 @@ PintarHeader();
 					</div><!-- //.HERO-TEXT -->
 				</div><!--- END COL -->
 			</div><!--- END CONTAINER -->
-		</section>	
+		</section>
 		<!-- END SECTION TOP -->
-		
+
 		<!-- START COURSE -->
 		<section class="home_course section-padding">
-			<div class="container">			
+			<div class="container">
 				<div class="row">
 <?php if ($errorBD !== null) { ?>
 					<div class="col-12">
@@ -51,24 +50,37 @@ PintarHeader();
 					<div class="col-12">
 						<p>Por el momento no hay cursos publicados.</p>
 					</div>
-<?php } else { $i = 0; foreach ($cursos as $c) { $i++; ?>
+<?php } else { foreach ($cursos as $c) {
+        $id      = $c['CURSO_ID'];
+        $url     = 'DetalleCurso.php?id=' . urlencode($id);
+        $abiertos = count(Catalogo::gruposDeCurso($id));
+?>
 					<div class="col-lg-4 col-sm-6 col-xs-12">
 						<div class="single_course">
 							<div class="single_c_img">
-								<img src="../../assets/img/course/<?= (($i - 1) % 6) + 1 ?>.png" class="img-fluid" alt="course-image" />
-								<span><?= htmlspecialchars($niveles[$c['NIVEL_ID']] ?? 'Nivel ' . $c['NIVEL_ID']) ?></span>
+								<a href="<?= $url ?>">
+									<img src="<?= Catalogo::imagenCurso($id) ?>" class="img-fluid"
+									     alt="<?= htmlspecialchars($c['NOMBRE']) ?>" />
+								</a>
+								<span><?= htmlspecialchars(Catalogo::nivelTexto($c['NIVEL_ID'])) ?></span>
 							</div>
 							<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
-							<h4><a href="Cursos.php"><?= htmlspecialchars($c['NOMBRE']) ?></a></h4>
+							<h4><a href="<?= $url ?>"><?= htmlspecialchars($c['NOMBRE']) ?></a></h4>
 							<p><span class="ti-book"> </span> <?= htmlspecialchars($c['CODIGO']) ?> &middot; <?= htmlspecialchars($c['MODALIDAD']) ?></p>
-							<p><span class="ti-alarm-clock"> </span><?= htmlspecialchars($c['DURACION_HORAS']) ?> horas</p>
-							<div class="price">Precio: &#8353; <?= number_format((float) $c['PRECIO_COLONES'], 0, ',', '.') ?></div>
+							<p><span class="ti-alarm-clock"> </span><?= htmlspecialchars($c['DURACION_HORAS']) ?> horas
+<?php if ($abiertos > 0) { ?>
+								&middot; <b style="color:#1e8449;"><?= $abiertos ?> grupo<?= $abiertos == 1 ? '' : 's' ?> abierto<?= $abiertos == 1 ? '' : 's' ?></b>
+<?php } else { ?>
+								&middot; <span style="color:#909497;">sin grupos abiertos</span>
+<?php } ?>
+							</p>
+							<div class="price">Precio: <?= Catalogo::colones($c['PRECIO_COLONES']) ?></div>
 						</div>
 					</div><!-- END COL -->
 <?php } } ?>
 				</div><!--- END ROW -->
-			</div><!--- END CONTAINER -->		
+			</div><!--- END CONTAINER -->
 		</section>
-		<!-- END COURSE -->		
-		
+		<!-- END COURSE -->
+
 <?php PintarFooter(); ImportJS(); ?>

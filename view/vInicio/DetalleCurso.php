@@ -1,319 +1,189 @@
-<?php $titulo_pagina = "Real English CR - Detalle del Curso"; include_once '../LayoutExterno.php'; ImportCSS($titulo_pagina); PintarHeader(); ?>
+<?php
+// Detalle de UN curso. Antes esta pagina era una ficha estatica: un curso
+// ficticio, un profesor inventado ("Manuel Nuer"), 1000 estudiantes y un precio
+// quemado en el HTML. No leia la base de datos ni recibia un id.
+//
+// Ahora recibe DetalleCurso.php?id=<curso_id> y arma todo desde Oracle:
+//   Catalogo::curso()         -> pkg_cursos_crud.listar
+//   Catalogo::gruposDeCurso() -> pkg_grupos_crud.listar (solo los ABIERTOS)
+//   Catalogo::profesor()      -> pkg_empleados_crud.listar
+// De aqui arranca el proceso de negocio del proyecto: matricula + pago.
+require_once __DIR__ . "/../../model/Catalogo.php";
+session_start();
+
+$id      = isset($_GET['id']) ? preg_replace('/\D/', '', $_GET['id']) : '';
+$curso   = null;
+$grupos  = [];
+$errorBD = null;
+
+try {
+    if ($id !== '') {
+        $curso  = Catalogo::curso($id);
+        $grupos = $curso ? Catalogo::gruposDeCurso($id) : [];
+    }
+} catch (Exception $e) {
+    $errorBD = $e->getMessage();
+}
+
+// Sin id valido no hay ficha que mostrar: se devuelve al catalogo.
+if ($errorBD === null && $curso === null) {
+    header('Location: Cursos.php');
+    exit;
+}
+
+$titulo_pagina = "Real English CR - " . ($curso ? $curso['NOMBRE'] : 'Curso');
+include_once "../LayoutExterno.php";
+ImportCSS($titulo_pagina);
+PintarHeader();
+?>
 
 		<!-- START SECTION TOP -->
 		<section class="section-top">
 			<div class="container">
 				<div class="col-lg-10 offset-lg-1 text-center">
-					<div class="section-top-title wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.3s" data-wow-offset="0">
-						<h1>Detalle del Curso</h1>
+					<div class="section-top-title wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.3s">
+						<h1><?= htmlspecialchars($curso ? $curso['NOMBRE'] : 'Curso') ?></h1>
 						<ul>
 							<li><a href="Principal.php">Inicio</a></li>
-							<li> / Detalle del Curso</li>
+							<li> / <a href="Cursos.php">Cursos</a></li>
+							<li> / <?= htmlspecialchars($curso ? $curso['CODIGO'] : '') ?></li>
 						</ul>
-					</div><!-- //.HERO-TEXT -->
-				</div><!--- END COL -->
-			</div><!--- END CONTAINER -->
-		</section>	
-		<!-- END SECTION TOP -->
-		
-		<!-- START COURSE -->
-		<section class="our_event section-padding">
-			<div class="container">
-				<div class="row">	
-					<div class="col-lg-8 col-sm-8 col-xs-12">
-						<div class="single_event_single">
-							<img alt="" class="img-fluid" src="../../assets/img/sc.png"/>
-							<div class="single_event_text_single">
-								 <h4>Como prepararte para el examen TOEFL</h4>
-								<span><i class="fa fa-calendar"></i>10 Oct 2024</span>
-								<span><i class="fa fa-clock-o"></i>7 días</span>
-								<span><i class="fa fa-table"></i><strong>30 cupos disponibles</strong></span>
-								 <p>Este curso te prepara paso a paso para el examen TOEFL. Vas a practicar las cuatro destrezas (escuchar, leer, escribir y hablar) con ejercicios reales y simulacros del examen. Las clases son en grupos pequenos para que tengas atencion personalizada.</p>
-								 <p>Al terminar vas a manejar las estrategias para resolver cada seccion del examen y vas a tener claro como administrar el tiempo. También recibis material de estudio y acceso a prácticas en linea.</p>
-							</div>
-						</div><!--- END SINGLE EVENT -->
-                            <div class="course-details-content section-bg">
-                                <ul class="nav nav-tabs" role="tablist">
-                                    <li class="nav-item">
-                                        <a href="#overview" class="nav-link active" data-bs-toggle="tab">Descripción</a>
-                                    </li>
-                                    <li>
-                                        <a href="#curriculum" class="nav-link" data-bs-toggle="tab">Temario </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="#instructor" class="nav-link" data-bs-toggle="tab">Profesor</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="#reviews" class="nav-link" data-bs-toggle="tab">Reseñas</a>
-                                    </li>
-                                </ul>
-                                <div class="tab-content" id="myTabContent">
-                                    <div class="tab-pane show fade active" id="overview">
-                                        <div class="overview">
-                                            <p>Real English CR ofrece una experiencia de aprendizaje clara y práctica. En este curso vas a estudiar el contenido por niveles, con ejercicios para reforzar lo aprendido en cada clase. El objetivo es que aprendas a usar el inglés en situaciones reales, no solo a memorizar reglas.</p>
-												<img src="../../assets/img/course/2.png" class="img-fluid" alt="Estudiantes en clase" style="border-radius:10px;margin:20px 0;" />
-                                            <p>Cada módulo incluye práctica de conversación, lectura y escritura. Vas a contar con el acompañamiento del profesor durante todo el curso y con material de apoyo para repasar en casa. </p>
-                                            <div class="details-buttons-area">
-                                                <a href="#0" class="custom-button theme-one">Matricularse <i class="fa fa-angle-right"></i></a>
-                                                <a href="#0" class="custom-button bg-white">Ver planes</a>
-                                                <ul class="social-icons">
-                                                    <li>
-                                                        <a href="#0" class="active"><i class="fa fa-facebook"></i></a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#0"><i class="fa fa-twitter"></i></a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#0"><i class="fa fa-instagram"></i></a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane fade" role="tabpanel" id="curriculum">
-                                        <div class="overview">
-                                            <p>Real English CR ofrece una experiencia de aprendizaje clara y práctica. En este curso vas a estudiar el contenido por niveles, con ejercicios para reforzar lo aprendido en cada clase. El objetivo es que aprendas a usar el inglés en situaciones reales, no solo a memorizar reglas.</p>
-                                            <p>Real English CR ofrece una experiencia de aprendizaje clara y práctica. En este curso vas a estudiar el contenido por niveles, con ejercicios para reforzar lo aprendido en cada clase. El objetivo es que aprendas a usar el inglés en situaciones reales, no solo a memorizar reglas.</p>
-                                            <p>Cada módulo incluye práctica de conversación, lectura y escritura. Vas a contar con el acompañamiento del profesor durante todo el curso y con material de apoyo para repasar en casa. </p>
-                                            <div class="details-buttons-area">
-                                                <a href="#0" class="custom-button theme-one">Matricularse <i class="fa fa-angle-right"></i></a>
-                                                <a href="#0" class="custom-button bg-white">Ver planes</a>
-                                                <ul class="social-icons">
-                                                    <li>
-                                                        <a href="#0"><i class="fa fa-facebook"></i></a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#0"><i class="fa fa-twitter"></i></a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#0"><i class="fa fa-instagram"></i></a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane fade" id="instructor">
-                                        <div class="overview text-center">
-                                            <div class="instructor-item">
-                                                <div class="instructor-thumb">
-                                                    <a href="#0"><img src="../../assets/img/ins-details.png" alt="instructor"></a>
-                                                </div>
-                                                <div class="instructor-content">
-                                                    <h6 class="title"><a href="#0">Manuel Nuer</a></h6>
-                                                    <span class="details">Profesor de Inglés</span>
-                                                </div>
-                                            </div>
-                                            <p>Profesor con varios años de experiencia ensenando inglés en Costa Rica. Le gusta que las clases sean dinamicas y que los estudiantes pierdan el miedo a hablar desde el primer dia.</p>
-                                            <div class="details-buttons-area">
-                                                <ul class="social-icons justify-content-center w-100">
-                                                    <li>
-                                                        <a href="#0"><i class="fa fa-facebook"></i></a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#0" class="active"><i class="fa fa-twitter"></i></a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#0"><i class="fa fa-instagram"></i></a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane fade" id="reviews">
-                                        <div class="client-review">
-                                            <div class="review-comments">
-                                                <h6 class="review-title">Reseñas (03)</h6>
-                                                <ul class="review-contents">
-                                                    <li>
-                                                        <div class="thumb">
-                                                            <img src="../../assets/img/client04.png" alt="course">
-                                                        </div>
-                                                        <div class="cont">
-                                                            <h6 class="subtitle">Carlos Mendez</h6>
-                                                            <div class="ratings cl-theme">
-                                                                <span><i class="fa fa-star"></i></span>
-                                                                <span><i class="fa fa-star"></i></span>
-                                                                <span><i class="fa fa-star"></i></span>
-                                                                <span><i class="fa fa-star"></i></span>
-                                                                <span><i class="fa fa-star"></i></span>
-                                                            </div>
-                                                            <p>
-                                                                Muy buen curso. El profesor explica con calma y las clases se sienten utiles. Lo recomiendo a quien quiera mejorar de verdad.
-                                                            </p>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="thumb">
-                                                            <img src="../../assets/img/client02.png" alt="course">
-                                                        </div>
-                                                        <div class="cont">
-                                                            <h6 class="subtitle">Maria Solano</h6>
-                                                            <div class="ratings cl-theme">
-                                                                <span><i class="fa fa-star"></i></span>
-                                                                <span><i class="fa fa-star"></i></span>
-                                                                <span><i class="fa fa-star"></i></span>
-                                                                <span><i class="fa fa-star"></i></span>
-                                                                <span class="cl-theme-light"><i class="fa fa-star"></i></span>
-                                                            </div>
-                                                            <p>
-                                                                Muy buen curso. El profesor explica con calma y las clases se sienten utiles. Lo recomiendo a quien quiera mejorar de verdad.
-                                                            </p>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="thumb">
-                                                            <img src="../../assets/img/client03.png" alt="course">
-                                                        </div>
-                                                        <div class="cont">
-                                                            <h6 class="subtitle">Diego Rojas</h6>
-                                                            <div class="ratings cl-theme">
-                                                                <span><i class="fa fa-star"></i></span>
-                                                                <span><i class="fa fa-star"></i></span>
-                                                                <span><i class="fa fa-star"></i></span>
-                                                                <span><i class="fa fa-star"></i></span>
-                                                                <span><i class="fa fa-star"></i></span>
-                                                            </div>
-                                                            <p>
-                                                                Muy buen curso. El profesor explica con calma y las clases se sienten utiles. Lo recomiendo a quien quiera mejorar de verdad.
-                                                            </p>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div class="review-form">
-                                                <h6 class="review-title">Agregar reseña</h6>
-                                                <form class="row client-form align-items-center">
-                                                    <div class="col-md-4 col-12">
-                                                        <input type="text" name="name" placeholder="Nombre completo">
-                                                    </div>
-                                                    <div class="col-md-4 col-12">
-                                                        <input type="text" name="email" placeholder="Correo electronico">
-                                                    </div>
-                                                    <div class="col-md-4 col-12">
-                                                        <div class="rating">
-                                                            <span class="rating-title">Tu calificacion : </span>
-                                                            <ul class="ratings">
-                                                                <li>
-                                                                    <a href="#0" title="Una estrella"><i class="fa fa-star"></i></a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="#0" title="Dos estrellas"><i class="fa fa-star"></i></a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="#0" title="Tres estrellas"><i class="fa fa-star"></i></a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="#0" title="Cuatro estrellas"><i class="fa fa-star"></i></a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="#0" title="Cinco estrellas"><i class="fa fa-star"></i></a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-12 col-12 d-inline-flex">
-                                                        <textarea rows="5" placeholder="Escribe tu mensaje aqui"></textarea>
-                                                    </div>
-                                                    <div class="col-12">
-                                                        <button type="submit" class="custom-button rounded">Enviar reseña</button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>						
-					</div><!--- END COL -->
-					<div class="col-lg-4 col-sm-4 col-xs-12">
-						<div class="course_features">
-							<h3>Detalles del curso</h3>
-							<ul>
-								<li><i class="fa fa-calendar"></i> Duración <b>10 semanas</b></li>
-								<li><i class="fa fa-user"></i> Total de lecciones <b>30</b></li>
-								<li><i class="fa fa-user"></i> Estudiantes <b>1000</b></li>
-								<li><i class="fa fa-trophy"></i> Certificación <b>SI</b></li>
-							</ul>
-						</div>
-						<div class="event_info_price">
-							<h4>Precio - &#8353; 95.000</h4>
-						</div>
-						<div class="event_info_register">
-							<a class="btn_one" href="#">Matricularse hoy</a>
-						</div>
-						<div class="related_course">
-							<h3>Related lecciones</h3>
-							<div class="single_rc">
-								<div class="rc_img">
-									<img src="../../assets/img/rc-1.png" alt="" />
-								</div>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<h4><a href="#">Inglés Conversacional...</a></h4>
-								<span>&#8353; 85.000</span>
-							</div><!--- END SINGLE RELATED COURSE -->
-							<div class="single_rc">
-								<div class="rc_img">
-									<img src="../../assets/img/rc-2.png" alt="" />
-								</div>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<h4><a href="#">Preparacion IELTS...</a></h4>
-								<span>&#8353; 70.000</span>
-							</div><!--- END SINGLE RELATED COURSE -->
-							<div class="single_rc">
-								<div class="rc_img">
-									<img src="../../assets/img/rc-3.png" alt="" />
-								</div>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<h4><a href="#">Inglés para Niños...</a></h4>
-								<span>Gratis</span>
-							</div><!--- END SINGLE RELATED COURSE -->
-						</div><!--- END RELATED COURSE -->
-						<div class="sidebar-post">
-							<div class="sidebar_title"><h4>CATEGORIAS</h4></div>
-							<div class="single_category">
-								<ul>
-									<li><a href="#">Educación <sup>11</sup></a></li>
-									<li><a href="#">Pronunciación <sup>44</sup></a></li>
-									<li><a href="#">Vocabulario <sup>33</sup></a></li>
-									<li><a href="#">Negocios <sup>14</sup></a></li>
-									<li><a href="#">Gramática <sup>21</sup></a></li>
-									<li><a href="#">Exámenes <sup>01</sup></a></li>
-								</ul>
-							</div><!-- END SOCIAL MEDIA POST -->
-						</div><!-- END SIDEBAR POST -->							
-						<div class="sidebar-post">
-							<div class="sidebar_title"><h4>Siguenos</h4></div>
-							<div class="single_social">
-								<ul>
-									<li><div class="social_item b_facebook"><a href="#" title="facebook"><i class="fa fa-facebook"></i><span class="item-list">150K Me gusta</span></a></div></li>
-									
-									<li><div class="social_item b_twitter"><a href="#" title="twitter"><i class="fa fa-twitter"></i><span class="item-list">138K Seguidores</span></a></div></li>
-									
-									<li><div class="social_item b_youtube"><a href="#" title="youtube"><i class="fa fa-youtube"></i><span class="item-list">90K Suscriptores</span></a></div></li>
-									
-									<li><div class="social_item b_pinterest"><a href="#" title="pinterest"><i class="fa fa-pinterest"></i><span class="item-list">350K Seguidores</span></a></div></li>
-									
-									<li><div class="social_item b_tumblr"><a href="#" title="rss"><i class="fa fa-tumblr"></i><span class="item-list">901 Seguidores</span></a></div></li>
-									
-									<li><div class="social_item b_rss"><a href="#" title="rss"><i class="fa fa-rss"></i><span class="item-list">411 Seguidores</span></a></div></li>
-								</ul>
-							</div><!-- END SOCIAL MEDIA POST -->
-						</div><!-- END SIDEBAR POST -->													
-					</div><!--- END COL -->
-				</div><!-- END ROW -->
-			</div><!-- END CONTAINER -->
+					</div>
+				</div>
+			</div>
 		</section>
-		<!-- END COURSE -->
-		
+		<!-- END SECTION TOP -->
+
+		<section class="section-padding">
+			<div class="container">
+<?php if ($errorBD !== null) { ?>
+				<p style="color:#c0392b;">No se pudo cargar el curso: <?= htmlspecialchars($errorBD) ?></p>
+<?php } else { ?>
+				<div class="row">
+
+					<!-- ------------- Columna izquierda: el curso ------------- -->
+					<div class="col-lg-8">
+						<img src="<?= Catalogo::imagenCurso($curso['CURSO_ID']) ?>" class="img-fluid"
+						     style="border-radius:10px;width:100%;"
+						     alt="<?= htmlspecialchars($curso['NOMBRE']) ?>">
+
+						<h3 style="margin-top:30px;">Sobre este curso</h3>
+						<p><?= htmlspecialchars($curso['DESCRIPCION'] ?: 'Curso del programa regular de Real English CR.') ?></p>
+
+						<div class="row" style="margin-top:30px;">
+							<div class="col-6 col-md-3"><b>Código</b><br><?= htmlspecialchars($curso['CODIGO']) ?></div>
+							<div class="col-6 col-md-3"><b>Nivel MCER</b><br><?= htmlspecialchars(Catalogo::nivelTexto($curso['NIVEL_ID'])) ?></div>
+							<div class="col-6 col-md-3"><b>Duración</b><br><?= htmlspecialchars($curso['DURACION_HORAS']) ?> horas</div>
+							<div class="col-6 col-md-3"><b>Modalidad</b><br><?= htmlspecialchars($curso['MODALIDAD']) ?></div>
+						</div>
+
+						<!-- --------- Grupos abiertos: el proceso de negocio --------- -->
+						<h3 style="margin-top:45px;">Grupos con matrícula abierta</h3>
+<?php if (count($grupos) === 0) { ?>
+						<p>Ahora mismo no hay grupos abiertos para este curso.
+						   Escribinos por <a href="Contacto.php">Contacto</a> y te avisamos cuando abra el próximo.</p>
+<?php } else { ?>
+						<form action="../../control/InicioController.php" method="POST">
+							<input type="hidden" name="curso_id" value="<?= htmlspecialchars($curso['CURSO_ID']) ?>">
+							<table class="table table-hover" style="margin-top:15px;">
+								<thead>
+									<tr>
+										<th></th>
+										<th>Grupo</th>
+										<th>Días</th>
+										<th>Horario</th>
+										<th>Inicio</th>
+										<th>Cupos libres</th>
+										<th>Profesor</th>
+									</tr>
+								</thead>
+								<tbody>
+<?php   foreach ($grupos as $g) {
+            $prof  = Catalogo::profesor($g['PROFESOR_ID']);
+            $libre = Catalogo::cupoDisponible($g);
+?>
+									<tr>
+										<td>
+											<input type="radio" name="grupo_id"
+											       value="<?= htmlspecialchars($g['GRUPO_ID']) ?>"
+											       <?= $libre === 0 ? 'disabled' : '' ?> required>
+										</td>
+										<td><?= htmlspecialchars($g['CODIGO']) ?></td>
+										<td><?= htmlspecialchars($g['DIAS']) ?></td>
+										<td><?= htmlspecialchars($g['HORARIO']) ?></td>
+										<td><?= htmlspecialchars(Catalogo::fecha($g['FECHA_INICIO'])) ?></td>
+										<td>
+<?php       if ($libre === 0) { ?>
+											<span style="color:#c0392b;">Lleno</span>
+<?php       } else { ?>
+											<b style="color:#1e8449;"><?= $libre ?></b> de <?= htmlspecialchars($g['CUPO_MAX']) ?>
+<?php       } ?>
+										</td>
+										<td>
+<?php       if ($prof) { ?>
+											<a href="PerfilProfesor.php?id=<?= urlencode($prof['EMPLEADO_ID']) ?>">
+												<?= htmlspecialchars($prof['NOMBRE'] . ' ' . $prof['APELLIDO_P']) ?>
+											</a>
+<?php       } else { echo '&mdash;'; } ?>
+										</td>
+									</tr>
+<?php   } ?>
+								</tbody>
+							</table>
+
+							<button type="submit" name="btnMatricular" class="btn_one" style="margin-top:10px;">
+								Matricularme en el grupo seleccionado
+							</button>
+<?php   if (!isset($_SESSION['estudiante_id'])) { ?>
+							<p style="margin-top:12px;color:#7f8c8d;">
+								Para matricularte necesitás <a href="IniciarSesion.php">iniciar sesión</a>.
+								¿Primera vez? <a href="RegistrarUsuarios.php">Creá tu cuenta</a>.
+							</p>
+<?php   } ?>
+						</form>
+<?php } ?>
+					</div><!-- END COL -->
+
+					<!-- ------------- Columna derecha: precio y datos ------------- -->
+					<div class="col-lg-4">
+						<div style="background:#fff;border:1px solid #e5e8e8;border-radius:10px;padding:28px;">
+							<div class="price" style="font-size:26px;font-weight:700;">
+								<?= Catalogo::colones($curso['PRECIO_COLONES']) ?>
+							</div>
+							<p style="color:#7f8c8d;margin-top:4px;">Precio total del curso</p>
+							<hr>
+							<p><span class="ti-medall-alt"></span> Nivel <?= htmlspecialchars(Catalogo::nivelCodigo($curso['NIVEL_ID'])) ?></p>
+							<p><span class="ti-alarm-clock"></span> <?= htmlspecialchars($curso['DURACION_HORAS']) ?> horas de clase</p>
+							<p><span class="ti-blackboard"></span> Modalidad <?= htmlspecialchars(strtolower($curso['MODALIDAD'])) ?></p>
+							<p><span class="ti-user"></span> <?= count($grupos) ?> grupo(s) con matrícula abierta</p>
+							<hr>
+							<p style="color:#7f8c8d;font-size:14px;">
+								Al matricularte, la base de datos genera automáticamente el pago
+								con vencimiento a 8 días. Podés cancelarlo por SINPE, transferencia,
+								tarjeta o en efectivo en la sede.
+							</p>
+						</div>
+
+						<div style="margin-top:25px;">
+							<h4>Otros cursos del mismo nivel</h4>
+<?php
+$relacionados = array_filter(Catalogo::cursos(), function ($o) use ($curso) {
+    return $o['CURSO_ID'] != $curso['CURSO_ID'] && $o['NIVEL_ID'] == $curso['NIVEL_ID'];
+});
+if (count($relacionados) === 0) { ?>
+							<p style="color:#7f8c8d;">Es el único curso de este nivel.</p>
+<?php } else { foreach (array_slice($relacionados, 0, 3) as $o) { ?>
+							<p>
+								<a href="DetalleCurso.php?id=<?= urlencode($o['CURSO_ID']) ?>"><?= htmlspecialchars($o['NOMBRE']) ?></a><br>
+								<small style="color:#7f8c8d;"><?= Catalogo::colones($o['PRECIO_COLONES']) ?></small>
+							</p>
+<?php } } ?>
+						</div>
+					</div><!-- END COL -->
+
+				</div><!--- END ROW -->
+<?php } ?>
+			</div><!--- END CONTAINER -->
+		</section>
+
 <?php PintarFooter(); ImportJS(); ?>
