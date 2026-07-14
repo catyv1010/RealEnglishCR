@@ -61,7 +61,7 @@ function ImportCSS($titulo = 'Real English CR')
 		<!-- animate CSS -->
 		<link rel="stylesheet" href="../../assets/css/animate.css">
 		<!-- Style CSS -->
-		<link rel="stylesheet" href="../../assets/css/style.css?v=2">
+		<link rel="stylesheet" href="../../assets/css/style.css?v=3">
 	</head>
 
 	<body data-spy="scroll" data-offset="80">
@@ -112,7 +112,7 @@ function PintarHeader()
 				<div class="row">
 					<div class="col-20 align-self-center">
 						<div class="site-logo">
-							<a href="Principal.php"><img src="../../assets/img/logo.png" alt="Real English CR"></a>
+							<a href="Principal.php"><img src="../../assets/img/logo.svg" alt="Real English CR"></a>
 						</div>
 					</div><!--- END Col -->
 
@@ -122,10 +122,10 @@ function PintarHeader()
 								<li><a href="Principal.php">Inicio</a></li>
 								<li><a href="AcercaDe.php">Acerca de</a></li>
 								<li><a href="Cursos.php">Cursos</a></li>
-								<li class="menu-item-has-children"><a href="Precios.php">Páginas</a>
+								<li><a href="Precios.php">Precios</a></li>
+								<li class="menu-item-has-children"><a href="#">Páginas</a>
 									<ul>
 										<li><a href="Profesores.php">Profesores</a></li>
-										<li><a href="Precios.php">Precios</a></li>
 										<li><a href="Preguntas.php">Preguntas</a></li>
 									</ul>
 								</li>
@@ -147,10 +147,10 @@ function PintarHeader()
 						<li><a href="Principal.php">Inicio</a></li>
 						<li><a href="AcercaDe.php">Acerca de</a></li>
 						<li><a href="Cursos.php">Cursos</a></li>
+						<li><a href="Precios.php">Precios</a></li>
 						<li><a href="#">Páginas</a>
 							<ul class="sub-menu">
 								<li><a href="Profesores.php">Profesores</a></li>
-								<li><a href="Precios.php">Precios</a></li>
 								<li><a href="Preguntas.php">Preguntas</a></li>
 							</ul>
 						</li>
@@ -202,7 +202,7 @@ function PintarFooter()
 				<div class="row">
 					<div class="col-lg-3 col-sm-6 col-xs-12">
 						<div class="single_footer">
-							<a href="Principal.php"><img src="../../assets/img/logo.png" alt="Real English CR"></a>
+							<a href="Principal.php"><img src="../../assets/img/logo.svg" alt="Real English CR"></a>
 							<p>Academia de inglés con presencia en cinco sedes en Costa Rica. Certificación MCER A1 a C2.</p>
 							<div class="social_profile">
 								<ul>

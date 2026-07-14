@@ -174,7 +174,7 @@ class Catalogo
 
     // ---------------------------------------------------------------- IMAGENES
     // La imagen se deriva del ID del registro, NO de su posicion en la lista.
-    // Antes se usaba team<?= $i % 4 ?>.jpg: con 15 profesores, cuatro caras se
+    // Antes se usaba team{N}.jpg: con 15 profesores, cuatro caras se
     // repetian una y otra vez, y al borrar un empleado se corrian todas.
     // Ahora cada empleado tiene su prof_<id>.png y cada curso su curso_<id>.png.
     public static function imagenProfesor($empleadoId, $prefijo = '../../assets/img')

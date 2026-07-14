@@ -1,4 +1,25 @@
-<?php $titulo_pagina = "Real English CR - Acerca de"; include_once '../LayoutExterno.php'; ImportCSS($titulo_pagina); PintarHeader(); ?>
+<?php
+// Los contadores salen de Oracle (Catalogo -> paquetes PL/SQL). Antes estaban
+// escritos a mano y contradecian a la portada, que si los calculaba.
+require_once __DIR__ . "/../../model/Conexion.php";
+require_once __DIR__ . "/../../model/Entidades.php";
+require_once __DIR__ . "/../../model/CrudModel.php";
+require_once __DIR__ . "/../../model/Catalogo.php";
+
+$cont = ['cursos' => 0, 'sedes' => 0, 'profesores' => 0, 'estudiantes' => 0];
+$nAulas = 0;
+try {
+    $cont   = Catalogo::contadores();
+    $nAulas = count(CrudModel::listar("aulas"));
+} catch (Exception $e) {
+    // Si Oracle no responde, la pagina se muestra igual con ceros.
+}
+
+$titulo_pagina = "Real English CR - Acerca de";
+include_once "../LayoutExterno.php";
+ImportCSS($titulo_pagina);
+PintarHeader();
+?>
 
 		<!-- START SECTION TOP -->
 		<section class="section-top">
@@ -28,28 +49,28 @@
 					<div class="single_tp">
 						<span class="sc_one">01</span>
 						<h3>Profesores <br />Expertos</h3>
-						<p>Cursos diseñados para que aprendas inglés a tu ritmo, con metodologia probada y profesores expertos.</p>
+						<p>Cursos diseñados para que aprendas inglés a tu ritmo, con metodología probada y profesores expertos.</p>
 					</div>
 				</div><!-- END COL -->			
 				<div class="col-lg-3 col-sm-6 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.3s" data-wow-offset="0">
 					<div class="single_tp">
 						<span class="sc_two">02</span>
 						<h3>Educación <br />de Calidad</h3>
-						<p>Cursos diseñados para que aprendas inglés a tu ritmo, con metodologia probada y profesores expertos.</p>
+						<p>Cursos diseñados para que aprendas inglés a tu ritmo, con metodología probada y profesores expertos.</p>
 					</div>
 				</div><!-- END COL -->			
 				<div class="col-lg-3 col-sm-6 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.4s" data-wow-offset="0">
 					<div class="single_tp">
 						<span class="sc_three">03</span>
 						<h3>Aprendizaje <br />Remoto</h3>
-						<p>Cursos diseñados para que aprendas inglés a tu ritmo, con metodologia probada y profesores expertos.</p>
+						<p>Cursos diseñados para que aprendas inglés a tu ritmo, con metodología probada y profesores expertos.</p>
 					</div>
 				</div><!-- END COL -->	
 				<div class="col-lg-3 col-sm-6 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.4s" data-wow-offset="0">
 					<div class="single_tp">
 						<span class="sc_four">04</span>
 						<h3>Soporte <br />Permanente</h3>
-						<p>Cursos diseñados para que aprendas inglés a tu ritmo, con metodologia probada y profesores expertos.</p>
+						<p>Cursos diseñados para que aprendas inglés a tu ritmo, con metodología probada y profesores expertos.</p>
 					</div>
 				</div><!-- END COL -->							
 			</div><!-- END ROW -->
@@ -104,28 +125,28 @@
 					<div class="col-lg-3 col-sm-6 col-xs-12">
 						<div class="single-counter">
 							<span class="ti-folder sc_one"></span>
-							<h2 class="counter-num">12</h2>
+							<h2 class="counter-num"><?= $cont['cursos'] ?></h2>
 							<p>Cursos disponibles</p>
 						</div>							
 					</div>
 					<div class="col-lg-3 col-sm-6 col-xs-12">
 						<div class="single-counter">
 							<span class="ti-medall-alt sc_two"></span>
-							<h2 class="counter-num">5</h2>
+							<h2 class="counter-num"><?= $cont['sedes'] ?></h2>
 							<p>Sedes en Costa Rica</p>
 						</div>
 					</div><!-- END COL -->
 					<div class="col-lg-3 col-sm-6 col-xs-12">
 						<div class="single-counter">
 							<span class="ti-id-badge sc_three"></span>
-							<h2 class="counter-num">30</h2>
+							<h2 class="counter-num"><?= $cont['profesores'] ?></h2>
 							<p>Profesores certificados</p>
 						</div>
 					</div><!-- END COL -->
 					<div class="col-lg-3 col-sm-6 col-xs-12">
 						<div class="single-counter">
 							<span class="ti-user sc_four"></span>
-							<h2 class="counter-num">12</h2>
+							<h2 class="counter-num"><?= $nAulas ?></h2>
 							<p>Aulas equipadas</p>
 						</div>
 					</div><!-- END COL -->						
@@ -154,7 +175,7 @@
 							<h4>Crece con nosotros</h4>
 							<h1>Cursos disponibles</h1>
 							<p>Aprende a tu ritmo, avanza entre distintos cursos. </p>
-							<a class="btn_one" href="#">Contactanos <i class="ti-arrow-top-right"></i></a>
+							<a class="btn_one" href="#">Contáctanos <i class="ti-arrow-top-right"></i></a>
 						</div>
 					</div>
 				</div><!--- END COL -->								  
@@ -180,12 +201,12 @@
 									<i class="ti-star"></i>
 									<i class="ti-star"></i>
 									<i class="ti-star"></i>
-									<p>Tome el curso de conversación y en pocos meses ya podia hablar con confianza. Los profesores son muy pacientes y las clases son dinamicas. Lo recomiendo de verdad.</p>
+									<p>Llegué sin saber nada y hoy sostengo reuniones en inglés con clientes de afuera. Lo que más me sirvió fue que en cada clase hay que hablar, no solo escuchar al profesor.</p>
 								</div>
 								<div class="testi_pic_title">
 									<img src="../../assets/img/testimonial/1.png" alt="">
-									<h4>Sarah Williams</h4>
-									<p>Coordinador IELTS</p>
+									<h4>Andrés Fonseca</h4>
+									<p>Estudiante de Inglés para Negocios</p>
 								</div>
 							</div><!-- END TESTIMONIAL -->
 							<div class="testimonial">
@@ -196,12 +217,12 @@
 									<i class="ti-star"></i>
 									<i class="ti-star"></i>
 									<i class="ti-star"></i>
-									<p>Tome el curso de conversación y en pocos meses ya podia hablar con confianza. Los profesores son muy pacientes y las clases son dinamicas. Lo recomiendo de verdad.</p>
+									<p>Hice el TOEFL después de dos niveles acá y saqué el puntaje que necesitaba para la beca. La preparación se enfoca justo en lo que evalúa el examen.</p>
 								</div>
 								<div class="testi_pic_title">
 									<img src="../../assets/img/testimonial/2.png" alt="">
-									<h4>Roy Calderon</h4>
-									<p>Estudiante de Negocios</p>
+									<h4>Sofía Castro</h4>
+									<p>Estudiante de Preparación TOEFL</p>
 								</div>
 							</div><!-- END TESTIMONIAL -->
 							<div class="testimonial">
@@ -212,12 +233,12 @@
 									<i class="ti-star"></i>
 									<i class="ti-star"></i>
 									<i class="ti-star"></i>
-									<p>Tome el curso de conversación y en pocos meses ya podia hablar con confianza. Los profesores son muy pacientes y las clases son dinamicas. Lo recomiendo de verdad.</p>
+									<p>Matriculé a mi hija de nueve años y llega feliz de cada clase. Aprenden jugando y ya me corrige la pronunciación a mí.</p>
 								</div>
 								<div class="testi_pic_title">
 									<img src="../../assets/img/testimonial/3.png" alt="">
-									<h4>Sofia Castro</h4>
-									<p>Estudiante TOEFL</p>
+									<h4>Marcela Jiménez</h4>
+									<p>Madre de estudiante del programa Kids</p>
 								</div>
 							</div><!-- END TESTIMONIAL -->
 							<div class="testimonial">
@@ -228,12 +249,12 @@
 									<i class="ti-star"></i>
 									<i class="ti-star"></i>
 									<i class="ti-star"></i>
-									<p>Tome el curso de conversación y en pocos meses ya podia hablar con confianza. Los profesores son muy pacientes y las clases son dinamicas. Lo recomiendo de verdad.</p>
+									<p>Llevo el curso virtual porque trabajo por turnos. Las clases son en vivo con el profesor, no videos grabados, y esa diferencia se nota.</p>
 								</div>
 								<div class="testi_pic_title">
 									<img src="../../assets/img/testimonial/4.png" alt="">
-									<h4>Sarah Williams</h4>
-									<p>Coordinador IELTS</p>
+									<h4>Diego Hidalgo</h4>
+									<p>Estudiante de Inglés Virtual B2</p>
 								</div>
 							</div><!-- END TESTIMONIAL -->
 							<div class="testimonial">
@@ -244,12 +265,12 @@
 									<i class="ti-star"></i>
 									<i class="ti-star"></i>
 									<i class="ti-star"></i>
-									<p>Tome el curso de conversación y en pocos meses ya podia hablar con confianza. Los profesores son muy pacientes y las clases son dinamicas. Lo recomiendo de verdad.</p>
+									<p>Ya hablaba algo, pero me trababa. El curso de conversación me quitó el miedo a equivocarme, que era lo que de verdad me frenaba.</p>
 								</div>
 								<div class="testi_pic_title">
 									<img src="../../assets/img/testimonial/5.png" alt="">
-									<h4>Sarah Williams</h4>
-									<p>Coordinador IELTS</p>
+									<h4>Laura Brenes</h4>
+									<p>Estudiante de Inglés Conversacional</p>
 								</div>
 							</div><!-- END TESTIMONIAL -->
 						</div><!-- END TESTIMONIAL SLIDER -->

@@ -4,8 +4,11 @@
 require_once __DIR__ . "/../../model/Conexion.php";
 require_once __DIR__ . "/../../model/Entidades.php";
 require_once __DIR__ . "/../../model/CrudModel.php";
+require_once __DIR__ . "/../../model/Catalogo.php";
 
 $nCursos = $nSedes = $nProfes = $nAulas = $nEstudiantes = 0;
+$cursosDestacados = [];
+$profesDestacados = [];
 try {
     $nCursos = count(CrudModel::listar("cursos"));
     $nSedes  = count(CrudModel::listar("sedes"));
@@ -14,9 +17,14 @@ try {
     foreach (CrudModel::listar("estudiantes") as $e) {
         if (($e["ACTIVO"] ?? "N") === "S") { $nEstudiantes++; }
     }
-    foreach (CrudModel::listar("empleados") as $emp) {
-        if (stripos($emp["PUESTO_ID"] ?? "", "PROF") === 0) { $nProfes++; }
-    }
+    // Los profesores se cuentan con el mismo criterio que usa Profesores.php
+    // (activos y con puesto PROF_*): antes la portada decia 16 y la otra pagina
+    // listaba 15, porque aqui no se filtraba por ACTIVO.
+    $profesDestacados = Catalogo::profesores();
+    $nProfes          = count($profesDestacados);
+    $profesDestacados = array_slice($profesDestacados, 0, 4);
+
+    $cursosDestacados = Catalogo::cursosDestacados(6);
 } catch (Exception $e) {
     // Si Oracle no responde, la pagina igual se muestra con ceros.
 }
@@ -38,7 +46,7 @@ PintarHeader();
 					</div>
 					<div class="home_sb">
 						<form action="#" class="banner_subs">
-							<input type="text" class="form-control home_si" placeholder="Busca tu curso de ingles" required="required">
+							<input type="text" class="form-control home_si" placeholder="Busca tu curso de inglés" required="required">
 							<button type="button" class="subscribe__btn">Buscar <i class="fa fa-paper-plane-o"></i></button>
 						</form>
 					</div>					
@@ -107,28 +115,28 @@ PintarHeader();
 					<div class="single_tp">
 						<span class="sc_one">01</span>
 						<h3>Profesores <br />Expertos</h3>
-						<p>Cursos diseñados para que aprendas inglés a tu ritmo, con metodologia probada y profesores expertos.</p>
+						<p>Cursos diseñados para que aprendas inglés a tu ritmo, con metodología probada y profesores expertos.</p>
 					</div>
 				</div><!-- END COL -->			
 				<div class="col-lg-3 col-sm-6 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.3s" data-wow-offset="0">
 					<div class="single_tp">
 						<span class="sc_two">02</span>
 						<h3>Educación <br />de Calidad</h3>
-						<p>Cursos diseñados para que aprendas inglés a tu ritmo, con metodologia probada y profesores expertos.</p>
+						<p>Cursos diseñados para que aprendas inglés a tu ritmo, con metodología probada y profesores expertos.</p>
 					</div>
 				</div><!-- END COL -->			
 				<div class="col-lg-3 col-sm-6 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.4s" data-wow-offset="0">
 					<div class="single_tp">
 						<span class="sc_three">03</span>
 						<h3>Aprendizaje <br />Remoto</h3>
-						<p>Cursos diseñados para que aprendas inglés a tu ritmo, con metodologia probada y profesores expertos.</p>
+						<p>Cursos diseñados para que aprendas inglés a tu ritmo, con metodología probada y profesores expertos.</p>
 					</div>
 				</div><!-- END COL -->	
 				<div class="col-lg-3 col-sm-6 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.4s" data-wow-offset="0">
 					<div class="single_tp">
 						<span class="sc_four">04</span>
 						<h3>Soporte <br />Permanente</h3>
-						<p>Cursos diseñados para que aprendas inglés a tu ritmo, con metodologia probada y profesores expertos.</p>
+						<p>Cursos diseñados para que aprendas inglés a tu ritmo, con metodología probada y profesores expertos.</p>
 					</div>
 				</div><!-- END COL -->							
 			</div><!-- END ROW -->
@@ -167,18 +175,18 @@ PintarHeader();
 	<section class="top_cat__area section-padding" style="background-image: url(../../assets/img/bg/section-2.jpg);  background-size:cover; background-position: center center;">
 		<div class="container">									
 			<div class="section-title text-center">
-				<h2>Explora nuestras categorias populares</h2>
+				<h2>Explora nuestras categorías populares</h2>
 				<p>Ofrecemos un enfoque innovador para que aprendas inglés a tu ritmo. Elige entre nuestra amplia variedad de cursos certificados MCER y desarrolla habilidades reales para el mundo profesional.</p>
 			</div>						
 			<div class="row">													
 				<div class="col-lg-12 col-sm-12 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s" data-wow-offset="0">
 					<div class="cat_list">
 						<ul>
-							<li><a href="#"><img src="../../assets/img/e1.png" alt="categoria" /> Preparacion TOEFL</a></li>
+							<li><a href="#"><img src="../../assets/img/e1.png" alt="categoria" /> Preparación TOEFL</a></li>
 							<li><a href="#"><img src="../../assets/img/e2.png" alt="categoria" /> Inglés Conversacional</a></li>
 							<li><a href="#"><img src="../../assets/img/e3.png" alt="categoria" /> Inglés Avanzado C1-C2</a></li>
 							<li><a href="#"><img src="../../assets/img/e4.png" alt="categoria" /> Inglés para Negocios</a></li>
-							<li><a href="#"><img src="../../assets/img/e5.png" alt="categoria" /> Preparacion IELTS</a></li>
+							<li><a href="#"><img src="../../assets/img/e5.png" alt="categoria" /> Preparación IELTS</a></li>
 							<li><a href="#"><img src="../../assets/img/e6.png" alt="categoria" /> Inglés para Niños</a></li>
 							<li><a href="#"><img src="../../assets/img/e7.png" alt="categoria" /> Gramática y Escritura</a></li>
 							<li><a href="#"><img src="../../assets/img/e8.png" alt="categoria" /> Pronunciación</a></li>
@@ -200,7 +208,7 @@ PintarHeader();
 				<div class="row">
 					<div class="col-lg-8 col-sm-6 col-xs-12">
 						<div class="section-title">
-							<h2>Unete a más de <b>80,000+ </b> <br />Cursos y aprendizaje de calidad.</h2>
+							<h2>Únete a nuestros <b><?= $nCursos ?></b> cursos <br />certificados MCER.</h2>
 						</div>					
 					</div><!--- END COL -->
 					<div class="col-lg-4 col-sm-6 col-xs-12">
@@ -210,84 +218,23 @@ PintarHeader();
 					</div><!--- END COL -->
 				</div><!--- END ROW -->				
 				<div class="row">
+<?php if (count($cursosDestacados) === 0) { ?>
+					<div class="col-12"><p>Por el momento no hay cursos publicados.</p></div>
+<?php } else { foreach ($cursosDestacados as $c) { ?>
 					<div class="col-lg-4 col-sm-6 col-xs-12">
 						<div class="single_course">
 							<div class="single_c_img">
-								<img src="../../assets/img/course/1.png" class="img-fluid" alt="course-image" />
-								<span>A1 Principiante</span>
+								<img src="<?= Catalogo::imagenCurso($c['CURSO_ID']) ?>" class="img-fluid" alt="<?= htmlspecialchars($c['NOMBRE']) ?>" />
+								<span><?= htmlspecialchars(Catalogo::nivelTexto($c['NIVEL_ID'])) ?></span>
 							</div>
 							<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
-							<h4><a href="Cursos.php">Inglés desde Cero A1</a></h4>
-							<p><span class="ti-book"> </span> 12 lecciones</p>
-							<p><span class="ti-alarm-clock"> </span>72 horas</p>
-							<div class="price">Precio: &#8353; 110,000</div>
+							<h4><a href="DetalleCurso.php?id=<?= urlencode($c['CURSO_ID']) ?>"><?= htmlspecialchars($c['NOMBRE']) ?></a></h4>
+							<p><span class="ti-book"> </span> <?= htmlspecialchars($c['CODIGO']) ?> &middot; <?= htmlspecialchars($c['MODALIDAD']) ?></p>
+							<p><span class="ti-alarm-clock"> </span><?= (int) $c['DURACION_HORAS'] ?> horas</p>
+							<div class="price">Precio: <?= Catalogo::colones($c['PRECIO_COLONES']) ?></div>
 						</div>
 					</div><!-- END COL -->
-					<div class="col-lg-4 col-sm-6 col-xs-12">
-						<div class="single_course">
-							<div class="single_c_img">
-								<img src="../../assets/img/course/2.png" class="img-fluid" alt="course-image" />
-								<span>A2 Básico</span>
-							</div>
-							<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
-							<h4><a href="Cursos.php">Inglés Intermedio B1 General</a></h4>
-							<p><span class="ti-book"> </span> 36 lecciones</p>
-							<p><span class="ti-alarm-clock"> </span>84 horas</p>
-							<div class="price">Precio: &#8353; 85,000</div>
-						</div>
-					</div><!-- END COL -->
-					<div class="col-lg-4 col-sm-6 col-xs-12">
-						<div class="single_course">
-							<div class="single_c_img">
-								<img src="../../assets/img/course/3.png" class="img-fluid" alt="course-image" />
-								<span>Conversacional</span>
-							</div>
-							<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
-							<h4><a href="Cursos.php">Conversación - Práctica Diaria</a></h4>
-							<p><span class="ti-book"> </span> 24 lecciones</p>
-							<p><span class="ti-alarm-clock"> </span>72 horas</p>
-							<div class="price">Precio: Gratis</div>
-						</div>
-					</div><!-- END COL -->
-					<div class="col-lg-4 col-sm-6 col-xs-12">
-						<div class="single_course">
-							<div class="single_c_img">
-								<img src="../../assets/img/course/4.png" class="img-fluid" alt="course-image" />
-								<span>B1 Intermedio</span>
-							</div>
-							<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
-							<h4><a href="Cursos.php">Inglés Básico A1-A2</a></h4>
-							<p><span class="ti-book"> </span> 18 lecciones</p>
-							<p><span class="ti-alarm-clock"> </span>72 horas</p>
-							<div class="price">Precio: &#8353; 90,000</div>
-						</div>
-					</div><!-- END COL -->
-					<div class="col-lg-4 col-sm-6 col-xs-12">
-						<div class="single_course">
-							<div class="single_c_img">
-								<img src="../../assets/img/course/5.png" class="img-fluid" alt="course-image" />
-								<span>C1 Avanzado</span>
-							</div>
-							<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
-							<h4><a href="Cursos.php">Inglés Conversacional - Práctica Real</a></h4>
-							<p><span class="ti-book"> </span> 20 lecciones</p>
-							<p><span class="ti-alarm-clock"> </span>72 horas</p>
-							<div class="price">Precio: &#8353; 95,000</div>
-						</div>
-					</div><!-- END COL -->
-					<div class="col-lg-4 col-sm-6 col-xs-12">
-						<div class="single_course">
-							<div class="single_c_img">
-								<img src="../../assets/img/course/6.png" class="img-fluid" alt="course-image" />
-								<span>Negocios</span>
-							</div>
-							<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
-							<h4><a href="Cursos.php">Inglés para Negocios B2</a></h4>
-							<p><span class="ti-book"> </span> 16 lecciones</p>
-							<p><span class="ti-alarm-clock"> </span>72 horas</p>
-							<div class="price">Precio: &#8353; 70,000</div>
-						</div>
-					</div><!-- END COL -->						
+<?php } } ?>
 				</div><!--- END ROW -->
 			</div><!--- END CONTAINER -->		
 		</section>
@@ -299,7 +246,7 @@ PintarHeader();
 				<div class="row part_bg">
 					<div class="col-lg-4 col-sm-4 col-xs-12">
 						<div class="partner_title">
-							<h3>Más de <span>86,000+</span> estudiantes han mejorado su inglés con nosotros</h3>
+							<h3>Ya somos <span><?= $nEstudiantes ?></span> estudiantes activos mejorando el inglés</h3>
 						</div>					
 					</div><!-- END COL  -->
 					<div class="col-lg-8 col-sm-8 col-xs-12 text-center">
@@ -341,87 +288,26 @@ PintarHeader();
 					<h2>Conoce a nuestros profesores</h2>
 					<p>Ofrecemos un enfoque innovador para que aprendas inglés a tu ritmo. Elige entre nuestra amplia variedad de cursos certificados MCER y desarrolla habilidades reales para el mundo profesional.</p>
 				</div>						
-				<div class="row">													
+				<div class="row">
+<?php if (count($profesDestacados) === 0) { ?>
+					<div class="col-12"><p>Por el momento no hay profesores publicados.</p></div>
+<?php } else { foreach ($profesDestacados as $pr) { ?>
 					<div class="col-lg-3 col-sm-6 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s" data-wow-offset="0">
 						<div class="our-team">
 							<div class="team-content">
-								<a href="#"><img src="../../assets/img/team/team1.jpg" alt=""></a>
-								<ul class="social-links">
-									<li><a href="#"><i class="fa-solid fa-x"></i></a></li>
-									<li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
-									<li><a href="#"><i class="fa-brands fa-linkedin-in"></i></a></li>
-								</ul>
+								<a href="PerfilProfesor.php?id=<?= urlencode($pr['EMPLEADO_ID']) ?>"><img src="<?= Catalogo::imagenProfesor($pr['EMPLEADO_ID']) ?>" alt="<?= htmlspecialchars($pr['NOMBRE'] . ' ' . $pr['APELLIDO_P']) ?>"></a>
 							</div>
 							<div class="team-prof">
-								<h3>Jennifer Smith</h3>
-								<span>Profesora de Inglés</span>
+								<h3><?= htmlspecialchars($pr['NOMBRE'] . ' ' . $pr['APELLIDO_P']) ?></h3>
+								<span><?= htmlspecialchars($pr['ESPECIALIDAD'] ?: 'Profesor de Inglés') ?></span>
 							</div>
 							<div class="sth_det2">
-								<span class="ti-file"> <u>04 lecciones</u></span>
-								<span class="ti-user"> <u>27 estudiantes</u></span>
-							</div>									
-						</div>
-					</div><!--- END COL -->										
-					<div class="col-lg-3 col-sm-6 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s" data-wow-offset="0">
-						<div class="our-team">
-							<div class="team-content">
-								<a href="#"><img src="../../assets/img/team/team2.jpg" alt=""></a>
-								<ul class="social-links">
-									<li><a href="#"><i class="fa-solid fa-x"></i></a></li>
-									<li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
-									<li><a href="#"><i class="fa-brands fa-linkedin-in"></i></a></li>
-								</ul>
-							</div>
-							<div class="team-prof">
-								<h3>Michael Johnson</h3>
-								<span>Especialista en TOEFL</span>
-							</div>
-							<div class="sth_det2">
-								<span class="ti-file"> <u>06 lecciones</u></span>
-								<span class="ti-user"> <u>41 estudiantes</u></span>
-							</div>							
-						</div>
-					</div><!--- END COL -->										
-					<div class="col-lg-3 col-sm-6 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s" data-wow-offset="0">
-						<div class="our-team">
-							<div class="team-content">
-								<a href="#"><img src="../../assets/img/team/team3.jpg" alt=""></a>
-								<ul class="social-links">
-									<li><a href="#"><i class="fa-solid fa-x"></i></a></li>
-									<li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
-									<li><a href="#"><i class="fa-brands fa-linkedin-in"></i></a></li>
-								</ul>
-							</div>
-							<div class="team-prof">
-								<h3>Laura Jimenez</h3>
-								<span>Director Académico</span>
-							</div>
-							<div class="sth_det2">
-								<span class="ti-file"> <u>13 lecciones</u></span>
-								<span class="ti-user"> <u>31 estudiantes</u></span>
+								<span class="ti-medall-alt"> <u>Nivel <?= htmlspecialchars($pr['NIVEL_INGLES'] ?: 'B2') ?></u></span>
+								<span class="ti-user"> <u><?= count(Catalogo::gruposDeProfesor($pr['EMPLEADO_ID'])) ?> grupos</u></span>
 							</div>
 						</div>
-					</div><!--- END COL -->										
-					<div class="col-lg-3 col-sm-6 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s" data-wow-offset="0">
-						<div class="our-team">
-							<div class="team-content">
-								<a href="#"><img src="../../assets/img/team/team4.jpg" alt=""></a>
-								<ul class="social-links">
-									<li><a href="#"><i class="fa-solid fa-x"></i></a></li>
-									<li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
-									<li><a href="#"><i class="fa-brands fa-linkedin-in"></i></a></li>
-								</ul>
-							</div>
-							<div class="team-prof">
-								<h3>Andres Vargas</h3>
-								<span>Especialista en IELTS</span>
-							</div>
-							<div class="sth_det2">
-								<span class="ti-file"> <u>07 lecciones</u></span>
-								<span class="ti-user"> <u>24 estudiantes</u></span>
-							</div>
-						</div>
-					</div><!--- END COL -->							  
+					</div><!--- END COL -->
+<?php } } ?>
 				</div><!--- END ROW -->
 			</div><!--- END CONTAINER -->
 		</section>
@@ -433,7 +319,7 @@ PintarHeader();
 			<div class="row">													
 				<div class="col-lg-6 col-sm-12 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s" data-wow-offset="0">
 					<div class="ab_content">
-						<h2>Por que elegir Real English CR</h2>
+						<h2>Por qué elegir Real English CR</h2>
 						<p>Ofrecemos un enfoque innovador para que aprendas inglés a tu ritmo. Elige entre nuestra amplia variedad de cursos certificados MCER y desarrolla habilidades reales para el mundo profesional.</p>
 						<p>Ofrecemos un enfoque innovador para que aprendas inglés a tu ritmo. Elige entre nuestra amplia variedad de cursos certificados MCER y desarrolla habilidades reales para el mundo profesional.</p>
 						<ul>
@@ -449,8 +335,8 @@ PintarHeader();
 						<img src="../../assets/img/about3.png" class="img-fluid" alt="image">
 						<div class="home_ps2">
 							<span class="ti-book"></span>
-							<h2>15+</h2>
-							<p>Cursos en linea</p>
+							<h2><?= $nCursos ?></h2>
+							<p>Cursos en línea</p>
 						</div>
 					</div>
 				</div><!--- END COL -->					
@@ -481,12 +367,12 @@ PintarHeader();
 									<i class="ti-star"></i>
 									<i class="ti-star"></i>
 									<i class="ti-star"></i>
-									<p>Tome el curso de conversación y en pocos meses ya podia hablar con confianza. Los profesores son muy pacientes y las clases son dinamicas. Lo recomiendo de verdad.</p>
+									<p>Llegué sin saber nada y hoy sostengo reuniones en inglés con clientes de afuera. Lo que más me sirvió fue que en cada clase hay que hablar, no solo escuchar al profesor.</p>
 								</div>
 								<div class="testi_pic_title">
 									<img src="../../assets/img/testimonial/1.png" alt="">
-									<h4>Sarah Williams</h4>
-									<p>Coordinador IELTS</p>
+									<h4>Andrés Fonseca</h4>
+									<p>Estudiante de Inglés para Negocios</p>
 								</div>
 							</div><!-- END TESTIMONIAL -->
 							<div class="testimonial">
@@ -497,12 +383,12 @@ PintarHeader();
 									<i class="ti-star"></i>
 									<i class="ti-star"></i>
 									<i class="ti-star"></i>
-									<p>Tome el curso de conversación y en pocos meses ya podia hablar con confianza. Los profesores son muy pacientes y las clases son dinamicas. Lo recomiendo de verdad.</p>
+									<p>Hice el TOEFL después de dos niveles acá y saqué el puntaje que necesitaba para la beca. La preparación se enfoca justo en lo que evalúa el examen.</p>
 								</div>
 								<div class="testi_pic_title">
 									<img src="../../assets/img/testimonial/2.png" alt="">
-									<h4>Roy Calderon</h4>
-									<p>Estudiante de Negocios</p>
+									<h4>Sofía Castro</h4>
+									<p>Estudiante de Preparación TOEFL</p>
 								</div>
 							</div><!-- END TESTIMONIAL -->
 							<div class="testimonial">
@@ -513,12 +399,12 @@ PintarHeader();
 									<i class="ti-star"></i>
 									<i class="ti-star"></i>
 									<i class="ti-star"></i>
-									<p>Tome el curso de conversación y en pocos meses ya podia hablar con confianza. Los profesores son muy pacientes y las clases son dinamicas. Lo recomiendo de verdad.</p>
+									<p>Matriculé a mi hija de nueve años y llega feliz de cada clase. Aprenden jugando y ya me corrige la pronunciación a mí.</p>
 								</div>
 								<div class="testi_pic_title">
 									<img src="../../assets/img/testimonial/3.png" alt="">
-									<h4>Sofia Castro</h4>
-									<p>Estudiante TOEFL</p>
+									<h4>Marcela Jiménez</h4>
+									<p>Madre de estudiante del programa Kids</p>
 								</div>
 							</div><!-- END TESTIMONIAL -->
 							<div class="testimonial">
@@ -529,12 +415,12 @@ PintarHeader();
 									<i class="ti-star"></i>
 									<i class="ti-star"></i>
 									<i class="ti-star"></i>
-									<p>Tome el curso de conversación y en pocos meses ya podia hablar con confianza. Los profesores son muy pacientes y las clases son dinamicas. Lo recomiendo de verdad.</p>
+									<p>Llevo el curso virtual porque trabajo por turnos. Las clases son en vivo con el profesor, no videos grabados, y esa diferencia se nota.</p>
 								</div>
 								<div class="testi_pic_title">
 									<img src="../../assets/img/testimonial/4.png" alt="">
-									<h4>Sarah Williams</h4>
-									<p>Coordinador IELTS</p>
+									<h4>Diego Hidalgo</h4>
+									<p>Estudiante de Inglés Virtual B2</p>
 								</div>
 							</div><!-- END TESTIMONIAL -->
 							<div class="testimonial">
@@ -545,12 +431,12 @@ PintarHeader();
 									<i class="ti-star"></i>
 									<i class="ti-star"></i>
 									<i class="ti-star"></i>
-									<p>Tome el curso de conversación y en pocos meses ya podia hablar con confianza. Los profesores son muy pacientes y las clases son dinamicas. Lo recomiendo de verdad.</p>
+									<p>Ya hablaba algo, pero me trababa. El curso de conversación me quitó el miedo a equivocarme, que era lo que de verdad me frenaba.</p>
 								</div>
 								<div class="testi_pic_title">
 									<img src="../../assets/img/testimonial/5.png" alt="">
-									<h4>Sarah Williams</h4>
-									<p>Coordinador IELTS</p>
+									<h4>Laura Brenes</h4>
+									<p>Estudiante de Inglés Conversacional</p>
 								</div>
 							</div><!-- END TESTIMONIAL -->
 						</div><!-- END TESTIMONIAL SLIDER -->
@@ -564,7 +450,7 @@ PintarHeader();
 		<section id="blog" class="blog_area section-padding">
 			<div class="container">
 				<div class="section-title text-center">
-					<h2>Ultimas noticias del blog</h2>
+					<h2>Últimas noticias del blog</h2>
 					<p>Ofrecemos un enfoque innovador para que aprendas inglés a tu ritmo. Elige entre nuestra amplia variedad de cursos certificados MCER y desarrolla habilidades reales para el mundo profesional.</p>
 				</div>	
 				<div class="row">		
@@ -583,7 +469,7 @@ PintarHeader();
 							<img src="../../assets/img/blog/2.jpg" class="img-fluid" alt="image" />
 							<div class="content_box">
 								<span>16 de mayo de 2024 | <a href="Blog.php">A1 Principiante</a></span>
-								<h2><a href="Blog.php">Como prepararte para el examen TOEFL</a></h2>
+								<h2><a href="Blog.php">Cómo prepararte para el examen TOEFL</a></h2>
 								<a class="btn_one" href="Blog.php">Leer más <i class="ti-arrow-top-right"></i></a>							
 							</div>
 						</div>
@@ -593,7 +479,7 @@ PintarHeader();
 							<img src="../../assets/img/blog/3.jpg" class="img-fluid" alt="image" />
 							<div class="content_box">
 								<span>18 de mayo de 2024 | <a href="Blog.php">Consejos</a></span>
-								<h2><a href="Blog.php">Educamos a los lideres del manana, hoy </a></h2>
+								<h2><a href="Blog.php">Educamos a los líderes del mañana, hoy </a></h2>
 								<a class="btn_one" href="Blog.php">Leer más <i class="ti-arrow-top-right"></i></a>
 							</div>
 						</div>

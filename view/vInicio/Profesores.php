@@ -4,7 +4,7 @@
 // cuyo puesto empieza por PROF.
 //
 // La foto YA NO se escoge por la posicion en la lista (antes era
-// team<?= $i % 4 ?>.jpg, y con 15 profesores las mismas 4 caras se repetian
+// team{N}.jpg, y con 15 profesores las mismas 4 caras se repetian
 // una y otra vez). Ahora cada empleado tiene su propia imagen, prof_<id>.png,
 // derivada de su EMPLEADO_ID: nunca se repite y no se corre si se borra a otro.
 require_once __DIR__ . "/../../model/Catalogo.php";
