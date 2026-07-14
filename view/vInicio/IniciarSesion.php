@@ -25,34 +25,14 @@
 						<div class="login-form" style="background:#fff;padding:50px 40px;border-radius:10px;box-shadow:0 0 30px rgba(0,0,0,0.05);">
 							<div class="text-center mb-4">
 								<h3 style="margin-bottom:10px;">Bienvenido a Real English CR</h3>
-								<p style="color:#777;">Ingresa tus credenciales para acceder al sistema</p>
+								<p style="color:#777;">Ingresa tu numero de cedula para acceder al sistema</p>
 							</div>
 							<form action="../../control/InicioController.php" method="POST">
-								<div class="form-group mb-3">
-									<label for="correo">Correo electronico</label>
-									<input type="email" name="correo" id="correo" class="form-control" placeholder="usuario@realenglishcr.com" required>
-								</div>
-								<div class="form-group mb-3">
-									<label for="contrasena">Contrasena</label>
-									<input type="password" name="contrasena" id="contrasena" class="form-control" placeholder="Tu contrasena" required>
-								</div>
-								<div class="form-group mb-3 d-flex justify-content-between align-items-center">
-									<div>
-										<input type="checkbox" name="recordar" id="recordar">
-										<label for="recordar" style="margin-left:5px;font-weight:normal;">Recordarme</label>
+									<div class="form-group mb-3">
+										<label for="cedula">Numero de cedula</label>
+										<input type="text" name="cedula" id="cedula" class="form-control" placeholder="1-1234-5678" pattern="[18]-[0-9]{4}-[0-9]{4}" required>
+										<small style="color:#777;">La cedula con la que te registraste, con guiones.</small>
 									</div>
-									<a href="#" style="font-size:14px;">Olvide mi contrasena</a>
-								</div>
-								<div class="form-group mb-3">
-									<label for="tipo_usuario">Tipo de usuario</label>
-									<select name="tipo_usuario" id="tipo_usuario" class="form-control" required>
-										<option value="">-- Selecciona --</option>
-										<option value="estudiante">Estudiante</option>
-										<option value="profesor">Profesor</option>
-										<option value="administrativo">Personal Administrativo</option>
-										<option value="admin">Administrador del Sistema</option>
-									</select>
-								</div>
 								<button type="submit" name="btnLogin" class="btn_one w-100" style="width:100%;">Iniciar Sesion</button>
 								<p class="text-center mt-3" style="margin-top:20px;">
 									Eres nuevo? <a href="RegistrarUsuarios.php"><strong>Registrate aqui</strong></a>

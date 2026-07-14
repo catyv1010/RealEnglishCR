@@ -63,16 +63,6 @@
 										<input type="tel" name="telefono" id="telefono" class="form-control" placeholder="8888-1234" pattern="[6-8][0-9]{3}-[0-9]{4}" required>
 									</div>
 								</div>
-								<div class="row">
-									<div class="form-group col-md-6 mb-3">
-										<label for="contrasena">Contrasena <span style="color:red;">*</span></label>
-										<input type="password" name="contrasena" id="contrasena" class="form-control" minlength="8" required>
-									</div>
-									<div class="form-group col-md-6 mb-3">
-										<label for="contrasena2">Confirmar contrasena <span style="color:red;">*</span></label>
-										<input type="password" name="contrasena2" id="contrasena2" class="form-control" minlength="8" required>
-									</div>
-								</div>
 								<div class="form-group mb-3">
 									<label for="nivel_inicial">Nivel inicial estimado de ingles</label>
 									<select name="nivel_inicial" id="nivel_inicial" class="form-control">

@@ -249,13 +249,14 @@ margin-top: 0px;
 	width: 20%;
 }
 .site-logo{
-	width: 150px;
+	width: 260px;
 }
 .site-logo a{
 	display: block;
 }
 .site-logo img{
 	max-width: 100%;
+	height: auto;
 }
 #navigation{
 	padding: 20px 65px;
