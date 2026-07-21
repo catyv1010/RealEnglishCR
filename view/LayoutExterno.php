@@ -277,7 +277,11 @@ function PintarFooter()
 		<!-- START FOOTER COPYRIGHT -->
 		<div class="foot_copy">
 			<div class="footer_copyright">
-				<p>&copy; 2026. Real English CR &middot; Proyecto académico SC-504 - Grupo F - Universidad Fidelitas</p>
+				<!-- Enlace discreto al panel de mantenimientos. No es un riesgo de
+				     seguridad: aunque se vea la puerta, fn_validar_admin dentro de
+				     Oracle exige cedula administrativa, cuenta activa y contrasena.
+				     Se pone en el pie para que el personal no memorice la URL. -->
+				<p>&copy; 2026. Real English CR &middot; Proyecto académico SC-504 - Grupo F - Universidad Fidelitas &middot; <a href="../../admin.php">Acceso administrativo</a></p>
 			</div>
 		</div>
 		<!-- END FOOTER COPYRIGHT -->
