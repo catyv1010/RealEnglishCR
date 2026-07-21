@@ -25,13 +25,17 @@
 						<div class="login-form" style="background:#fff;padding:50px 40px;border-radius:10px;box-shadow:0 0 30px rgba(0,0,0,0.05);">
 							<div class="text-center mb-4">
 								<h3 style="margin-bottom:10px;">Bienvenido a Real English CR</h3>
-								<p style="color:#777;">Ingresa tu número de cédula para acceder al sistema</p>
+								<p style="color:#777;">Ingresa tu cédula y tu contraseña para acceder al sistema</p>
 							</div>
 							<form action="../../control/InicioController.php" method="POST">
 									<div class="form-group mb-3">
 										<label for="cedula">Número de cédula</label>
 										<input type="text" name="cedula" id="cedula" class="form-control" placeholder="1-1234-5678" pattern="[18]-[0-9]{4}-[0-9]{4}" required>
 										<small style="color:#777;">La cédula con la que te registraste, con guiones.</small>
+									</div>
+									<div class="form-group mb-3">
+										<label for="clave">Contraseña</label>
+										<input type="password" name="clave" id="clave" class="form-control" placeholder="Tu contraseña" required>
 									</div>
 								<button type="submit" name="btnLogin" class="btn_one w-100" style="width:100%;">Iniciar Sesión</button>
 								<p class="text-center mt-3" style="margin-top:20px;">

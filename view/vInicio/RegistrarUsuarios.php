@@ -63,6 +63,17 @@
 										<input type="tel" name="telefono" id="telefono" class="form-control" placeholder="8888-1234" pattern="[6-8][0-9]{3}-[0-9]{4}" required>
 									</div>
 								</div>
+								<div class="row">
+									<div class="form-group col-md-6 mb-3">
+										<label for="clave">Contraseña <span style="color:red;">*</span></label>
+										<input type="password" name="clave" id="clave" class="form-control" placeholder="Mínimo 8 caracteres" minlength="8" required>
+										<small style="color:#999;">Al menos 8 caracteres. Con ella entrarás al sistema.</small>
+									</div>
+									<div class="form-group col-md-6 mb-3">
+										<label for="clave2">Repetir contraseña <span style="color:red;">*</span></label>
+										<input type="password" name="clave2" id="clave2" class="form-control" placeholder="Escríbela de nuevo" minlength="8" required>
+									</div>
+								</div>
 								<div class="form-group mb-3">
 									<label for="nivel_inicial">Nivel inicial estimado de inglés</label>
 									<select name="nivel_inicial" id="nivel_inicial" class="form-control">

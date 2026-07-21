@@ -7,6 +7,7 @@ require_once __DIR__ . '/../model/Conexion.php';
 require_once __DIR__ . '/../model/CrudModel.php';
 require_once __DIR__ . '/../model/Entidades.php';
 require_once __DIR__ . '/../model/Catalogo.php';
+require_once __DIR__ . '/../model/Autenticacion.php';
 
 // muestra un mensaje y un boton para volver
 function mensaje($titulo, $texto, $volverA, $color = '#1e8449')
@@ -40,10 +41,11 @@ function buscarEstudiantePorCedula($cedula)
     return null;
 }
 
-// login
+// login - cedula + contrasena; la clave la valida REALENGLISH.fn_validar_estudiante
 if (isset($_POST["btnLogin"])) {
 
     $cedula = trim($_POST['cedula'] ?? '');
+    $clave  = $_POST['clave'] ?? '';
     $est    = buscarEstudiantePorCedula($cedula);
 
     if ($est === null) {
@@ -57,6 +59,13 @@ if (isset($_POST["btnLogin"])) {
         mensaje('Cuenta inactiva',
                 'Tu cuenta esta marcada como inactiva. Contacta a la administracion de la sede.',
                 '../view/vInicio/Contacto.php', '#c0392b');
+    }
+
+    $idValido = Autenticacion::validarEstudiante($cedula, $clave);
+    if ($idValido === null) {
+        mensaje('Contrasena incorrecta',
+                'La contrasena no coincide con esa cedula. Volve a intentarlo.',
+                '../view/vInicio/IniciarSesion.php', '#c0392b');
     }
 
     $_SESSION['estudiante_id'] = $est['ESTUDIANTE_ID'];
@@ -73,12 +82,26 @@ if (isset($_POST["btnLogin"])) {
 if (isset($_POST["btnRegistrar"])) {
 
     $cedula = trim($_POST['cedula'] ?? '');
+    $clave  = $_POST['clave']  ?? '';
+    $clave2 = $_POST['clave2'] ?? '';
 
     if (buscarEstudiantePorCedula($cedula) !== null) {
         mensaje('Esa cedula ya existe',
                 'Ya hay un estudiante registrado con la cedula '
                 . htmlspecialchars($cedula) . '. Inicia sesion.',
                 '../view/vInicio/IniciarSesion.php', '#c0392b');
+    }
+
+    if (strlen($clave) < 8) {
+        mensaje('Contrasena muy corta',
+                'La contrasena debe tener al menos 8 caracteres.',
+                '../view/vInicio/RegistrarUsuarios.php', '#c0392b');
+    }
+
+    if ($clave !== $clave2) {
+        mensaje('Las contrasenas no coinciden',
+                'Escribi la misma contrasena en los dos campos.',
+                '../view/vInicio/RegistrarUsuarios.php', '#c0392b');
     }
 
     $nivel = $_POST['nivel_inicial'] ?? '';
@@ -97,9 +120,11 @@ if (isset($_POST["btnRegistrar"])) {
 
     try {
         $id = CrudModel::insertar('estudiantes', $datos);
+        // guarda la contrasena (hasheada) recien creado el estudiante
+        Autenticacion::asignarClaveEstudiante($cedula, $clave);
         mensaje('Cuenta creada',
                 'Bienvenida a Real English CR. Tu numero de estudiante es el <b>'
-                . htmlspecialchars($id) . '</b>. Ya podes iniciar sesion con tu cedula.',
+                . htmlspecialchars($id) . '</b>. Ya podes iniciar sesion con tu cedula y contrasena.',
                 '../view/vInicio/IniciarSesion.php');
     } catch (Exception $ex) {
         mensaje('No se pudo crear la cuenta',
