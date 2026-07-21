@@ -1,14 +1,5 @@
 <?php
-// SC-504 Lenguajes de Base de Datos - Proyecto Final Real English CR - Grupo F
-// Granados Gonzalez Luis Andres, Perez Calderon David,
-// Rodriguez Arroyo Michelle Andrea, Valverde Arroyo Maria Catalina
-//
-// Controlador del sitio publico. Cada formulario se reconoce por el name
-// del boton de submit.
-//
-// IMPORTANTE (requisito de la defensa): este controlador NO ejecuta SQL
-// directo. Todo pasa por CrudModel, que a su vez solo llama a los paquetes
-// PL/SQL (REALENGLISH.pkg_<tabla>_crud) con el usuario RECR_APP.
+// Real English CR - Grupo F - controlador del sitio publico
 
 session_start();
 
@@ -17,9 +8,7 @@ require_once __DIR__ . '/../model/CrudModel.php';
 require_once __DIR__ . '/../model/Entidades.php';
 require_once __DIR__ . '/../model/Catalogo.php';
 
-// ---------------------------------------------------------------------------
-// Muestra un mensaje sencillo y un boton para volver
-// ---------------------------------------------------------------------------
+// muestra un mensaje y un boton para volver
 function mensaje($titulo, $texto, $volverA, $color = '#1e8449')
 {
     echo "<!DOCTYPE html><html lang='es'><head><meta charset='UTF-8'>
@@ -40,10 +29,7 @@ function mensaje($titulo, $texto, $volverA, $color = '#1e8449')
     exit;
 }
 
-// ---------------------------------------------------------------------------
-// Busca un estudiante por cedula usando pkg_estudiantes_crud.listar
-// (no hacemos SELECT directo: el paquete devuelve el cursor y filtramos aqui)
-// ---------------------------------------------------------------------------
+// busca un estudiante por cedula
 function buscarEstudiantePorCedula($cedula)
 {
     foreach (CrudModel::listar('estudiantes') as $e) {
@@ -54,9 +40,7 @@ function buscarEstudiantePorCedula($cedula)
     return null;
 }
 
-// ===========================================================================
-// INICIAR SESION - valida la cedula contra la tabla estudiantes
-// ===========================================================================
+// login
 if (isset($_POST["btnLogin"])) {
 
     $cedula = trim($_POST['cedula'] ?? '');
@@ -85,9 +69,7 @@ if (isset($_POST["btnLogin"])) {
             '../view/vInicio/Principal.php');
 }
 
-// ===========================================================================
-// REGISTRAR ESTUDIANTE - inserta con pkg_estudiantes_crud.insertar
-// ===========================================================================
+// registrar
 if (isset($_POST["btnRegistrar"])) {
 
     $cedula = trim($_POST['cedula'] ?? '');
@@ -126,9 +108,7 @@ if (isset($_POST["btnRegistrar"])) {
     }
 }
 
-// ===========================================================================
-// CONTACTO - guarda el mensaje en la bitacora con pkg_bitacora_crud.insertar
-// ===========================================================================
+// contacto - guarda en la bitacora
 if (isset($_POST["btnContacto"])) {
 
     $name    = trim($_POST['name'] ?? '');
@@ -156,24 +136,7 @@ if (isset($_POST["btnContacto"])) {
     }
 }
 
-// ===========================================================================
-// MATRICULAR - el proceso de negocio del proyecto
-//
-// Este es el flujo que el enunciado pide implementar "mediante un conjunto de
-// procedimientos almacenados, funciones y triggers". El PHP casi no decide
-// nada: solo pasa los datos. Toda la logica vive en la base de datos.
-//
-//   1. pkg_matriculas_crud.insertar valida, con la fila del grupo bloqueada
-//      (SELECT ... FOR UPDATE), que el grupo este abierto y que quede cupo.
-//      Si no, devuelve ORA-20006 / ORA-20007 / ORA-20008.
-//   2. El trigger trg_bi_matriculas_act rechaza a un estudiante inactivo.
-//   3. El trigger trg_bi_matriculas asigna el matricula_id de la secuencia.
-//   4. El trigger trg_cupo_matriculas sube cupo_actual y, si el grupo se
-//      llena, lo pasa solo a CERRADO.
-//   5. El trigger trg_aud_matriculas escribe en la bitacora (transaccion
-//      autonoma: queda registrado aunque despues haya ROLLBACK).
-//   6. Aqui se genera el pago PENDIENTE por el precio real del curso.
-// ===========================================================================
+// matricular - la logica la hacen los paquetes y triggers en la base
 if (isset($_POST['btnMatricular'])) {
 
     if (!isset($_SESSION['estudiante_id'])) {
@@ -197,7 +160,7 @@ if (isset($_POST['btnMatricular'])) {
         }
         $curso = Catalogo::curso($grupo['CURSO_ID']);
 
-        // 1) La matricula. Las validaciones las hace el paquete, no el PHP.
+        // insertar matricula
         $matriculaId = CrudModel::insertar('matriculas', [
             'estudiante_id'   => $_SESSION['estudiante_id'],
             'grupo_id'        => $grupoId,
@@ -206,8 +169,7 @@ if (isset($_POST['btnMatricular'])) {
             'estado'          => 'ACTIVA',
         ]);
 
-        // 2) El pago que esa matricula genera. El monto NO se escribe a mano:
-        //    es el precio que tiene el curso en la tabla CURSOS.
+        // pago pendiente con el precio real del curso
         CrudModel::insertar('pagos', [
             'matricula_id'      => $matriculaId,
             'monto'             => $curso['PRECIO_COLONES'],
@@ -221,8 +183,6 @@ if (isset($_POST['btnMatricular'])) {
         exit;
 
     } catch (Exception $ex) {
-        // Aqui caen los ORA-20006 (grupo cerrado), ORA-20007 (grupo lleno),
-        // ORA-20008 (ya matriculado) y ORA-20022 (estudiante inactivo).
         mensaje('No se pudo matricular',
                 htmlspecialchars($ex->getMessage()),
                 '../view/vInicio/DetalleCurso.php?id=' . urlencode($_POST['curso_id'] ?? ''),
@@ -230,9 +190,7 @@ if (isset($_POST['btnMatricular'])) {
     }
 }
 
-// ===========================================================================
-// PAGAR - cierra el proceso: el pago PENDIENTE pasa a PAGADO
-// ===========================================================================
+// pagar - el pago pendiente pasa a pagado
 if (isset($_POST['btnPagar'])) {
 
     if (!isset($_SESSION['estudiante_id'])) {
@@ -256,7 +214,6 @@ if (isset($_POST['btnPagar'])) {
                     '../view/vInicio/Principal.php', '#c0392b');
         }
 
-        // El trigger trg_aud_pagos deja el cambio de estado en la bitacora.
         CrudModel::actualizar('pagos', $pagoId, [
             'matricula_id'      => $pago['MATRICULA_ID'],
             'monto'             => $pago['MONTO'],
@@ -276,9 +233,7 @@ if (isset($_POST['btnPagar'])) {
     }
 }
 
-// ===========================================================================
-// CERRAR SESION
-// ===========================================================================
+// cerrar sesion
 if (isset($_GET['salir'])) {
     session_destroy();
     header('Location: ../view/vInicio/Principal.php');

@@ -1,19 +1,13 @@
 <?php
-// SC-504 Lenguajes de Base de Datos - Proyecto Real English CR - Grupo F
-// Granados, Perez, Rodriguez, Valverde
-//
-// Modelo generico de mantenimientos (CRUD).
-// IMPORTANTE (requisito de la defensa): este modelo NUNCA arma consultas
-// SQL directas sobre las tablas. Todo se hace llamando los procedimientos
-// de los paquetes pkg_<tabla>_crud con bloques anonimos PL/SQL y
-// parametros con notacion nombrada (p_campo => :p_campo).
+// Real English CR - Grupo F
+// CRUD generico: todo se hace llamando los paquetes pkg_<tabla>_crud con bloques PL/SQL.
 
 require_once __DIR__ . '/Conexion.php';
 require_once __DIR__ . '/Entidades.php';
 
 class CrudModel
 {
-    // ---------- LISTAR: pkg.listar(p_cursor) devuelve un SYS_REFCURSOR ----------
+    // listar (devuelve un SYS_REFCURSOR)
     public static function listar($nombreEntidad)
     {
         $ent = Entidades::obtener($nombreEntidad);
@@ -37,7 +31,7 @@ class CrudModel
         return $filas;
     }
 
-    // ---------- OBTENER: pkg.obtener(p_<pk>, p_cursor) trae un registro ----------
+    // obtener un registro por pk
     public static function obtener($nombreEntidad, $id)
     {
         $ent = Entidades::obtener($nombreEntidad);
@@ -60,8 +54,7 @@ class CrudModel
         return $fila === false ? null : $fila;
     }
 
-    // ---------- INSERTAR: pkg.insertar(p_campo1..., p_<pk> OUT) ----------
-    // $datos = ['campo' => 'valor', ...] en el mismo orden de Entidades.php
+    // insertar ($datos en el mismo orden de Entidades.php)
     public static function insertar($nombreEntidad, $datos)
     {
         $ent = Entidades::obtener($nombreEntidad);
@@ -85,7 +78,7 @@ class CrudModel
         $sql  = "BEGIN {$ent['paquete']}.insertar(" . implode(', ', $params) . "); END;";
         $stmt = oci_parse($con, $sql);
 
-        // bind de entrada (una variable por campo; '' se guarda como NULL)
+        // bind de entrada ('' se guarda como NULL)
         $valores = [];
         if ($pkManual) {
             $valores["p_{$pk}"] = isset($datos[$pk]) ? trim($datos[$pk]) : '';
@@ -105,7 +98,7 @@ class CrudModel
         return $pkManual ? $valores["p_{$pk}"] : $nuevoId;
     }
 
-    // ---------- ACTUALIZAR: pkg.actualizar(p_<pk>, p_campo1...) ----------
+    // actualizar
     public static function actualizar($nombreEntidad, $id, $datos)
     {
         $ent = Entidades::obtener($nombreEntidad);
@@ -134,7 +127,7 @@ class CrudModel
         return true;
     }
 
-    // ---------- ELIMINAR: pkg.eliminar(p_<pk>) ----------
+    // eliminar
     public static function eliminar($nombreEntidad, $id)
     {
         $ent = Entidades::obtener($nombreEntidad);
@@ -150,8 +143,7 @@ class CrudModel
         return true;
     }
 
-    // ---------- Opciones para los combos de llaves foraneas ----------
-    // Devuelve [ 'valor_pk' => 'texto a mostrar', ... ]
+    // opciones para los combos de fk: [ 'valor_pk' => 'texto', ... ]
     public static function opcionesFk($configFk)
     {
         $filas    = self::listar($configFk['entidad']);
@@ -168,20 +160,14 @@ class CrudModel
         return $opciones;
     }
 
-    // ---------- Ejecucion con manejo de errores de Oracle ----------
-    // Los RAISE_APPLICATION_ERROR de los paquetes (-20001 a -20005) llegan
-    // aqui; se lanza una excepcion PHP con el mensaje limpio para mostrarlo
-    // al usuario en la vista.
+    // ejecucion: los RAISE_APPLICATION_ERROR de los paquetes llegan aqui como Exception
     private static function ejecutar($stmt)
     {
-        // @: el error se maneja abajo, no como warning de PHP
         $ok = @oci_execute($stmt);
         if (!$ok) {
             $e   = oci_error($stmt);
             $msg = $e['message'];
-            // Dejar solo la primera linea del error (sin el stack de ORA-06512)
             $msg = preg_replace('/\nORA-06512.*/s', '', $msg);
-            // Quitar el prefijo "ORA-2000x:" para mostrar solo el mensaje amigable
             $msg = preg_replace('/^ORA-\d+:\s*/', '', $msg);
             throw new Exception($msg);
         }

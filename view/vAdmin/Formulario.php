@@ -1,8 +1,5 @@
 <?php
-// SC-504 - Real English CR - Grupo F
-// Vista generica de formulario (sirve para crear y para editar).
-// Recibe del controlador:
-//   $entidad, $def, $registro (null si es nuevo), $opcionesFk (combos)
+// formulario generico (crear / editar): $entidad, $def, $registro, $opcionesFk
 
 require_once __DIR__ . '/LayoutAdmin.php';
 
@@ -14,7 +11,7 @@ $accion    = $esEdicion ? 'actualizar' : 'crear';
 
 AdminHeader($titulo, $entidad);
 
-// valor actual de un campo (para precargar en edicion)
+// valor actual del campo (para precargar en edicion)
 function valorCampo($registro, $campo)
 {
     if ($registro === null) { return ''; }

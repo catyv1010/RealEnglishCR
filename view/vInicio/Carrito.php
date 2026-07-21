@@ -1,10 +1,5 @@
 <?php
-// Mis matriculas. Antes esta pagina era una maqueta: el curso, el profesor y
-// el precio estaban escritos a mano, y el boton "Proceder al pago" llevaba a
-// Pagar.php SIN el numero de matricula, asi que era un callejon sin salida.
-//
-// Ahora muestra las matriculas reales del estudiante que tiene la sesion
-// abierta, con su pago, leyendo todo con los paquetes PL/SQL.
+// Mis matriculas: las del estudiante con sesion abierta
 require_once __DIR__ . "/../../model/Conexion.php";
 require_once __DIR__ . "/../../model/Entidades.php";
 require_once __DIR__ . "/../../model/CrudModel.php";
@@ -12,7 +7,7 @@ require_once __DIR__ . "/../../model/Catalogo.php";
 
 session_start();
 
-// Sin sesion no hay matriculas que mostrar.
+// requiere sesion
 if (!isset($_SESSION['estudiante_id'])) {
     header('Location: IniciarSesion.php');
     exit();
@@ -24,8 +19,7 @@ $errorBD       = null;
 try {
     $yo = (string) $_SESSION['estudiante_id'];
 
-    // Los pagos se leen una sola vez y se indexan por matricula, en vez de
-    // recorrer la lista completa dentro del bucle de matriculas.
+    // pagos indexados por matricula
     $pagosPorMatricula = [];
     foreach (CrudModel::listar('pagos') as $p) {
         $pagosPorMatricula[(string) $p['MATRICULA_ID']] = $p;

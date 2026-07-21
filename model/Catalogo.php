@@ -1,19 +1,6 @@
 <?php
-// SC-504 Lenguajes de Base de Datos - Proyecto Real English CR - Grupo F
-// Granados Gonzalez Luis Andres, Perez Calderon David,
-// Rodriguez Arroyo Michelle Andrea, Valverde Arroyo Maria Catalina
-//
-// Catalogo: funciones de consulta que usan TODAS las vistas del sitio publico.
-//
-// Regla de oro del proyecto: ninguna vista arma SQL. Todo lo que se muestra en
-// la pagina sale de aqui, y esto a su vez solo llama a los paquetes PL/SQL
-// (REALENGLISH.pkg_<tabla>_crud) a traves de CrudModel, con el usuario RECR_APP,
-// que no tiene NINGUN privilegio sobre las tablas.
-//
-// Antes cada vista tenia los cursos, los precios y los profesores escritos a
-// mano en el HTML. El resultado era que la pagina decia una cosa y la base de
-// datos otra. Con este archivo, si alguien cambia un precio en el mantenimiento,
-// el sitio publico lo muestra al instante.
+// Real English CR - Grupo F
+// Consultas para las vistas del sitio publico. Solo llama a los paquetes via CrudModel.
 
 require_once __DIR__ . '/Conexion.php';
 require_once __DIR__ . '/Entidades.php';
@@ -21,8 +8,7 @@ require_once __DIR__ . '/CrudModel.php';
 
 class Catalogo
 {
-    // Cache en memoria: dentro de una misma peticion no repetimos la llamada
-    // al paquete si dos secciones de la pagina piden lo mismo.
+    // cache en memoria por peticion
     private static $cache = [];
 
     private static function traer($entidad)
@@ -33,8 +19,7 @@ class Catalogo
         return self::$cache[$entidad];
     }
 
-    // ---------------------------------------------------------------- NIVELES
-    // Devuelve ['1' => ['CODIGO'=>'A1', 'NOMBRE'=>'Principiante'], ...]
+    // niveles: ['1' => ['CODIGO'=>'A1', 'NOMBRE'=>'Principiante'], ...]
     public static function niveles()
     {
         $mapa = [];
@@ -44,7 +29,6 @@ class Catalogo
         return $mapa;
     }
 
-    // "A1 Principiante" a partir del nivel_id
     public static function nivelTexto($nivelId)
     {
         $niveles = self::niveles();
@@ -60,7 +44,7 @@ class Catalogo
         return isset($niveles[$nivelId]) ? $niveles[$nivelId]['CODIGO'] : '--';
     }
 
-    // ----------------------------------------------------------------- CURSOS
+    // cursos
     public static function cursos()
     {
         return self::traer('cursos');
@@ -76,9 +60,7 @@ class Catalogo
         return null;
     }
 
-    // Los N cursos mas baratos por nivel, para la portada. No inventamos
-    // "cursos destacados": mostramos los que de verdad existen, ordenados
-    // por nivel, que es como los ve el estudiante que empieza.
+    // los N cursos mas baratos por nivel, para la portada
     public static function cursosDestacados($cuantos = 6)
     {
         $cursos = self::cursos();
@@ -88,9 +70,7 @@ class Catalogo
         return array_slice($cursos, 0, $cuantos);
     }
 
-    // ------------------------------------------------------------- PROFESORES
-    // Un profesor es un empleado activo cuyo puesto empieza por PROF
-    // (PROF_SR = Profesor Senior, PROF_JR = Profesor Junior).
+    // profesor = empleado activo cuyo puesto empieza por PROF
     public static function profesores()
     {
         $profes = [];
@@ -113,8 +93,7 @@ class Catalogo
         return null;
     }
 
-    // ----------------------------------------------------------------- GRUPOS
-    // Grupos de un curso que todavia admiten matricula (ABIERTO y con cupo).
+    // grupos de un curso que aun admiten matricula (ABIERTO)
     public static function gruposDeCurso($cursoId)
     {
         $lista = [];
@@ -151,15 +130,13 @@ class Catalogo
         return $lista;
     }
 
-    // Cupos que quedan libres en un grupo
+    // cupos libres en un grupo
     public static function cupoDisponible($grupo)
     {
         return max(0, ((int) $grupo['CUPO_MAX']) - ((int) $grupo['CUPO_ACTUAL']));
     }
 
-    // -------------------------------------------------------------- CONTADORES
-    // Los numeros que salen en la portada y en Acerca de. Antes estaban
-    // escritos a mano ("80,000+ cursos") y se contradecian entre paginas.
+    // contadores de la portada
     public static function contadores()
     {
         return [
@@ -172,11 +149,7 @@ class Catalogo
         ];
     }
 
-    // ---------------------------------------------------------------- IMAGENES
-    // La imagen se deriva del ID del registro, NO de su posicion en la lista.
-    // Antes se usaba team{N}.jpg: con 15 profesores, cuatro caras se
-    // repetian una y otra vez, y al borrar un empleado se corrian todas.
-    // Ahora cada empleado tiene su prof_<id>.png y cada curso su curso_<id>.png.
+    // la imagen se deriva del ID del registro (prof_<id>.png, curso_<id>.png)
     public static function imagenProfesor($empleadoId, $prefijo = '../../assets/img')
     {
         $rel  = '/team/prof_' . (int) $empleadoId . '.png';
@@ -197,15 +170,12 @@ class Catalogo
         return $prefijo . '/course/curso_default.png';
     }
 
-    // ------------------------------------------------------------------ FORMATO
-    // Formato tico de colones: separador de miles con punto. Antes cada pagina
-    // lo escribia distinto (110,000 en una, 70.000 en otra).
+    // formato tico de colones (separador de miles con punto)
     public static function colones($monto)
     {
         return '&#8353; ' . number_format((float) $monto, 0, ',', '.');
     }
 
-    // Fecha de Oracle (viene como DD/MM/YY o YYYY-MM-DD segun el NLS) a texto
     public static function fecha($valor)
     {
         if (empty($valor)) {

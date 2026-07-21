@@ -1,11 +1,5 @@
 <?php
-// Perfil de UN profesor. Antes era una ficha fija de "Laura Jimenez" escrita a
-// mano en el HTML: no recibia id ni consultaba la base de datos.
-//
-// Ahora recibe PerfilProfesor.php?id=<empleado_id> y arma todo desde Oracle:
-//   Catalogo::profesor()          -> pkg_empleados_crud.listar
-//   Catalogo::gruposDeProfesor()  -> pkg_grupos_crud.listar
-//   Catalogo::curso()             -> pkg_cursos_crud.listar
+// Perfil de un profesor por id.
 require_once __DIR__ . "/../../model/Catalogo.php";
 
 $id      = isset($_GET['id']) ? preg_replace('/\D/', '', $_GET['id']) : '';
@@ -16,8 +10,7 @@ $errorBD = null;
 try {
     if ($id !== '') {
         $profe = Catalogo::profesor($id);
-        // Solo se publica el perfil de un profesor activo. Si el id es de un
-        // cajero o de un empleado inactivo, no se muestra.
+        // solo profesores activos
         if ($profe && (stripos($profe['PUESTO_ID'] ?? '', 'PROF') !== 0 || ($profe['ACTIVO'] ?? 'N') !== 'S')) {
             $profe = null;
         }

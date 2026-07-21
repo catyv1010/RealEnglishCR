@@ -1,7 +1,5 @@
 <?php
-// Confirmacion del pago. Antes esta pagina era huerfana (nadie la enlazaba),
-// decia "tu mensaje fue enviado" y su fondo apuntaba a bg/1.jpg, un archivo
-// que no existe. Ahora cierra el flujo de matricula y muestra el pago real.
+// Confirmacion de pago.
 require_once __DIR__ . "/../../model/Catalogo.php";
 require_once __DIR__ . "/../../model/CrudModel.php";
 session_start();
@@ -10,9 +8,7 @@ $pagoId  = isset($_GET['pago']) ? preg_replace('/\D/', '', $_GET['pago']) : '';
 $pago    = null;
 $errorBD = null;
 
-// Sin sesion no se ve ningun comprobante. Antes esta pagina no lo comprobaba:
-// se podia recorrer Gracias.php?pago=1,2,3... y ver el monto, el metodo de pago
-// y la matricula de cualquier estudiante.
+// requiere sesion
 if (!isset($_SESSION['estudiante_id'])) {
     header('Location: IniciarSesion.php');
     exit();
@@ -22,8 +18,7 @@ try {
     if ($pagoId !== '') {
         $pago = CrudModel::obtener('pagos', $pagoId);
 
-        // Y ademas el comprobante tiene que ser suyo: se comprueba subiendo
-        // del pago a su matricula y de ahi al estudiante dueno.
+        // el pago debe ser del estudiante en sesion
         if ($pago !== null) {
             $matricula = CrudModel::obtener('matriculas', $pago['MATRICULA_ID']);
             if ($matricula === null ||

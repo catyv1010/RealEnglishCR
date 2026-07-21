@@ -1,22 +1,9 @@
 <?php
-// PRECIOS
-//
-// Antes esta pagina tenia tres "planes" inventados (Basico 70.000, Popular
-// 95.000, Avanzado 120.000) con cupos y cantidades de clases escritos a mano.
-// Ninguno de esos numeros existia en la base: si el profe abria la tabla CURSOS
-// veia otros precios. Eso, en la defensa, es justo lo que no se puede permitir.
-//
-// Ahora la pagina no inventa nada. Agrupa los cursos REALES por su nivel MCER
-// y por cada nivel muestra:
-//   - el rango de precios de verdad (el mas barato y el mas caro de ese nivel)
-//   - cuantos cursos hay en ese nivel
-//   - cuantos grupos estan abiertos hoy
-//
-// Todo sale de Catalogo (-> CrudModel -> REALENGLISH.pkg_*_crud). Cero SQL aqui.
+// Precios por nivel MCER, calculados desde el catalogo real
 require_once __DIR__ . "/../../model/Catalogo.php";
 
 $niveles   = [];
-$porNivel  = [];   // nivel_id => ['cursos'=>[], 'min'=>, 'max'=>, 'grupos'=>]
+$porNivel  = [];
 $errorBD   = null;
 
 try {
@@ -33,12 +20,11 @@ try {
         $porNivel[$nid]['cursos'][] = $c;
         $porNivel[$nid]['min']      = min($porNivel[$nid]['min'], $precio);
         $porNivel[$nid]['max']      = max($porNivel[$nid]['max'], $precio);
-        // gruposDeCurso() ya filtra por estado ABIERTO
+        // solo grupos abiertos
         $porNivel[$nid]['grupos'] += count(Catalogo::gruposDeCurso($c['CURSO_ID']));
     }
 
-    // Ordenamos por el campo ORDEN del nivel (A1=1 ... C2=6), que es como el
-    // estudiante entiende la escala. Si algun nivel no trae ORDEN usamos el ID.
+    // ordenar por nivel (A1..C2)
     uksort($porNivel, function ($a, $b) use ($niveles) {
         $oa = isset($niveles[$a]['ORDEN']) ? (int) $niveles[$a]['ORDEN'] : (int) $a;
         $ob = isset($niveles[$b]['ORDEN']) ? (int) $niveles[$b]['ORDEN'] : (int) $b;
@@ -55,7 +41,7 @@ ImportCSS($titulo_pagina);
 PintarHeader();
 ?>
 
-		<!-- START SECTION TOP -->
+		<!-- section top -->
 		<section class="section-top">
 			<div class="container">
 				<div class="col-lg-10 offset-lg-1 text-center">
@@ -65,13 +51,12 @@ PintarHeader();
 							<li><a href="Principal.php">Inicio</a></li>
 							<li> / Precios</li>
 						</ul>
-					</div><!-- //.HERO-TEXT -->
-				</div><!--- END COL -->
-			</div><!--- END CONTAINER -->
+					</div>
+				</div>
+			</div>
 		</section>
-		<!-- END SECTION TOP -->
 
-		<!-- START PRICING -->
+		<!-- pricing -->
 		<section id="pricing" class="pricing-content section-padding">
 			<div class="container">
 				<div class="section-title text-center">
@@ -97,8 +82,7 @@ PintarHeader();
             $desc    = $niveles[$nid]['DESCRIPCION'] ?? '';
             $nCursos = count($datos['cursos']);
             $delay   = 0.1 * (($i - 1) % 3 + 1);
-            // La tarjeta blanca (destacada) la damos al nivel con mas grupos abiertos
-            // no a uno elegido a dedo.
+            // destacar el nivel con mas grupos abiertos
             $esDestacado = ($datos['grupos'] > 0 && $datos['grupos'] === max(array_column($porNivel, 'grupos')));
 ?>
 					<div class="col-lg-4 col-sm-6 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="<?= $delay ?>s" data-wow-offset="0" style="margin-bottom:30px;">
@@ -141,18 +125,17 @@ PintarHeader();
 							</ul>
 							<a class="btn_one" href="Cursos.php">Ver los cursos <?= htmlspecialchars($codigo) ?></a>
 						</div>
-					</div><!--- END COL -->
+					</div>
 <?php   }
     } ?>
-				</div><!--- END ROW -->
+				</div>
 
 				<div class="row">
 					<div class="col-12 text-center" style="margin-top:20px;">
 						<p style="color:#777;">El pago se genera al matricularte y podés cancelarlo con SINPE Móvil, transferencia, tarjeta o en efectivo en cualquiera de nuestras sedes.</p>
 					</div>
 				</div>
-			</div><!--- END CONTAINER -->
+			</div>
 		</section>
-		<!-- END PRICING -->
 
 <?php PintarFooter(); ImportJS(); ?>

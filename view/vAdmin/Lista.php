@@ -1,7 +1,5 @@
 <?php
-// SC-504 - Real English CR - Grupo F
-// Vista generica de listado. Recibe del controlador:
-//   $entidad (clave), $def (definicion de Entidades.php), $filas (registros)
+// listado generico ($entidad, $def, $filas)
 
 require_once __DIR__ . '/LayoutAdmin.php';
 AdminHeader($def['titulo'], $entidad);
@@ -42,7 +40,6 @@ $pk = strtoupper($def['pk']);
                    href="admin.php?entidad=<?php echo $entidad; ?>&accion=editar&id=<?php echo urlencode($fila[$pk]); ?>">
                    Editar
                 </a>
-                <!-- eliminar va por POST con confirmacion -->
                 <form method="post" style="display:inline"
                       action="admin.php?entidad=<?php echo $entidad; ?>&accion=eliminar"
                       onsubmit="return confirm('¿Seguro que quiere eliminar el registro <?php echo htmlspecialchars($fila[$pk]); ?>?');">

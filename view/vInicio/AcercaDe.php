@@ -1,6 +1,5 @@
 <?php
-// Los contadores salen de Oracle (Catalogo -> paquetes PL/SQL). Antes estaban
-// escritos a mano y contradecian a la portada, que si los calculaba.
+// Contadores en vivo desde Oracle
 require_once __DIR__ . "/../../model/Conexion.php";
 require_once __DIR__ . "/../../model/Entidades.php";
 require_once __DIR__ . "/../../model/CrudModel.php";
@@ -12,7 +11,6 @@ try {
     $cont   = Catalogo::contadores();
     $nAulas = count(CrudModel::listar("aulas"));
 } catch (Exception $e) {
-    // Si Oracle no responde, la pagina se muestra igual con ceros.
 }
 
 $titulo_pagina = "Real English CR - Acerca de";
@@ -21,7 +19,7 @@ ImportCSS($titulo_pagina);
 PintarHeader();
 ?>
 
-		<!-- START SECTION TOP -->
+		<!-- section top -->
 		<section class="section-top">
 			<div class="container">
 				<div class="col-lg-10 offset-lg-1 text-center">
@@ -31,13 +29,12 @@ PintarHeader();
 							<li><a href="Principal.php">Inicio</a></li>
 							<li> / Acerca de</li>
 						</ul>
-					</div><!-- //.HERO-TEXT -->
-				</div><!--- END COL -->
-			</div><!--- END CONTAINER -->
+					</div>
+				</div>
+			</div>
 		</section>	
-		<!-- END SECTION TOP -->
 		
-	<!-- START CATEGORY -->
+	<!-- category -->
 	<section class="top_cat__area section-padding" style="background-image: url(../../assets/img/bg/shape-1.png);  background-size:cover; background-position: center center;">
 		<div class="container">									
 			<div class="section-title text-center">
@@ -51,34 +48,33 @@ PintarHeader();
 						<h3>Profesores <br />Expertos</h3>
 						<p>Cursos diseñados para que aprendas inglés a tu ritmo, con metodología probada y profesores expertos.</p>
 					</div>
-				</div><!-- END COL -->			
+				</div>			
 				<div class="col-lg-3 col-sm-6 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.3s" data-wow-offset="0">
 					<div class="single_tp">
 						<span class="sc_two">02</span>
 						<h3>Educación <br />de Calidad</h3>
 						<p>Cursos diseñados para que aprendas inglés a tu ritmo, con metodología probada y profesores expertos.</p>
 					</div>
-				</div><!-- END COL -->			
+				</div>			
 				<div class="col-lg-3 col-sm-6 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.4s" data-wow-offset="0">
 					<div class="single_tp">
 						<span class="sc_three">03</span>
 						<h3>Aprendizaje <br />Remoto</h3>
 						<p>Cursos diseñados para que aprendas inglés a tu ritmo, con metodología probada y profesores expertos.</p>
 					</div>
-				</div><!-- END COL -->	
+				</div>	
 				<div class="col-lg-3 col-sm-6 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.4s" data-wow-offset="0">
 					<div class="single_tp">
 						<span class="sc_four">04</span>
 						<h3>Soporte <br />Permanente</h3>
 						<p>Cursos diseñados para que aprendas inglés a tu ritmo, con metodología probada y profesores expertos.</p>
 					</div>
-				</div><!-- END COL -->							
-			</div><!-- END ROW -->
-		</div><!--- END CONTAINER -->
+				</div>							
+			</div>
+		</div>
 	</section>
-	<!-- END CATEGORY -->		
 		
-	<!-- START ABOUT US -->
+	<!-- about us -->
 	<section class="ab_area section-padding">
 		<div class="container">									
 			<div class="row">								
@@ -86,7 +82,7 @@ PintarHeader();
 					<div class="ab_img">
 						<img src="../../assets/img/about1.png" class="img-fluid" alt="image">
 					</div>
-				</div><!--- END COL -->						
+				</div>						
 				<div class="col-lg-6 col-sm-12 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s" data-wow-offset="0">
 					<div class="ab_content">
 						<h2>Ofrecemos cursos de inglés en cinco sedes en Costa Rica</h2>
@@ -99,26 +95,24 @@ PintarHeader();
 						</ul>
 						<a class="btn_one" href="Cursos.php">Ver todos los cursos <i class="ti-arrow-top-right"></i></a>
 					</div>
-				</div><!--- END COL -->							  
-			</div><!--- END ROW -->
-		</div><!--- END CONTAINER -->
+				</div>							  
+			</div>
+		</div>
 	</section>
-	<!-- END ABOUT US -->	
 	
-		<!-- START VIDEO -->
+		<!-- video -->
 		<section class="vid_area va2" style="background-image: url(../../assets/img/bg/video.jpg);  background-size:cover; background-position: center center;">
 			<div class="container">																
 				<div class="row">
 					<div class="col-lg-12 vp_top wow fadeInUDown" data-wow-duration="1s" data-wow-delay="0.2s" data-wow-offset="0">
 						<div class="video-area2">
 						</div>
-					</div><!--- END COL -->	
-				</div><!--- END ROW -->
-			</div><!--- END CONTAINER -->
+					</div>	
+				</div>
+			</div>
 		</section>
-		<!-- END VIDEO -->
 
-		<!-- START COUNTER -->
+		<!-- counter -->
 		<section class="count_area counter_feature">
 			<div class="container">
 				<div class="row">
@@ -135,27 +129,26 @@ PintarHeader();
 							<h2 class="counter-num"><?= $cont['sedes'] ?></h2>
 							<p>Sedes en Costa Rica</p>
 						</div>
-					</div><!-- END COL -->
+					</div>
 					<div class="col-lg-3 col-sm-6 col-xs-12">
 						<div class="single-counter">
 							<span class="ti-id-badge sc_three"></span>
 							<h2 class="counter-num"><?= $cont['profesores'] ?></h2>
 							<p>Profesores certificados</p>
 						</div>
-					</div><!-- END COL -->
+					</div>
 					<div class="col-lg-3 col-sm-6 col-xs-12">
 						<div class="single-counter">
 							<span class="ti-user sc_four"></span>
 							<h2 class="counter-num"><?= $nAulas ?></h2>
 							<p>Aulas equipadas</p>
 						</div>
-					</div><!-- END COL -->						
-				</div><!--- END ROW -->
-			</div><!--- END CONTAINER -->		
+					</div>						
+				</div>
+			</div>		
 		</section>
-		<!-- END COUNTER -->
 
-	<!-- START INSTRUCTOR+FREE COURSE -->
+	<!-- instructor+free course -->
 	<section class="insfreecourse section-padding">
 		<div class="container">									
 			<div class="row">								
@@ -168,7 +161,7 @@ PintarHeader();
 							<a class="btn_one" href="#">Aplicar ahora <i class="ti-arrow-top-right"></i></a>
 						</div>
 					</div>
-				</div><!--- END COL -->				
+				</div>				
 				<div class="col-lg-6 col-sm-12 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s" data-wow-offset="0">
 					<div class="single_ins" style="background-image: url(../../assets/img/ins2.png);  background-size:cover; background-position: center center;">
 						<div class="single_ins_content">
@@ -178,13 +171,12 @@ PintarHeader();
 							<a class="btn_one" href="#">Contáctanos <i class="ti-arrow-top-right"></i></a>
 						</div>
 					</div>
-				</div><!--- END COL -->								  
-			</div><!--- END ROW -->
-		</div><!--- END CONTAINER -->
+				</div>								  
+			</div>
+		</div>
 	</section>
-	<!-- END INSTRUCTOR+FREE COURSE -->				
 
-		<!-- START TESTIMONIALS -->
+		<!-- testimonials -->
 		<section class="testi_area section-padding">
 			<div class="container">
 				<div class="section-title">
@@ -208,7 +200,7 @@ PintarHeader();
 									<h4>Andrés Fonseca</h4>
 									<p>Estudiante de Inglés para Negocios</p>
 								</div>
-							</div><!-- END TESTIMONIAL -->
+							</div>
 							<div class="testimonial">
 							<img src="../../assets/img/quote.png" alt="" />
 								<div class="testimonial_content">													
@@ -224,7 +216,7 @@ PintarHeader();
 									<h4>Sofía Castro</h4>
 									<p>Estudiante de Preparación TOEFL</p>
 								</div>
-							</div><!-- END TESTIMONIAL -->
+							</div>
 							<div class="testimonial">
 								<img src="../../assets/img/quote.png" alt="" />
 								<div class="testimonial_content">													
@@ -240,7 +232,7 @@ PintarHeader();
 									<h4>Marcela Jiménez</h4>
 									<p>Madre de estudiante del programa Kids</p>
 								</div>
-							</div><!-- END TESTIMONIAL -->
+							</div>
 							<div class="testimonial">
 								<img src="../../assets/img/quote.png" alt="" />
 								<div class="testimonial_content">													
@@ -256,7 +248,7 @@ PintarHeader();
 									<h4>Diego Hidalgo</h4>
 									<p>Estudiante de Inglés Virtual B2</p>
 								</div>
-							</div><!-- END TESTIMONIAL -->
+							</div>
 							<div class="testimonial">
 								<img src="../../assets/img/quote.png" alt="" />
 								<div class="testimonial_content">													
@@ -272,12 +264,11 @@ PintarHeader();
 									<h4>Laura Brenes</h4>
 									<p>Estudiante de Inglés Conversacional</p>
 								</div>
-							</div><!-- END TESTIMONIAL -->
-						</div><!-- END TESTIMONIAL SLIDER -->
-					</div><!-- END COL -->		
-				</div><!--- END ROW -->
-			</div><!--- END CONTAINER -->		
+							</div>
+						</div>
+					</div>		
+				</div>
+			</div>		
 		</section>
-		<!-- END TESTINUNIALS -->		
 		
 <?php PintarFooter(); ImportJS(); ?>

@@ -1,13 +1,5 @@
 <?php
-// Detalle de UN curso. Antes esta pagina era una ficha estatica: un curso
-// ficticio, un profesor inventado ("Manuel Nuer"), 1000 estudiantes y un precio
-// quemado en el HTML. No leia la base de datos ni recibia un id.
-//
-// Ahora recibe DetalleCurso.php?id=<curso_id> y arma todo desde Oracle:
-//   Catalogo::curso()         -> pkg_cursos_crud.listar
-//   Catalogo::gruposDeCurso() -> pkg_grupos_crud.listar (solo los ABIERTOS)
-//   Catalogo::profesor()      -> pkg_empleados_crud.listar
-// De aqui arranca el proceso de negocio del proyecto: matricula + pago.
+// Detalle de un curso desde Oracle (recibe ?id=<curso_id>)
 require_once __DIR__ . "/../../model/Catalogo.php";
 session_start();
 
@@ -25,7 +17,7 @@ try {
     $errorBD = $e->getMessage();
 }
 
-// Sin id valido no hay ficha que mostrar: se devuelve al catalogo.
+// sin curso valido volvemos al catalogo
 if ($errorBD === null && $curso === null) {
     header('Location: Cursos.php');
     exit;
@@ -37,7 +29,7 @@ ImportCSS($titulo_pagina);
 PintarHeader();
 ?>
 
-		<!-- START SECTION TOP -->
+		<!-- section top -->
 		<section class="section-top">
 			<div class="container">
 				<div class="col-lg-10 offset-lg-1 text-center">
@@ -52,7 +44,6 @@ PintarHeader();
 				</div>
 			</div>
 		</section>
-		<!-- END SECTION TOP -->
 
 		<section class="section-padding">
 			<div class="container">
@@ -61,7 +52,7 @@ PintarHeader();
 <?php } else { ?>
 				<div class="row">
 
-					<!-- ------------- Columna izquierda: el curso ------------- -->
+					<!-- columna izquierda -->
 					<div class="col-lg-8">
 						<img src="<?= Catalogo::imagenCurso($curso['CURSO_ID']) ?>" class="img-fluid"
 						     style="border-radius:10px;width:100%;"
@@ -77,7 +68,7 @@ PintarHeader();
 							<div class="col-6 col-md-3"><b>Modalidad</b><br><?= htmlspecialchars($curso['MODALIDAD']) ?></div>
 						</div>
 
-						<!-- --------- Grupos abiertos: el proceso de negocio --------- -->
+						<!-- grupos abiertos -->
 						<h3 style="margin-top:45px;">Grupos con matrícula abierta</h3>
 <?php if (count($grupos) === 0) { ?>
 						<p>Ahora mismo no hay grupos abiertos para este curso.
@@ -142,9 +133,9 @@ PintarHeader();
 <?php   } ?>
 						</form>
 <?php } ?>
-					</div><!-- END COL -->
+					</div>
 
-					<!-- ------------- Columna derecha: precio y datos ------------- -->
+					<!-- columna derecha -->
 					<div class="col-lg-4">
 						<div style="background:#fff;border:1px solid #e5e8e8;border-radius:10px;padding:28px;">
 							<div class="price" style="font-size:26px;font-weight:700;">
@@ -179,11 +170,11 @@ if (count($relacionados) === 0) { ?>
 							</p>
 <?php } } ?>
 						</div>
-					</div><!-- END COL -->
+					</div>
 
-				</div><!--- END ROW -->
+				</div>
 <?php } ?>
-			</div><!--- END CONTAINER -->
+			</div>
 		</section>
 
 <?php PintarFooter(); ImportJS(); ?>

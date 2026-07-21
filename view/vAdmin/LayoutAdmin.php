@@ -1,8 +1,5 @@
 <?php
-// SC-504 - Real English CR - Grupo F
-// Layout del modulo de administracion: encabezado, menu lateral con las
-// 15 tablas y pie. Las vistas Lista.php y Formulario.php lo usan llamando
-// AdminHeader($titulo, $entidadActiva) y AdminFooter().
+// layout del modulo admin (encabezado, menu lateral, pie)
 
 require_once __DIR__ . '/../../model/Entidades.php';
 
@@ -49,7 +46,7 @@ function AdminHeader($titulo, $entidadActiva)
     </nav>
     <main class="col-md-10 contenido">
         <?php
-        // mensaje flash (exito o error) de la accion anterior
+        // mensaje flash de la accion anterior
         if (isset($_SESSION['flash'])) {
             $f     = $_SESSION['flash'];
             $clase = $f['tipo'] === 'ok' ? 'alert-success' : 'alert-danger';

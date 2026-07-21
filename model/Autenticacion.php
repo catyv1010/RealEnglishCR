@@ -1,21 +1,12 @@
 <?php
-// SC-504 - Real English CR - Grupo F
-//
-// Autenticacion del modulo de mantenimientos.
-//
-// Este archivo NO compara contrasenas. Le pasa la cedula y la clave a la
-// funcion REALENGLISH.fn_validar_admin y la base de datos responde con el
-// empleado_id (si las credenciales son correctas Y el puesto es
-// administrativo) o con 0 en cualquier otro caso.
-//
-// Consecuencia: en todo el codigo PHP del proyecto no existe ninguna
-// contrasena, ni en texto plano ni cifrada. La aplicacion no la conoce.
+// Real English CR - Grupo F
+// La validacion la hace REALENGLISH.fn_validar_admin en la BD; aqui no hay contrasenas.
 
 require_once __DIR__ . '/Conexion.php';
 
 class Autenticacion
 {
-    // Devuelve el empleado_id si las credenciales son validas, o null.
+    // devuelve el empleado_id si las credenciales son validas, o null
     public static function validarAdmin($cedula, $clave)
     {
         $con = Conexion::obtener();

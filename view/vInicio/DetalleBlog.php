@@ -1,6 +1,6 @@
 <?php $titulo_pagina = "Real English CR - Detalle del Blog"; include_once '../LayoutExterno.php'; ImportCSS($titulo_pagina); PintarHeader(); ?>
 
-		<!-- START SECTION TOP -->
+		<!-- section top -->
 		<section class="section-top">
 			<div class="container">
 				<div class="col-lg-10 offset-lg-1 text-center">
@@ -10,13 +10,12 @@
 							<li><a href="Principal.php">Inicio</a></li>
 							<li> / Detalle del Blog</li>
 						</ul>
-					</div><!-- //.HERO-TEXT -->
-				</div><!--- END COL -->
-			</div><!--- END CONTAINER -->
+					</div>
+				</div>
+			</div>
 		</section>	
-		<!-- END SECTION TOP -->
 		
-	<!-- START BLOG -->
+	<!-- blog -->
 	<section class="blog-page section-padding">
 		<div class="container">	
 			<div class="row">
@@ -42,7 +41,7 @@
 								<li><a href="#"><span class="ti-linkedin"></span> Linkedin</a></li>
 							</ul>
 						</div>
-					</div><!-- END ARTI SINGLE  -->	
+					</div>	
 					<div class="author_part">
 						<h3 class="blog_head_title">Acerca del autor</h3>
 						<div class="single_author">
@@ -50,25 +49,25 @@
 							<h4>Marcela Jiménez</h4>
 							 <p>Aprende inglés de la manera más efectiva. Con práctica constante y buenas técnicas de estudio vas a notar el avance en pocas semanas. Lo importante es perderle el miedo a hablar y equivocarse.</p> 
 						</div>
-					</div><!--- END AUTHOR PART -->
+					</div>
 					<div class="comments_part">
 						<h3 class="blog_head_title">Comentarios</h3>
 						<div class="single_comment">
 							<img src="../../assets/img/blog/c1.jpg" alt="" />
 							<h4>Mariana Cordero</h4>
 							<p>Muy buen artículo. Lo de repasar el vocabulario en contexto y no como lista suelta me cambió la forma de estudiar.</p>
-						</div><!--- END SINGLE COMMENT -->
+						</div>
 						<div class="single_comment sc_left">
 							<img src="../../assets/img/blog/c3.jpg" alt="" />
 							<h4>Bryan Mendoza</h4>
 							<p>Coincido con lo de la constancia. Yo estudio 20 minutos diarios y avancé más que cuando hacía maratones de tres horas los domingos.</p>
-						</div><!--- END SINGLE COMMENT -->
+						</div>
 						<div class="single_comment single_comment_mbnone">
 							<img src="../../assets/img/blog/c2.jpg" alt="" />
 							<h4>Adrián Garro</h4>
 							<p>Lo del miedo a equivocarse es lo más difícil. En clase de conversación fue donde por fin lo solté.</p>
-						</div><!--- END SINGLE COMMENT -->
-					</div><!--- END COMMENTS PART -->	
+						</div>
+					</div>	
 					<div class="comment_form">
 						<h3 class="blog_head_title">Agregar comentario</h3>
 						<div class="contact comment-box">
@@ -94,14 +93,14 @@
 								</div>
 							</form>
 						</div>
-					</div><!--- END COMMENT FORM -->						
-				</div><!-- END COL-->		
+					</div>						
+				</div>		
 				<div class="col-lg-5 col-sm-12 col-xs-12">
 					<div class="sidebar-post">
 						<div class="blog_search">
 							<input type="text" class="form-control" placeholder="Escribe y presiona Enter">
 						</div>				
-					</div><!-- END SINGLE POST -->
+					</div>
 					<div class="sidebar-post">
 						<div class="newsletter-form">
 							<h4>Suscribite para recibir novedades</h4>
@@ -111,30 +110,30 @@
 								<button type="button" class="sub_btn">Suscribirse</button>
 							</form>
 						</div>						
-					</div><!-- END SINGLE POST -->
+					</div>
 					<div class="sidebar-post">
 						<div class="sidebar_title"><h4>Artículos populares</h4></div>
 						<div class="single_popular">
 							<a href="DetalleBlog.php"><img src="../../assets/img/blog/blog-1.png" alt="" /></a>
 							<h5><a href="DetalleBlog.php">Beneficios de aprender inglés en Costa Rica</a></h5>
-						</div><!-- END SINGLE POPULAR POST -->
+						</div>
 						<div class="single_popular">
 							<a href="DetalleBlog.php"><img src="../../assets/img/blog/blog-2.png" alt="" /></a>
 							<h5><a href="DetalleBlog.php">Por qué el inglés te abre más puertas laborales</a></h5>
-						</div><!-- END SINGLE POPULAR POST -->
+						</div>
 						<div class="single_popular">
 							<a href="DetalleBlog.php"><img src="../../assets/img/blog/blog-3.png" alt="" /></a>
 							<h5><a href="DetalleBlog.php">Errores comunes al aprender inglés y cómo evitarlos</a></h5>
-						</div><!-- END SINGLE POPULAR POST -->
+						</div>
 						<div class="single_popular">
 							<a href="DetalleBlog.php"><img src="../../assets/img/blog/blog-4.png" alt="" /></a>
 							<h5><a href="DetalleBlog.php">Cómo organizar tu tiempo para estudiar inglés</a></h5>
-						</div><!-- END SINGLE POPULAR POST -->
+						</div>
 						<div class="single_popular">
 							<a href="DetalleBlog.php"><img src="../../assets/img/blog/blog-5.png" alt="" /></a>
 							<h5><a href="DetalleBlog.php">Lo que necesitas saber antes de presentar el TOEFL</a></h5>
-						</div><!-- END SINGLE POPULAR POST -->	
-					</div><!-- END SIDEBAR POST -->					
+						</div>	
+					</div>					
 					<div class="sidebar-post">
 						<div class="sidebar_title"><h4>Síguenos</h4></div>
 						<div class="single_social">
@@ -151,8 +150,8 @@
 								
 								<li><div class="social_item b_rss"><a href="#" title="rss"><i class="fa fa-rss"></i><span class="item-list">411 Seguidores</span></a></div></li>
 							</ul>
-						</div><!-- END SOCIAL MEDIA POST -->
-					</div><!-- END SIDEBAR POST -->							
+						</div>
+					</div>							
 					<div class="sidebar-post">
 						<div class="sidebar_title"><h4>CATEGORIAS</h4></div>
 						<div class="single_category">
@@ -164,8 +163,8 @@
 								<li><a href="#">Gramática <sup>21</sup></a></li>
 								<li><a href="#">Exámenes <sup>01</sup></a></li>
 							</ul>
-						</div><!-- END SOCIAL MEDIA POST -->
-					</div><!-- END SIDEBAR POST -->
+						</div>
+					</div>
 					<div class="sidebar-post">
 						<div class="tag">
 							<div class="sidebar_title"><h4>Etiquetas populares</h4></div>
@@ -184,12 +183,11 @@
 						<div class="sidebar_title"><h4>Publicidad</h4></div>
 						<div class="sidebar-banner">
 							<a href="#"><img src="../../assets/img/blog/banner.jpg" class="img-fluid" alt="" /></a>
-						</div><!-- END SOCIAL MEDIA POST -->
-					</div><!-- END SIDEBAR POST -->		
-				</div><!--- END COL -->					
-			</div><!-- END ROW-->
-		</div><!-- END CONTAINER-->
+						</div>
+					</div>		
+				</div>					
+			</div>
+		</div>
 	</section>
-	<!-- END BLOG -->		
 		
 <?php PintarFooter(); ImportJS(); ?>

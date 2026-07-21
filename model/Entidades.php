@@ -1,16 +1,7 @@
 <?php
-// SC-504 Lenguajes de Base de Datos - Proyecto Real English CR - Grupo F
-// Granados, Perez, Rodriguez, Valverde
-//
-// Catalogo de entidades: describe cada tabla de la BD para que el CRUD
-// generico sepa que paquete llamar, que campos pintar en el formulario
-// y como validarlos. El ORDEN de los campos debe coincidir con el orden
-// de los parametros de insertar/actualizar en los paquetes pkg_<tabla>_crud.
-//
-// Tipos de campo:
-//   texto / numero / decimal / fecha / textarea
-//   select   -> opciones fijas (los CHECK de la tabla)
-//   fk       -> combo que se llena con el listar() de otra entidad
+// Real English CR - Grupo F
+// Catalogo de entidades para el CRUD generico. El ORDEN de los campos debe
+// coincidir con el orden de los parametros de insertar/actualizar en los paquetes.
 
 class Entidades
 {
@@ -254,7 +245,7 @@ class Entidades
         ];
     }
 
-    // Devuelve la definicion de una entidad o null si no existe
+    // devuelve la definicion de una entidad o null
     public static function obtener($nombre)
     {
         $todas = self::todas();

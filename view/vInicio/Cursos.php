@@ -1,11 +1,5 @@
 <?php
-// Catalogo de cursos leido en vivo desde Oracle.
-// Catalogo::cursos() -> CrudModel -> REALENGLISH.pkg_cursos_crud.listar
-// Nunca hay un SELECT directo en la vista.
-//
-// La portada de cada curso se deriva de su CURSO_ID (curso_<id>.png), no de su
-// posicion en la lista. Antes se usaba (($i-1) % 6) + 1 y, como solo habia 6
-// imagenes, el curso 7 mostraba la foto del curso 1.
+// Catalogo de cursos desde la BD.
 require_once __DIR__ . "/../../model/Catalogo.php";
 
 $cursos  = [];

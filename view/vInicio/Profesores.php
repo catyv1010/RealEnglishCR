@@ -1,12 +1,5 @@
 <?php
-// Los profesores salen en vivo de Oracle: Catalogo::profesores() llama a
-// REALENGLISH.pkg_empleados_crud.listar y se queda con los empleados activos
-// cuyo puesto empieza por PROF.
-//
-// La foto YA NO se escoge por la posicion en la lista (antes era
-// team{N}.jpg, y con 15 profesores las mismas 4 caras se repetian
-// una y otra vez). Ahora cada empleado tiene su propia imagen, prof_<id>.png,
-// derivada de su EMPLEADO_ID: nunca se repite y no se corre si se borra a otro.
+// Lista de profesores activos desde la BD.
 require_once __DIR__ . "/../../model/Catalogo.php";
 
 $profes  = [];

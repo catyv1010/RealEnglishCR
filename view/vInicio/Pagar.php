@@ -1,13 +1,5 @@
 <?php
-// Pago de una matricula recien creada.
-// Antes esta pagina tenia un formulario que apuntaba a procesar_pago.php,
-// un archivo que NO existia: el boton daba 404.
-//
-// Ahora recibe Pagar.php?matricula=<id>, busca en Oracle el pago PENDIENTE que
-// el sistema genero para esa matricula (pkg_pagos_crud.listar) y lo muestra con
-// el monto REAL del curso. Al confirmar, el controlador lo pasa a PAGADO con
-// pkg_pagos_crud.actualizar, y el trigger trg_aud_pagos deja el rastro en la
-// bitacora.
+// Pago de una matricula (recibe ?matricula=<id>)
 require_once __DIR__ . "/../../model/Catalogo.php";
 require_once __DIR__ . "/../../model/CrudModel.php";
 session_start();
@@ -24,7 +16,7 @@ try {
     if ($matriculaId !== '') {
         $matricula = CrudModel::obtener('matriculas', $matriculaId);
 
-        // Nadie puede pagar la matricula de otra persona.
+        // no dejar pagar matricula ajena
         if ($matricula && (string) $matricula['ESTUDIANTE_ID'] !== (string) $_SESSION['estudiante_id']) {
             $matricula = null;
         }
@@ -57,7 +49,7 @@ ImportCSS($titulo_pagina);
 PintarHeader();
 ?>
 
-		<!-- START SECTION TOP -->
+		<!-- section top -->
 		<section class="section-top">
 			<div class="container">
 				<div class="col-lg-10 offset-lg-1 text-center">
@@ -71,7 +63,6 @@ PintarHeader();
 				</div>
 			</div>
 		</section>
-		<!-- END SECTION TOP -->
 
 		<section class="section-padding">
 			<div class="container">
@@ -118,7 +109,7 @@ PintarHeader();
 							El monto no lo escribe la página: sale del precio que tiene el curso en la
 							base de datos (<code>CURSOS.PRECIO_COLONES</code>).
 						</p>
-					</div><!-- END COL -->
+					</div>
 
 					<div class="col-lg-5">
 						<div style="background:#fff;border:1px solid #e5e8e8;border-radius:10px;padding:28px;">
@@ -147,10 +138,10 @@ PintarHeader();
 							</p>
 <?php } ?>
 						</div>
-					</div><!-- END COL -->
-				</div><!--- END ROW -->
+					</div>
+				</div>
 <?php } ?>
-			</div><!--- END CONTAINER -->
+			</div>
 		</section>
 
 <?php PintarFooter(); ImportJS(); ?>

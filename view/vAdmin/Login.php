@@ -1,14 +1,5 @@
 <?php
-// SC-504 - Real English CR - Grupo F
-// Pantalla de acceso al modulo de mantenimientos.
-//
-// Al modulo de administracion solo entran los empleados con puesto de
-// Director Academico (DIR_ACAD) o Coordinador de Sede (COORD). La validacion
-// se hace contra la tabla EMPLEADOS, igual que todo lo demas: leyendo con
-// REALENGLISH.pkg_empleados_crud.listar, nunca con un SELECT directo.
-//
-// Se identifica con la cedula, por la misma razon que el login de estudiantes:
-// el modelo de datos no tiene columna de contrasena.
+// login del modulo admin (solo DIR_ACAD y COORD, validado contra EMPLEADOS)
 ?>
 <!DOCTYPE html>
 <html lang="es">
