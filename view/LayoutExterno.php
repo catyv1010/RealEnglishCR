@@ -56,19 +56,40 @@ function PintarHeader()
     $hayEstudiante = isset($_SESSION['estudiante_id']);
     $nombre        = htmlspecialchars($_SESSION['nombre'] ?? '');
 
+    // Solo el primer nombre en el saludo: "Hola, Felipe Elizondo" no cabe en la
+    // barra y empujaba "Mis matriculas" debajo del boton Salir.
+    $partes       = preg_split('/\s+/', trim($nombre));
+    $primerNombre = $partes[0] ?? '';
+
+    // La plantilla Edulab no previo tres elementos en esta esquina: los apila y
+    // se montan unos sobre otros. Se acomodan en fila con separacion propia.
+    $estilosSesion = '
+			<style>
+				.sesion-nav{display:flex;align-items:center;justify-content:flex-end;
+							flex-wrap:nowrap;gap:18px;white-space:nowrap;}
+				.sesion-nav .header-btn{position:static!important;float:none!important;
+							margin:0!important;padding:0!important;line-height:1.2!important;}
+				.sesion-nav .btn_one{position:static!important;float:none!important;
+							margin:0!important;flex:0 0 auto;}
+			</style>';
+
     if ($hayEstudiante) {
-        $bloqueSesion = '
-						<span class="header-btn" style="cursor:default;">Hola, ' . $nombre . '</span>
-						<a href="Carrito.php" class="header-btn">Mis matrículas</a>
-						<a href="../../control/InicioController.php?salir=1" class="btn_one">Salir</a>';
+        $bloqueSesion = $estilosSesion . '
+						<div class="sesion-nav">
+							<span class="header-btn" style="cursor:default;">Hola, ' . $primerNombre . '</span>
+							<a href="Carrito.php" class="header-btn">Mis matrículas</a>
+							<a href="../../control/InicioController.php?salir=1" class="btn_one">Salir</a>
+						</div>';
 
         $bloqueSesionMovil = '
 						<li><a href="Carrito.php">Mis matrículas (' . $nombre . ')</a></li>
 						<li><a href="../../control/InicioController.php?salir=1">Salir</a></li>';
     } else {
-        $bloqueSesion = '
-						<a href="IniciarSesion.php" class="header-btn">Iniciar Sesión</a>
-						<a href="RegistrarUsuarios.php" class="btn_one">Registrarse</a>';
+        $bloqueSesion = $estilosSesion . '
+						<div class="sesion-nav">
+							<a href="IniciarSesion.php" class="header-btn">Iniciar Sesión</a>
+							<a href="RegistrarUsuarios.php" class="btn_one">Registrarse</a>
+						</div>';
 
         $bloqueSesionMovil = '
 						<li><a href="IniciarSesion.php">Iniciar Sesión</a></li>
