@@ -49,12 +49,7 @@ PintarHeader();
 				  <div class="col-lg-6 col-sm-12 col-xs-12">
 					<div class="hero-text-img">
 						<img src="../../assets/img/home-img2.png" class="img-fluid" alt="" />
-						<div class="home_ps">
-							<span class="ti-user"></span>
-							<h2><?= $nEstudiantes ?></h2>
-							<p>Estudiantes activos</p>
-						</div>
-					</div>					
+					</div>
 				  </div>						  
 				</div>
 			</div>
@@ -62,8 +57,17 @@ PintarHeader();
 
 		<!-- counter -->
 		<section class="count_area counter_feature">
+			<!-- Cinco contadores en una sola fila. La plantilla trae cuatro columnas de
+			     col-lg-3; en pantalla grande se reparten en quintos con flex, y en
+			     pantallas chicas se dejan las clases de Bootstrap para que envuelvan. -->
+			<style>
+				@media (min-width: 992px) {
+					.row.contadores-cinco { display: flex; flex-wrap: nowrap; }
+					.row.contadores-cinco > div { flex: 1 1 0; max-width: 20%; }
+				}
+			</style>
 			<div class="container">
-				<div class="row">
+				<div class="row contadores-cinco">
 					<div class="col-lg-3 col-sm-6 col-xs-12">
 						<div class="single-counter">
 							<span class="ti-folder sc_one"></span>
@@ -91,7 +95,14 @@ PintarHeader();
 							<h2 class="counter-num"><?= $nAulas ?></h2>
 							<p>Aulas equipadas</p>
 						</div>
-					</div>						
+					</div>
+					<div class="col-lg-3 col-sm-6 col-xs-12">
+						<div class="single-counter">
+							<span class="ti-user sc_one"></span>
+							<h2 class="counter-num"><?= $nEstudiantes ?></h2>
+							<p>Estudiantes activos</p>
+						</div>
+					</div>
 				</div>
 			</div>		
 		</section>
