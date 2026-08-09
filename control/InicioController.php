@@ -184,6 +184,10 @@ if (isset($_POST['btnMatricular'])) {
                     '../view/vInicio/Cursos.php', '#c0392b');
         }
         $curso = Catalogo::curso($grupo['CURSO_ID']);
+        if ($curso === null) {
+            mensaje('Curso no encontrado', 'Ese curso ya no esta disponible.',
+                    '../view/vInicio/Cursos.php', '#c0392b');
+        }
 
         // insertar matricula
         $matriculaId = CrudModel::insertar('matriculas', [

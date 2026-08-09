@@ -133,7 +133,7 @@ class Catalogo
     // cupos libres en un grupo
     public static function cupoDisponible($grupo)
     {
-        return max(0, ((int) $grupo['CUPO_MAX']) - ((int) $grupo['CUPO_ACTUAL']));
+        return max(0, ((int) ($grupo['CUPO_MAX'] ?? 0)) - ((int) ($grupo['CUPO_ACTUAL'] ?? 0)));
     }
 
     // contadores de la portada
