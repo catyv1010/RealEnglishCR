@@ -8,6 +8,7 @@ require_once __DIR__ . '/../model/CrudModel.php';
 require_once __DIR__ . '/../model/Entidades.php';
 require_once __DIR__ . '/../model/Catalogo.php';
 require_once __DIR__ . '/../model/Autenticacion.php';
+require_once __DIR__ . '/../model/Matricula.php';
 
 // muestra un mensaje y un boton para volver
 function mensaje($titulo, $texto, $volverA, $color = '#1e8449')
@@ -161,7 +162,7 @@ if (isset($_POST["btnContacto"])) {
     }
 }
 
-// matricular - la logica la hacen los paquetes y triggers en la base
+// matricular - todo el proceso lo hace sp_matricular_estudiante dentro de la base
 if (isset($_POST['btnMatricular'])) {
 
     if (!isset($_SESSION['estudiante_id'])) {
@@ -178,35 +179,12 @@ if (isset($_POST['btnMatricular'])) {
     }
 
     try {
-        $grupo = Catalogo::grupo($grupoId);
-        if ($grupo === null) {
-            mensaje('Grupo no encontrado', 'Ese grupo ya no existe.',
-                    '../view/vInicio/Cursos.php', '#c0392b');
-        }
-        $curso = Catalogo::curso($grupo['CURSO_ID']);
-        if ($curso === null) {
-            mensaje('Curso no encontrado', 'Ese curso ya no esta disponible.',
-                    '../view/vInicio/Cursos.php', '#c0392b');
-        }
-
-        // insertar matricula
-        $matriculaId = CrudModel::insertar('matriculas', [
-            'estudiante_id'   => $_SESSION['estudiante_id'],
-            'grupo_id'        => $grupoId,
-            'fecha_matricula' => '',      // vacio = SYSDATE (lo pone el trigger)
-            'nota_final'      => '',
-            'estado'          => 'ACTIVA',
-        ]);
-
-        // pago pendiente con el precio real del curso
-        CrudModel::insertar('pagos', [
-            'matricula_id'      => $matriculaId,
-            'monto'             => $curso['PRECIO_COLONES'],
-            'fecha_pago'        => '',                                  // aun no se paga
-            'fecha_vencimiento' => date('Y-m-d', strtotime('+8 days')), // 8 dias de plazo
-            'metodo_pago'       => '',
-            'estado'            => 'PENDIENTE',
-        ]);
+        // Una sola llamada. El procedimiento valida el estudiante, el grupo, el
+        // cupo y los duplicados, bloquea la fila del grupo con FOR UPDATE, inserta
+        // la matricula y su pago, y si algo falla deshace TODO con ROLLBACK a su
+        // savepoint. El precio no se manda desde aqui: lo calcula fn_precio_grupo
+        // dentro de la base, para que el navegador no pueda alterarlo.
+        $matriculaId = Matricula::matricular($_SESSION['estudiante_id'], $grupoId);
 
         header('Location: ../view/vInicio/Pagar.php?matricula=' . urlencode($matriculaId));
         exit;
