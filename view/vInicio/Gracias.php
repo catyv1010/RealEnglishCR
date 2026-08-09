@@ -44,7 +44,7 @@ PintarHeader();
 
 					<div style="background:#fff;border:1px solid #e5e8e8;border-radius:12px;padding:50px 40px;">
 						<span class="ti-check-box" style="font-size:64px;color:#1e8449;"></span>
-						<h1 style="color:#1e8449;margin-top:20px;"><?= $pago !== null ? '¡Listo, quedaste matriculada!' : 'Comprobante no disponible' ?></h1>
+						<h1 style="color:#1e8449;margin-top:20px;"><?= $pago !== null ? '¡Listo! Tu matrícula quedó registrada' : 'Comprobante no disponible' ?></h1>
 
 <?php if ($errorBD !== null) { ?>
 						<p style="color:#c0392b;"><?= htmlspecialchars($errorBD) ?></p>

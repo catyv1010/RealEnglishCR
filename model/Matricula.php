@@ -22,7 +22,7 @@ class Matricula
         20002 => 'Ese grupo ya no existe.',
         20003 => 'Ese grupo no está abierto para matrícula.',
         20004 => 'Ese grupo ya no tiene cupo disponible.',
-        20005 => 'Ya estás matriculada en ese grupo.',
+        20005 => 'Ya tenés una matrícula en ese grupo.',
     ];
 
     /**

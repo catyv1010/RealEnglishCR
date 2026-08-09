@@ -77,7 +77,7 @@
 								<div class="form-group mb-3">
 									<label for="nivel_inicial">Nivel inicial estimado de inglés</label>
 									<select name="nivel_inicial" id="nivel_inicial" class="form-control">
-										<option value="">-- No estoy seguro / Solicitar prueba diagnóstica --</option>
+										<option value="">-- Todavía no lo sé / Solicitar prueba diagnóstica --</option>
 										<option value="1">A1 - Principiante</option>
 										<option value="2">A2 - Básico</option>
 										<option value="3">B1 - Intermedio</option>

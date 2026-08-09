@@ -24,7 +24,7 @@
 					<div class="col-lg-6 col-md-8 col-sm-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s">
 						<div class="login-form" style="background:#fff;padding:50px 40px;border-radius:10px;box-shadow:0 0 30px rgba(0,0,0,0.05);">
 							<div class="text-center mb-4">
-								<h3 style="margin-bottom:10px;">Bienvenido a Real English CR</h3>
+								<h3 style="margin-bottom:10px;">Te damos la bienvenida a Real English CR</h3>
 								<p style="color:#777;">Ingresa tu cédula y tu contraseña para acceder al sistema</p>
 							</div>
 							<form action="../../control/InicioController.php" method="POST">

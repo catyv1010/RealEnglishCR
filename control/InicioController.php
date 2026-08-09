@@ -73,7 +73,7 @@ if (isset($_POST["btnLogin"])) {
     $_SESSION['nombre']        = $est['NOMBRE'] . ' ' . $est['APELLIDO_P'];
     $_SESSION['cedula']        = $est['CEDULA'];
 
-    mensaje('Bienvenida de vuelta, ' . htmlspecialchars($_SESSION['nombre']),
+    mensaje('Hola de nuevo, ' . htmlspecialchars($_SESSION['nombre']),
             'Sesion iniciada correctamente. Tu numero de estudiante es el <b>'
             . htmlspecialchars($est['ESTUDIANTE_ID']) . '</b>.',
             '../view/vInicio/Principal.php');
@@ -88,7 +88,7 @@ if (isset($_POST["btnRegistrar"])) {
 
     if (buscarEstudiantePorCedula($cedula) !== null) {
         mensaje('Esa cedula ya existe',
-                'Ya hay un estudiante registrado con la cedula '
+                'Ya existe una persona registrada con la cedula '
                 . htmlspecialchars($cedula) . '. Inicia sesion.',
                 '../view/vInicio/IniciarSesion.php', '#c0392b');
     }
@@ -124,7 +124,7 @@ if (isset($_POST["btnRegistrar"])) {
         // guarda la contrasena (hasheada) recien creado el estudiante
         Autenticacion::asignarClaveEstudiante($cedula, $clave);
         mensaje('Cuenta creada',
-                'Bienvenida a Real English CR. Tu numero de estudiante es el <b>'
+                'Te damos la bienvenida a Real English CR. Tu numero de estudiante es el <b>'
                 . htmlspecialchars($id) . '</b>. Ya podes iniciar sesion con tu cedula y contrasena.',
                 '../view/vInicio/IniciarSesion.php');
     } catch (Exception $ex) {

@@ -72,7 +72,7 @@ PintarHeader();
 				<div class="row">
 					<div class="col-lg-7">
 						<div style="background:#eafaf1;border:1px solid #a9dfbf;border-radius:10px;padding:22px;margin-bottom:28px;">
-							<b style="color:#1e8449;">¡Quedaste matriculada!</b><br>
+							<b style="color:#1e8449;">Tu matrícula quedó registrada</b><br>
 							Tu matrícula es la <b>#<?= htmlspecialchars($matriculaId) ?></b>.
 							Ya la base de datos apartó tu cupo en el grupo. Ahora solo falta el pago.
 						</div>

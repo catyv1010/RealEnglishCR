@@ -42,7 +42,7 @@ $pk = strtoupper($def['pk']);
                 </a>
                 <form method="post" style="display:inline"
                       action="admin.php?entidad=<?php echo $entidad; ?>&accion=eliminar"
-                      onsubmit="return confirm('¿Seguro que quiere eliminar el registro <?php echo htmlspecialchars($fila[$pk]); ?>?');">
+                      onsubmit="return confirm('¿Confirma que desea eliminar el registro <?php echo htmlspecialchars($fila[$pk]); ?>?');">
                     <input type="hidden" name="id" value="<?php echo htmlspecialchars($fila[$pk]); ?>">
                     <button type="submit" class="btn btn-sm btn-outline-danger">Eliminar</button>
                 </form>
